@@ -41,7 +41,7 @@
                     <h2 class="d-inline-block">Gov Exam</h2>
                 </div>
                 <div class="col-md-6 text-center">
-                    <input type="text" class="form-control bg-white mt-3 pl-2 pr-2" style="height: 30px; align-items: center; border: 0;">
+                    <input type="text" class="form-control bg-white mt-3 pl-2 pr-2" style="height: 30px; align-items: center; border: 0; border-radius: 4px;">
                 </div>
                 <div class="col-md-3 text-right">
                     <i class="material-icons">menu</i>

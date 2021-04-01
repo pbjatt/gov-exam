@@ -7,8 +7,7 @@
             <div class="card">
                 <div class="profile-tab-box">
                     <div class="p-l-10">
-                        <!-- {{ Form::open(['url' => url('examlist'), 'method'=>'GET', 'id' => 'filterexam']) }} -->
-                        <ul class="nav ">
+                        <ul class="nav">
                             <li class="nav-item tab-all">
                                 <a class="nav-link active show">
                                     {{Form::select('age', $ageArr,'0', ['class' => 'nav-select form-control searchExam', 'id' => 'age'])}}
@@ -24,8 +23,8 @@
                                     {{Form::select('qualification', $qualificationArr,'0', ['class' => 'nav-select form-control searchExam', 'id' => 'qualification'])}}
                                 </a>
                             </li>
+                            <span id="baseUrl" data-url="{{ url('/examsearch') }}"></span>
                         </ul>
-                        <!-- {{ Form::close() }} -->
                     </div>
                 </div>
             </div>
