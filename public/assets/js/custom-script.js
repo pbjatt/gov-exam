@@ -33,20 +33,22 @@ $(function() {
         window.location.href = "/gov-exam/examlist";
     });
 
-    $(document).on('change', 'category', function() {
-        // let ajax_url = $(this).data('url'),
+    $(document).on('change', '.searchExam', function() {
         let ajax_url = 'http://localhost/gov-exam/examsearch',
-            cid = $(this).val();
-        alert('szdxkfdj');
+            age = $('#age').val();
+        category = $('#category').val();
+        qualification = $('#qualification').val();
         $.ajax({
             url: ajax_url,
-            type: 'GET',
+            type: 'POST',
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             data: {
-                age: cid
+                age: age,
+                category: category,
+                qualification: qualification
             },
             success: function(res) {
-
+                $('#exam_list').html(res);
             }
         });
     });

@@ -37,8 +37,7 @@ Route::any('admin', function () {
 Route::group([], function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/examlist', 'HomeController@examlist');
-    Route::post('examsearch', 'HomeController@ajex');
     Route::get('exam/{slug}', 'HomeController@examdetails');
-    Route::get('examsearch', 'HomeController@examsearch');
+    Route::post('examsearch', 'AjexController@examsearch');
     Route::get('notification/{slug}', 'HomeController@notification');
 });

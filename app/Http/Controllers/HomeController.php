@@ -31,7 +31,7 @@ class HomeController extends Controller
         if ($request->qualification != '') {
             $query->where('qualification', $request->qualification);
         }
-        $exams = $query->get();
+        $exams = $query->paginate(10);
         // dd($request);
 
         $age = Age::get();
@@ -62,51 +62,6 @@ class HomeController extends Controller
 
         $data = compact('exams', 'ageArr', 'categoryArr', 'qualificationArr', 'notification');
         return view('frontend.inc.examlist', $data);
-    }
-
-    public function examsearch(Request $request)
-    {
-        $query = Exam::latest();
-        if ($request->age != '') {
-            $query->where('age', $request->age);
-        }
-        if ($request->category != '') {
-            $query->where('category_id', $request->category);
-        }
-        if ($request->qualification != '') {
-            $query->where('qualification', $request->qualification);
-        }
-        $exams = $query->get();
-        // dd($request);
-
-        $age = Age::get();
-        $ageArr  = ['' => 'Age'];
-        if (!$age->isEmpty()) {
-            foreach ($age as $a) {
-                $ageArr[$a->id] = $a->age;
-            }
-        }
-
-        $category = Exam_category::get();
-        $categoryArr  = ['' => 'Category'];
-        if (!$category->isEmpty()) {
-            foreach ($category as $a) {
-                $categoryArr[$a->id] = $a->title;
-            }
-        }
-
-        $qualification = Qualification::get();
-        $qualificationArr  = ['' => 'Qualification'];
-        if (!$qualification->isEmpty()) {
-            foreach ($qualification as $a) {
-                $qualificationArr[$a->id] = $a->title;
-            }
-        }
-
-        $notification = ExamNotification::get();
-
-        $data = compact('exams', 'ageArr', 'categoryArr', 'qualificationArr', 'notification');
-        return response()->json($data);
     }
 
     public function examdetails($slug)
