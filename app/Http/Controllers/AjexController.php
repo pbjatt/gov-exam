@@ -4,26 +4,34 @@ namespace App\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
-use Mail;
-use App\Model\Setting;
-use App\Model\Menuslider;
-use App\Model\MenuItem;
 
-use Auth;
-use Hash;
-use App\User;
-use App\Model\Coupan;
-use App\Model\Coupanapply;
-use App\Model\Newsletter;
-use App\Model\Reservation;
-use App\Model\Fevorite;
-use App\Model\Point;
+use App\Model\Exam;
+use App\Model\Age;
+use App\Model\Exam_category;
+use App\Model\Qualification;
+use App\Model\ExamNotification;
 
-class AjaxController extends Controller
+class AjexController extends Controller
 {
-    public function sendOtp(Request $request)
+    public function examsearch(Request $request)
     {
+        $query = Exam::latest();
+        if ($request->age != '') {
+            $query->where('age', $request->age);
+        }
+        if ($request->category != '') {
+            $query->where('category_id', $request->category);
+        }
+        if ($request->qualification != '') {
+            $query->where('qualification', $request->qualification);
+        }
+        $exams = $query->paginate(10);
+        // dd($request);
 
-        return response()->json($re, 200);
+
+        $exam_list = view('frontend.template.exam_list', compact('exams'))->render();
+
+
+        return response()->json($exam_list, 200);
     }
 }

@@ -11,17 +11,17 @@
                         <ul class="nav ">
                             <li class="nav-item tab-all">
                                 <a class="nav-link active show">
-                                    {{Form::select('age', $ageArr,'0', ['class' => 'nav-select form-control', 'id' => 'category'])}}
+                                    {{Form::select('age', $ageArr,'0', ['class' => 'nav-select form-control searchExam', 'id' => 'age'])}}
                                 </a>
                             </li>
                             <li class="nav-item tab-all p-l-20">
                                 <a class="nav-link active show">
-                                    {{Form::select('category', $categoryArr,'0', ['class' => 'nav-select form-control', 'id' => 'examcategory'])}}
+                                    {{Form::select('category', $categoryArr,'0', ['class' => 'nav-select form-control searchExam', 'id' => 'category'])}}
                                 </a>
                             </li>
                             <li class="nav-item tab-all p-l-20">
                                 <a class="nav-link active show">
-                                    {{Form::select('qualification', $qualificationArr,'0', ['class' => 'nav-select form-control', 'id' => 'qualification'])}}
+                                    {{Form::select('qualification', $qualificationArr,'0', ['class' => 'nav-select form-control searchExam', 'id' => 'qualification'])}}
                                 </a>
                             </li>
                         </ul>
@@ -32,41 +32,8 @@
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="project" aria-expanded="true">
                     <div class="row clearfix">
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-                            <div class="card project_widget">
-                                <div class="header p-4">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-md-6 col-sm-6">
-                                            <h2>Exam lists</h2>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-6 text-right">
-                                            <!-- <h2><a href="" style="color: #5b626b;"><i class="material-icons" style="font-size: 18px;">mode_edit</i> Edit</a></h2> -->
-                                            {{ $exams->count() }} records found
-                                            <div id="clearFilter">clear filter</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr class="m-0">
-                                <div class="body p-4">
-                                    @foreach($exams as $key => $exam)
-                                    @php
-                                    $sn = $key + 1;
-                                    @endphp
-                                    <div class="row">
-                                        <div class="col-md-1 col-6 b-r mb-0">
-                                            <strong>{{ $sn++ }}.</strong>
-                                        </div>
-                                        <div class="col-md-8 col-6 b-r mb-0">
-                                            <strong> <a href="{{ url('exam/'.$exam->slug) }}">{{ $exam->name }}</a></strong>
-                                        </div>
-                                        <div class="col-md-3 col-6 b-r mb-0">
-                                            <strong>{{ $exam->start_date }}</strong>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    @endforeach
-                                </div>
-                            </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12" id="exam_list">
+                            @include('frontend.template.exam_list', compact('exams'))
                         </div>
                     </div>
                 </div>
