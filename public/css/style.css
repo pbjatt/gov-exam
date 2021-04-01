@@ -1,0 +1,45 @@
+.container-fluid {
+    padding: 0;
+}
+
+.navbar-header {
+    width: 100%;
+}
+
+.container-fluid>.navbar-header {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.tab-all a.active {
+    box-shadow: 0 5px 20px 0 rgb(0 0 0 / 20%), 0 13px 24px -11px rgb(53 60 72);
+}
+
+.nav-select {
+    border: 0;
+    padding: 0;
+    height: auto;
+    margin: 0;
+    background-color: #353c48;
+    color: #fff;
+}
+
+.nav-select:active {
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+    height: auto;
+    margin: 0;
+    background-color: #353c48;
+    color: #fff;
+}
+
+.nav-select:focus {
+    border: 0;
+    padding: 0;
+    box-shadow: none;
+    height: auto;
+    margin: 0;
+    background-color: #353c48;
+    color: #fff;
+}
