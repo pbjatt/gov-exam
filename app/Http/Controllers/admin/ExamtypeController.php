@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
-use App\Examtype;
+use App\Model\Examtype;
 use Illuminate\Http\Request;
 
 class ExamtypeController extends Controller
