@@ -11,8 +11,8 @@
                             <div class="user-name" style="padding-top: 25px;"><a href="{{ $lists->url }}" class="text-white" title="{{ $lists->title }} Notification" target="_blank">{{ $lists->title }}</a></div>
                             <div class="name-center">{{ $lists->posts }} Posts</div>
                         </div>
-                        <div style="position: absolute; top: -10px; left: -10px; color:white; background: #e05b48; padding: 10px 10px 4px; border-radius: 100%;">
-                            <i class="material-icons m-0 p-0" title="{{ $lists->title }} Notification">notifications</i>
+                        <div style="position: absolute; top: -10px; left: -10px; color:white; background: #e05b48; padding: 6px 6px 0px; border-radius: 100%;">
+                            <i class="material-icons m-0 p-0" style="font-size: 18px;" title="{{ $lists->title }} Notification">notifications</i>
                         </div>
                         <p>
                         </p>

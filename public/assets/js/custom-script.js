@@ -5,6 +5,10 @@ $(function() {
         }
     });
 
+    var url = window.location.origin;
+    var host = window.location.host;
+    var pathArray = window.location.pathname;
+    // alert(host);
     $(function() {
         $("#filterexam").change(function() {
             $age = $('#age').val();
@@ -34,8 +38,8 @@ $(function() {
     });
 
     $(document).on('change', '.searchExam', function() {
-        let ajax_url = 'http://localhost/gov-exam/examsearch',
-            age = $('#age').val();
+        let ajax_url = $('#baseUrl').data('url');
+        age = $('#age').val();
         category = $('#category').val();
         qualification = $('#qualification').val();
         $.ajax({
