@@ -41,3 +41,20 @@ Route::group([], function () {
     Route::post('examsearch', 'AjexController@examsearch');
     Route::get('notification/{slug}', 'HomeController@notification');
 });
+
+
+Route::group(['prefix' => '/account', 'as' => 'account.'], function () {
+    Route::get('login', 'UserController@getLogin')->name('login');
+    Route::post('login', 'UserController@postLogin')->name('login.post');
+    Route::get('register', 'UserController@getRegister')->name('register');
+    Route::post('register', 'UserController@postRegister')->name('register.post');
+    Route::get('/forget-password', 'UserController@getEmail')->name('forgetpassword');
+    Route::post('/forget-password', 'UserController@postEmail')->name('forgetpassword.post');
+    Route::get('/reset-password/{token}', 'UserController@getPassword')->name('resetpassword');
+    Route::post('/reset-password', 'UserController@updatePassword')->name('resetpassword.post');
+    Route::get('/verify/{otp_token}', 'UserController@getVerify')->name('verify');
+    Route::get('logout', 'UserController@logout')->name('logout');
+});
+Route::group(['middleware' => 'userauth',], function () {
+    
+});
