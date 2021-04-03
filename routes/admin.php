@@ -32,6 +32,7 @@ Route::group(['middleware' => 'auth:admin', 'namespace' => 'admin', 'as' => 'adm
         'notificationinfo'       => 'NotificationInfoController',
         'notificationsyllabus'       => 'NotificationSyllabusController',
         'notificationresult'       => 'NotificationResultController',
+        'infotype'       => 'InfoTypeController',
     ]);
 
     Route::resources([

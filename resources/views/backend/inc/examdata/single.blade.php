@@ -109,12 +109,12 @@ $guardData = Auth::guard()->user();
                                 @foreach($lists->infodata as $key => $info)
                                 @if($key == 0)
                                 <li class="nav-item tab-all">
-                                    <a class="nav-link active show" href="#{{ $info->infotype->name }}" data-toggle="tab">{{ $info->infotype->name }}</a>
+                                    <a class="nav-link active show" href="#{{ $info->infotype->slug }}" data-toggle="tab">{{ $info->infotype->name }}</a>
                                 </li>
                                 @endif
                                 @if($key != 0)
                                 <li class="nav-item tab-all p-l-20">
-                                    <a class="nav-link" href="#{{ $info->infotype->name }}" data-toggle="tab">{{ $info->infotype->name }}</a>
+                                    <a class="nav-link" href="#{{ $info->infotype->slug }}" data-toggle="tab">{{ $info->infotype->name }}</a>
                                 </li>
                                 @endif
                                 @endforeach
@@ -125,12 +125,12 @@ $guardData = Auth::guard()->user();
                 <div class="tab-content">
                     @foreach($lists->infodata as $key => $info)
                     @if($key == 0)
-                    <div role="tabpanel" class="tab-pane active" id="{{ $info->infotype->name }}" aria-expanded="true">
+                    <div role="tabpanel" class="tab-pane active" id="{{ $info->infotype->slug }}" aria-expanded="true">
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="card project_widget">
                                     <div class="body" style="min-height: 320px;">
-                                        {{ $info->description }}
+                                        {!! $info->description !!}
                                     </div>
                                 </div>
                             </div>
@@ -138,12 +138,12 @@ $guardData = Auth::guard()->user();
                     </div>
                     @endif
                     @if($key != 0)
-                    <div role="tabpanel" class="tab-pane" id="{{ $info->infotype->name }}" aria-expanded="true">
+                    <div role="tabpanel" class="tab-pane" id="{{ $info->infotype->slug }}" aria-expanded="true">
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="card project_widget">
                                     <div class="body" style="min-height: 320px;">
-                                        {{ $info->description }}
+                                        {!! $info->description !!}
                                     </div>
                                 </div>
                             </div>

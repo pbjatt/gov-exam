@@ -43,3 +43,24 @@
     background-color: #353c48;
     color: #fff;
 }
+
+#exam-content h2 {
+    margin-top: 0px !important;
+}
+
+#exam-content p {
+    line-height: 30px !important;
+    font-size: 15px !important;
+}
+
+#exam-content table {
+    width: 100% !important;
+}
+
+#exam-content table td {
+    font-size: 15px !important;
+}
+
+#exam-content .table-responsive {
+    width: 100% !important;
+}

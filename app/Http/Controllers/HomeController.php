@@ -14,9 +14,13 @@ use Illuminate\Contracts\Session\Session;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('frontend.inc.home');
+        $notification = ExamNotification::get();
+        $exams = Exam::search($request->s);
+
+        $data = compact('exams', 'notification');
+        return view('frontend.inc.home', $data);
     }
 
     public function examlist(Request $request)

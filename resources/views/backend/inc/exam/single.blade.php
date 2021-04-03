@@ -1,5 +1,5 @@
 @php
-    $guardData = Auth::guard()->user();
+$guardData = Auth::guard()->user();
 @endphp
 <section class="content">
     <div class="container-fluid">
@@ -63,10 +63,7 @@
                         <div class="p-l-20">
                             <ul class="nav ">
                                 <li class="nav-item tab-all">
-                                    <a class="nav-link active show" href="#project" data-toggle="tab">About Me</a>
-                                </li>
-                                <li class="nav-item tab-all p-l-20">
-                                    <a class="nav-link" href="#usersettings" data-toggle="tab">Settings</a>
+                                    <a class="nav-link active show" href="#project" data-toggle="tab">{{ $lists->name }} Information</a>
                                 </li>
                             </ul>
                         </div>
@@ -78,93 +75,29 @@
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="card project_widget">
                                     <div class="header">
-                                        <div class="row">
-                                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                                <h2>Details</h2>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-6 text-right">
-                                                <h2><a href="{{ route('admin.exam.edit',$lists->id) }}" style="color: #5b626b;"><i class="material-icons" style="font-size: 18px;">mode_edit</i> Edit</a></h2>
-                                            </div>
-                                        </div>
+                                        <h2>Details</h2>
                                     </div>
-                                    <div class="body" style="min-height: 320px;">
+                                    <div class="body" style="min-height: 320px;" id="exam-content">
                                         <div class="row">
                                             <div class="col-md-3 col-6 b-r">
                                                 <strong>Age</strong>
                                                 <br>
-                                                <p class="text-muted">{{ $lists->age }}</p>
+                                                <p class="text-muted">{{ $lists->exam_age->age }}</p>
                                             </div>
                                             <div class="col-md-3 col-6 b-r">
                                                 <strong>Qualification</strong>
                                                 <br>
-                                                <p class="text-muted">{{ $lists->qualification }}</p>
+                                                <p class="text-muted">{{ $lists->exam_qualification->title }}</p>
                                             </div>
                                             <div class="col-md-3 col-6 b-r">
                                                 <strong>Category</strong>
                                                 <br>
-                                                <p class="text-muted">{{ $lists->category_id }}</p>
+                                                <p class="text-muted">{{ $lists->category->title }}</p>
                                             </div>
                                         </div>
                                         <p class="m-t-30">
                                             <strong>Description</strong><br>
-                                            {{ $lists->description }}
-                                        </p>
-                                        <br>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="usersettings" aria-expanded="true">
-                        <div class="row clearfix">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <div class="card project_widget">
-                                    <div class="header">
-                                        <div class="row">
-                                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                                <h2>Abrtyhtrfyhrtout</h2>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-6 text-right">
-                                                <h2><a href="{{ route('admin.exam.edit',$lists->id) }}" style="color: #5b626b;"><i class="material-icons" style="font-size: 18px;">mode_edit</i> Edit</a></h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="body" style="min-height: 320px;">
-                                        <div class="row">
-                                            <div class="col-md-3 col-6 b-r">
-                                                <strong>Mobile</strong>
-                                                <br>
-                                                <p class="text-muted">{{ $lists->mobile }}</p>
-                                            </div>
-                                            <div class="col-md-3 col-6 b-r">
-                                                <strong>Email</strong>
-                                                <br>
-                                                <p class="text-muted">{{ $lists->email }}</p>
-                                            </div>
-                                            <div class="col-md-3 col-6 b-r">
-                                                <strong>Web Url</strong>
-                                                <br>
-                                                <p class="text-muted">{{ $lists->weburl }}</p>
-                                            </div>
-                                            <div class="col-md-3 col-6">
-                                                <strong>Location</strong>
-                                                <br>
-                                                <p class="text-muted"></p>
-                                            </div>
-                                            <div class="col-md-3 col-6 b-r">
-                                                <strong>Pan Number</strong>
-                                                <br>
-                                                <p class="text-muted">{{ $lists->pan }}</p>
-                                            </div>
-                                            <div class="col-md-3 col-6 b-r">
-                                                <strong>GST Number</strong>
-                                                <br>
-                                                <p class="text-muted">{{ $lists->gstin }}</p>
-                                            </div>
-                                        </div>
-                                        <p class="m-t-30">
-                                            <strong>Description</strong><br>
-                                            {{ $lists->description }}
+                                            {!! $lists->description !!}
                                         </p>
                                         <br>
                                     </div>

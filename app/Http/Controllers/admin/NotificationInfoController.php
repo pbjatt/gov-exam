@@ -94,7 +94,7 @@ class NotificationInfoController extends Controller
         $record->save();
 
 
-        return redirect(route('admin.examdata.index'))->with('success', 'Success! New record has been added.');
+        return redirect(route('admin.notificationinfo.index'))->with('success', 'Success! New record has been added.');
     }
 
     /**
@@ -204,7 +204,7 @@ class NotificationInfoController extends Controller
 
         $record->save();
 
-        return redirect(route('admin.examdata.index'))->with('success', 'Success! Record has been edided');
+        return redirect(route('admin.notificationinfo.index'))->with('success', 'Success! Record has been edided');
     }
 
     /**
