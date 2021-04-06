@@ -57,5 +57,9 @@ Route::group(['prefix' => '/account', 'as' => 'account.'], function () {
     Route::get('/verify/{otp_token}', 'UserController@getVerify')->name('verify');
     Route::get('logout', 'UserController@logout')->name('logout');
 });
-Route::group(['middleware' => 'userauth',], function () {
+Route::group(['middleware' => 'userauth', 'prefix' => '/user', 'as' => 'user.', 'namespace' => 'user'], function () {
+    Route::get('/', 'DashboardController@index')->name('dashboard');
+    Route::resources([
+        'blog' => 'BlogController',
+    ]);
 });
