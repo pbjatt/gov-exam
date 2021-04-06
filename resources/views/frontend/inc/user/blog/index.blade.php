@@ -1,18 +1,19 @@
 <section class="content">
     <div class="container-fluid">
+        @include('frontend.template.user.flash-message')
         <div class="block-header">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <ul class="breadcrumb breadcrumb-style ">
                         <li class="breadcrumb-item">
-                            <h4 class="page-title">Blog List
+                            <h4 class="page-title">{{ $title }}
                             </h4>
                         </li>
                         <li class="breadcrumb-item bcrumb-1">
                             <a href="{{ route('user.dashboard') }}">
                                 <i class="fas fa-home"></i> Home</a>
                         </li>
-                        <li class="breadcrumb-item active">Blog List
+                        <li class="breadcrumb-item active">{{ $title }}
                         </li>
                     </ul>
                 </div>
@@ -36,6 +37,7 @@
                                         <th>Name</th>
                                         <th>Category</th>
                                         <th>Image</th>
+                                        <th>Attachment</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                         <th></th>
@@ -49,10 +51,15 @@
 
                                     <tr>
                                         <td>{{ $sn++ }}</td>
-                                        <td>{{ $list->name }}</td>
+                                        <td>{{ $list->blog_title }}</td>
                                         <td>{{ $list->category_id }}</td>
                                         <td class="table-img" style="width: 10%;">
-                                            <img src="{{ url('/').'/images/blog/'.$list->image }}" alt="">
+                                            <img src="{{ url('/').'/storage/blog/'.$list->blog_image }}" alt="">
+                                        </td>
+                                        <td class="table-img" style="width: 10%;">
+                                            <iframe src="{{ url('/').'/blog/files/'.$list->blog_attachment }}" width="100%">
+                                            </iframe>
+                                            <img src="{{ url('/').'/blog/files/'.$list->blog_attachment }}" alt="">
                                         </td>
                                         <td>
                                             <span class="label l-bg-purple shadow-style">Visiable</span>

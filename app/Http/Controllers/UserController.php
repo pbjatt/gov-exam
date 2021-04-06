@@ -64,7 +64,7 @@ class UserController extends Controller
                     if ($user) {
                         return redirect(route('user.dashboard'));
                     } else {
-                        $e = "Your Mobile Number or password are wrong";
+                        $e = "Your {$field} or password are wrong";
                         return back()->with('error', $e);
                     }
                 } else {

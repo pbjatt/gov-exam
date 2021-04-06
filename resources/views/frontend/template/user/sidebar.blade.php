@@ -87,18 +87,9 @@
                     </ul>
                 </li>--}}
                 <li>
-                    <a href="#" onClick="return false;" class="menu-toggle">
-                        <i class="material-icons">folder</i>
+                    <a href="{{ route('user.blog.index') }}" class="menu-toggle">
                         <span>Blog</span>
                     </a>
-                    <ul class="ml-menu">
-                        <li>
-                            <a href="{{ route('user.blog.create') }}">Add Blog</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('user.blog.index') }}">View Blog</a>
-                        </li>
-                    </ul>
                 </li>
                 <!-- #Menu -->
     </aside>
