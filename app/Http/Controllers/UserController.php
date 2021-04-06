@@ -54,20 +54,25 @@ class UserController extends Controller
 
             $user = User::where($field, $request->login)->first();
 
-            if ($user->verified == 1) {
-                $user = Auth::attempt([
-                    $field => $request->login,
-                    'password'    => $request->password
-                ]);
+            if ($user->role_id != 1) {
+                if ($user->verified == 1) {
+                    $user = Auth::attempt([
+                        $field => $request->login,
+                        'password'    => $request->password
+                    ]);
 
-                if ($user) {
-                    return redirect(route('home'));
+                    if ($user) {
+                        return redirect(route('user.dashboard'));
+                    } else {
+                        $e = "Your {$field} or password are wrong";
+                        return back()->with('error', $e);
+                    }
                 } else {
-                    $e = "Your Mobile Number or password are wrong";
-                    return back()->with('error', $e);
+                    $e = "Your Account is not verfied";
+                    return redirect()->back()->with('error', $e);
                 }
             } else {
-                $e = "Your Account is not verfied";
+                $e = "Your Are Not Authorize";
                 return redirect()->back()->with('error', $e);
             }
         }
@@ -115,11 +120,11 @@ class UserController extends Controller
             $message->subject('OTP Verification');
             $message->from(env('MAIL_USERNAME'), $setting->title);
         });
-        
+
         $user->save();
 
 
-        return redirect(route('home'));
+        return redirect(route('user.dashboard'));
     }
 
     public function getVerify($otp_token)

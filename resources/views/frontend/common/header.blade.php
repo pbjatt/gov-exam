@@ -41,12 +41,35 @@
                     <h2 class="d-inline-block">Gov Exam</h2>
                 </div>
                 <div class="col-md-6 text-center">
-                    <input type="text" class="form-control bg-white mt-3 pl-2 pr-2" style="height: 30px; align-items: center; border: 0; border-radius: 4px;">
+                    <form action="{{ url('/examlist') }}">
+                        <input type="text" name="s" autocomplete="off" class="form-control bg-white mt-3 pl-2 pr-2 masterSearch" data-url="{{ url('/ajex/search') }}" data-baseurl="{{ url('/') }}" style="height: 30px; align-items: center; border: 0; border-radius: 4px;">
+                        <div class="search-result" style="display: block;">
+                            <ul style="width: 550px;" class="listing m-0 p-0">
+                            </ul>
+                        </div>
+                    </form>
                 </div>
                 <div class="col-md-3 text-right">
-                    <i class="material-icons">menu</i>
+                    @if(auth()->user())
+                    <img src="{{ url('extraimage/images.jpg') }}" alt="user image" width="32" height="32" class="d-inline-block" title="{{ auth()->user()->name }}">
+                    @endif
+                    <div class="d-inline-block">
+                        <div>
+                            <i class="material-icons" onclick="openNav()">menu</i>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        <section class="menu menu1" id="mySidenav">
+            <div>
+                <ul>
+                    <li> <a href="">Home</a></li>
+                    <li> <a href="">Result</a></li>
+                    <li> <a href="">Exams</a></li>
+                    <li> <a href="">Notification</a></li>
+                </ul>
+            </div>
+        </section>
     </nav>
     <!-- #Top Bar -->

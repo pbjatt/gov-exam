@@ -1,7 +1,3 @@
-@php
-$guard = Auth::guard()->user()->role_id;
-$guardData = Auth::guard()->user();
-@endphp
 <!-- #Top Bar -->
 <div>
     <!-- Left Sidebar -->
@@ -18,16 +14,16 @@ $guardData = Auth::guard()->user();
                     </div>
                     <div class="profile-usertitle">
                         <div class="sidebar-userpic-name"> {{ $guardData->name }} </div>
-                        <div class="profile-usertitle-job ">Manager </div>
+                        <div class="profile-usertitle-job ">{{ $guardData->role->name }}</div>
                     </div>
                 </li>
                 <li class="active">
-                    <a href="{{ url(env('ADMIN_DIR').'/') }}">
+                    <a href="{{ route('user.dashboard') }}" class="menu-toggle">
                         <i class="fas fa-tachometer-alt"></i>
                         <span>Home</span>
                     </a>
                 </li>
-                <li>
+                {{--<li>
                     <a href="#" onClick="return false;" class="menu-toggle">
                         <!-- <i class="fas fa-angle-double-down"></i> -->
                         <i class="material-icons">folder</i>
@@ -88,63 +84,13 @@ $guardData = Auth::guard()->user();
                                 </li>
                             </ul>
                         </li>
-
-                        <li>
-                            <a href="#" onClick="return false;" class="menu-toggle">
-                                <i class="fas fa-mail-bulk"></i>
-                                <span>Info Type</span>
-                            </a>
-                            <ul class="ml-menu">
-                                <li>
-                                    <a href="{{ route('admin.infotype.create') }}">
-                                        <span>Add</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('admin.infotype.index') }}">
-                                        <span>View</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
                     </ul>
-                </li>
+                </li>--}}
                 <li>
-                    <a href="#" onClick="return false;" class="menu-toggle">
-                        <i class="material-icons">shop</i>
-                        <span>Exam Category</span>
-                    </a>
-                    <ul class="ml-menu">
-                        <li>
-                            <a href="{{ route('admin.examcategory.create') }}">Add</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('admin.examcategory.index') }}">View</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#" onClick="return false;" class="menu-toggle">
-                        <i class="material-icons">shop</i>
-                        <span>Exam</span>
-                    </a>
-                    <ul class="ml-menu">
-                        <li>
-                            <a href="{{ route('admin.exam.create') }}">Add</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('admin.exam.index') }}">View</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="{{ route('admin.notification.master') }}">
-                        <i class="material-icons">shop</i>
-                        <span>Exam Notification</span>
+                    <a href="{{ route('user.blog.index') }}" class="menu-toggle">
+                        <span>Blog</span>
                     </a>
                 </li>
-
-
                 <!-- #Menu -->
     </aside>
     <!-- #END# Left Sidebar -->

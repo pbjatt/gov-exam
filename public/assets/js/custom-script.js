@@ -57,6 +57,31 @@ $(function() {
         });
     });
 
+    $('#search-text').keyup(function(e) {
+        $('.listing').html(``);
+        $obj = $(this).val();
+        if ($obj != '') {
+            var requestOptions = {
+                method: 'GET',
+                redirect: 'follow'
+            };
+            fetch(`http://localhost:3000/api/search?s=${$obj}`, requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                    if (result.length) {
+                        result.forEach((item, i) => {
+                            $('.listing').append(`<li>${item.name}</li>`);
+                        })
+                    } else {
+                        $('.listing').append(`<li>No results found.</li>`);
+                    }
+                })
+                .catch(error => console.log('error', error));
+        } else {
+            $('.listing').html(``);
+        }
+    });
+
     $('.extra-fields').click(function() {
         $('.customer_records').clone().appendTo('.customer_records_dynamic');
         $('.customer_records_dynamic .customer_records').addClass('single remove');
@@ -139,19 +164,30 @@ $(function() {
     });
 
 
-    $(document).on('keyup change', '.hsdafj', function(e) {
-        ajax_url = $(this).attr('data_url');
+    $(document).on('keyup change', '.masterSearch', function(e) {
+        let ajax_url = $(this).data('url');
+        base_url = $(this).data('baseurl');
+
         search = $(this).val();
+        $('.listing').html(``);
         $.ajax({
             url: ajax_url,
-            type: 'POST',
+            type: 'GET',
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             data: {
-                search: search
+                search: search,
+                base_url: base_url
             },
             success: function(res) {
-                $('.list_data').html('');
-                $('.list_data').append(res);
+                // if (res.length) {
+                //     result.forEach((item, i) => {
+                //         $('.listing').append(`<li>${item.name}</li>`);
+                //     })
+                // } else {
+                //     $('.listing').append(`<li>No results found.</li>`);
+                // }
+                $('.listing').html('');
+                $('.listing').append(res);
             }
         });
     });

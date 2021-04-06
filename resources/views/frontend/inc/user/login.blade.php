@@ -21,7 +21,7 @@
                     {{ \Session::get('error') }}
                 </div>
                 @endif
-                <span class="login100-form-title p-b-34 p-t-27">
+                <span class="login100-form-title">
                     Log in
                 </span>
                 <div class="wrap-input100 validate-input" data-validate="Enter email">
@@ -54,7 +54,7 @@
                                 </label> -->
                             </div>
                             <div class="col-lg-6">
-                                <div class="text-center">
+                                <div class="text-right">
                                     <a class="txt1" href="{{ route('account.forgetpassword') }}">
                                         Forgot Password?
                                     </a>
@@ -63,23 +63,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="container-login100-form-btn">
-                    <button type="submit" class="login100-form-btn" value="Login">
-                        Login
-                    </button>
-                </div>
-                <div class="contact100-form-checkbox mt-4">
-                    <div class="form-check">
-                        <div class="row">
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="text-center">
-                                    <a class="txt1" href="{{ route('account.register') }}">
-                                    You Don't have an Account Register Here
-                                    </a>
-                                </div>
-                            </div>
+                <div class="d-flex justify-content-between">
+                    <div class="contact100-form-checkbox p-0" style="padding-bottom: 0px;">
+                        <div class="text-left">
+                            <a class="txt1 align-middle" href="{{ route('account.register') }}">
+                                <h4 style="padding-top: 11px;">
+                                    Register Here
+                                </h4>
+                            </a>
                         </div>
+                    </div>
+                    <div class="p-0">
+                        <button type="submit" class="login100-form-btn" value="Login">
+                            Login
+                        </button>
                     </div>
                 </div>
                 {!! Form::close() !!}

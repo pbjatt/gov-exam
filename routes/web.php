@@ -20,26 +20,15 @@ Route::any('admin', function () {
     return false;
 });
 
-// Route::group(['namespace' => 'App\Http\Controllers'], function() {
-//     Route::group(['prefix' => '/account', 'as' => 'account.'], function() {
-//         Route::get('login','UserAuthController@getLogin')->name('login');
-// 	    Route::post('login', 'UserAuthController@postLogin')->name('login.post');
-// 	    Route::get('register','UserAuthController@getRegister')->name('register');
-// 	    Route::post('register', 'UserAuthController@postRegister')->name('register.post');
-// 	    Route::get('logout', 'UserAuthController@logout')->name('logout');
-//     });
-//     Route::group(['middleware' => 'userauth'], function () {
-//         Route::get('/', 'HomeController@index')->name('home');
-//     });
-// });
-
 
 Route::group([], function () {
-    Route::get('/', 'HomeController@index')->name('home');
-    Route::get('/examlist', 'HomeController@examlist');
+    Route::get('/', 'HomeController@examlist')->name('home');
+    Route::get('/examlist', 'HomeController@index');
     Route::get('exam/{slug}', 'HomeController@examdetails');
     Route::post('examsearch', 'AjexController@examsearch');
     Route::get('notification/{slug}', 'HomeController@notification');
+
+    Route::get('/ajex/search', 'AjexController@search');
 });
 
 
@@ -55,6 +44,9 @@ Route::group(['prefix' => '/account', 'as' => 'account.'], function () {
     Route::get('/verify/{otp_token}', 'UserController@getVerify')->name('verify');
     Route::get('logout', 'UserController@logout')->name('logout');
 });
-Route::group(['middleware' => 'userauth',], function () {
-    
+Route::group(['middleware' => 'userauth', 'prefix' => '/user', 'as' => 'user.', 'namespace' => 'user'], function () {
+    Route::get('/', 'DashboardController@index')->name('dashboard');
+    Route::resources([
+        'blog' => 'BlogController',
+    ]);
 });

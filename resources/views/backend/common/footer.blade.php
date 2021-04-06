@@ -14,7 +14,34 @@
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
         tinymce.init({
-            selector: '.abctinymce1'
+            selector: '.tinymce',
+            plugins: "code, link, image, textcolor, emoticons, hr, lists, charmap, table, fullscreen",
+            fontsizeselect: true,
+            browser_spellcheck: true,
+            menubar: true,
+            toolbar: 'bold italic underline strikethrough link | formatselect h1 h2 h3 h4 | table hr superscript subscript | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | uploadImageButton | fullscreen | code',
+            branding: false,
+            protect: [
+                /\<\/?(if|endif)\>/g, // Protect <if> & </endif>
+                /\<xsl\:[^>]+\>/g, // Protect <xsl:...>
+                /\<script\:[^>]+\>/g, // Protect <xsl:...>
+                /<\?php.*?\?>/g // Protect php code
+            ],
+            images_upload_credentials: true,
+            file_browser_callback_types: 'image',
+            image_dimensions: true,
+            automatic_uploads: true,
+            relative_urls: false,
+            remove_script_host: false,
+            fullscreen_native: false,
+            // setup: function(editor) {
+            //     editor.ui.registry.addButton('uploadImageButton', {
+            //         icon: 'image',
+            //         onAction: function() {
+            //             $('#upload_media1').modal('show');
+            //         }
+            //     });
+            // }
         });
     </script>
 
