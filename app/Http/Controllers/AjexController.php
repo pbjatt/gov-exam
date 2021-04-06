@@ -34,4 +34,19 @@ class AjexController extends Controller
 
         return response()->json($exam_list, 200);
     }
+
+    public function search(Request $request)
+    {
+        if ($request->search != '') {
+            $exams = Exam::where('name', 'LIKE', '%' . $request->search . '%')->paginate(10);
+            $li = '';
+            foreach ($exams as $product) {
+                $li .= '<li><a href="' . $request->base_url . '/exam/' . $product->slug . '">' . $product->name . '</a></li>';
+            }
+        } else {
+            $li = '';
+        }
+
+        return response()->json($li, 200);
+    }
 }

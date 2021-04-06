@@ -9,9 +9,6 @@ class Exam extends Model
     protected $guarded = [];
 
 
-    protected $attributes = ['picture_data'];
-    protected $appends = ['picture_data'];
-
     public function exam_age()
     {
         return $this->hasOne('App\Model\Age', 'id', 'age');

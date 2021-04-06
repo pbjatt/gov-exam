@@ -40,6 +40,8 @@ Route::group([], function () {
     Route::get('exam/{slug}', 'HomeController@examdetails');
     Route::post('examsearch', 'AjexController@examsearch');
     Route::get('notification/{slug}', 'HomeController@notification');
+
+    Route::get('/ajex/search', 'AjexController@search');
 });
 
 
@@ -56,5 +58,4 @@ Route::group(['prefix' => '/account', 'as' => 'account.'], function () {
     Route::get('logout', 'UserController@logout')->name('logout');
 });
 Route::group(['middleware' => 'userauth',], function () {
-    
 });
