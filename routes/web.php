@@ -20,19 +20,6 @@ Route::any('admin', function () {
     return false;
 });
 
-// Route::group(['namespace' => 'App\Http\Controllers'], function() {
-//     Route::group(['prefix' => '/account', 'as' => 'account.'], function() {
-//         Route::get('login','UserAuthController@getLogin')->name('login');
-// 	    Route::post('login', 'UserAuthController@postLogin')->name('login.post');
-// 	    Route::get('register','UserAuthController@getRegister')->name('register');
-// 	    Route::post('register', 'UserAuthController@postRegister')->name('register.post');
-// 	    Route::get('logout', 'UserAuthController@logout')->name('logout');
-//     });
-//     Route::group(['middleware' => 'userauth'], function () {
-//         Route::get('/', 'HomeController@index')->name('home');
-//     });
-// });
-
 
 Route::group([], function () {
     Route::get('/', 'HomeController@examlist')->name('home');

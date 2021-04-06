@@ -48,7 +48,7 @@ class User extends Authenticatable
 
     public function role()
     {
-        return $this->hasOne('App\Model\Role', 'id', 'user_id');
+        return $this->hasOne('App\Model\Role', 'id', 'role_id');
     }
     public function wallet()
     {

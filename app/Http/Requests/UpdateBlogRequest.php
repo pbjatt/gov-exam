@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class UpdateBlogRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            'blog.blog_title' => 'required|unique:blogs,blog_title',
+            'blog.blog_desc' => 'required',
+            'blog_image' => 'max:2048|mimes:jpeg,jpg,png,gif',
+            'blog_attachment' => 'max:2048|mimes:pdf',
+            'blog.category_id' => 'required',
+            'blog.blog_seotitle' => 'nullable',
+            'blog.blog_seokeyword' => 'nullable',
+            'blog.blog_seodesc' => 'nullable'
+        ];
+    }
+}

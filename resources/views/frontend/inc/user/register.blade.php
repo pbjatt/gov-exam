@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>login</title>
+    <title>Register</title>
     {{ HTML::style('assets/css/app.min.css') }}
     {{ HTML::style('assets/css/style.css') }}
     {{ HTML::style('assets/css/pages/extra_pages.css') }}
@@ -21,10 +21,10 @@
                     {{ \Session::get('error') }}
                 </div>
                 @endif
-                <span class="login100-form-title p-b-34 p-t-27">
+                <span class="login100-form-title">
                     Register
                 </span>
-                <div class="wrap-input100 validate-input" data-validate="Enter name">
+                <div class="wrap-input100 validate-input" data-validate="Enter name" style="margin-bottom: 23px;">
                     {{ Form::text($name = 'name', $value = null, array_merge(['class' => 'input100', 'placeholder' => 'Name'])) }}
                     @if($errors->has('name'))
                     <div class="text-white">
@@ -33,7 +33,7 @@
                     @endif
                     <i class="material-icons focus-input1001">person</i>
                 </div>
-                <div class="wrap-input100 validate-input" data-validate="Enter email">
+                <div class="wrap-input100 validate-input" data-validate="Enter email" style="margin-bottom: 23px;">
                     {{ Form::text($name = 'email', $value = null, array_merge(['class' => 'input100', 'placeholder' => 'Email'])) }}
                     @if($errors->has('email'))
                     <div class="text-white">
@@ -42,7 +42,7 @@
                     @endif
                     <i class="material-icons focus-input1001">mail</i>
                 </div>
-                <div class="wrap-input100 validate-input" data-validate="Enter phone">
+                <div class="wrap-input100 validate-input" data-validate="Enter phone" style="margin-bottom: 23px;">
                     {{ Form::text($name = 'mobile', $value = null, array_merge(['class' => 'input100', 'placeholder' => 'Mobile'])) }}
                     @if($errors->has('mobile'))
                     <div class="text-white">
@@ -51,37 +51,29 @@
                     @endif
                     <i class="material-icons focus-input1001">phone</i>
                 </div>
-                <div class="wrap-input100 validate-input" data-validate="Enter password">
+                <div class="wrap-input100 validate-input" data-validate="Enter password" style="margin-bottom: 23px;" data-toggle="tooltip" data-placement="bottom" title="Password must contain at least one number and both uppercase and lowercase letters and one symbol, minimum 7 digits.">
                     {{ Form::password($name = 'password', array_merge(['class' => 'input100', 'placeholder' => 'Password'])) }}
                     @if($errors->has('password'))
                     <div class="text-white">
                         {{ $errors->first('password') }}
                     </div>
-                    @else
-                    <div class="text-white">
-                        Password must contain at least one number and both uppercase and lowercase letters and one symbol,<br> minimum 7 digits.
-                    </div>
                     @endif
                     <i class="material-icons focus-input1001">lock</i>
                 </div>
-                <div class="container-login100-form-btn">
-                    <button type="submit" class="login100-form-btn" value="Login">
-                        Register
-                    </button>
-                </div>
-                <div class="contact100-form-checkbox mt-4">
-                    <div class="form-check">
-                        <div class="row">
-                            <div class="col-lg-6">
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="text-center">
-                                    <a class="txt1" href="{{ route('account.login') }}">
-                                        You have an Account Login Here
-                                    </a>
-                                </div>
-                            </div>
+                <div class="d-flex justify-content-between">
+                    <div class="contact100-form-checkbox p-0" style="padding-bottom: 0px;">
+                        <div class="text-left">
+                            <a class="txt1 align-middle" href="{{ route('account.login') }}">
+                                <h4 style="padding-top: 11px;">
+                                    Login Here
+                                </h4>
+                            </a>
                         </div>
+                    </div>
+                    <div class="p-0">
+                        <button type="submit" class="login100-form-btn" value="Login">
+                            Register
+                        </button>
                     </div>
                 </div>
                 {!! Form::close() !!}
