@@ -17,9 +17,9 @@ class AgeController extends Controller
      */
     public function index()
     {
-        
+
         $lists = Age::orderBy('id', 'asc')->paginate(10);
-        
+
         // set page and title -------------
         $page  = 'age.list';
         $title = 'Age list';
@@ -53,15 +53,15 @@ class AgeController extends Controller
     {
         $rules = [
             'record'          => 'required|array',
-            'record.age'      => 'required|numeric'
+            'record.age'      => 'required'
         ];
-        
+
         $messages = [
             'record.age'  => 'Please Enter Age.',
         ];
-        
-        $request->validate( $rules, $messages );
-        
+
+        $request->validate($rules, $messages);
+
         $record           = new Age;
         $input            = $request->record;
 
@@ -92,11 +92,11 @@ class AgeController extends Controller
      */
     public function edit(Request $request, Age $age)
     {
-        $editData =  ['record'=>$age->toArray()];
+        $editData =  ['record' => $age->toArray()];
         $request->replace($editData);
         //send to view
         $request->flash();
-    
+
         // set page and title ------------------
         $page = 'age.edit';
         $title = 'Edit Age';
@@ -117,13 +117,13 @@ class AgeController extends Controller
     {
         $rules = [
             'record'          => 'required|array',
-            'record.age'      => 'required|numeric'
+            'record.age'      => 'required'
         ];
         $messages = [
             'record.age'  => 'Please Enter Age.'
         ];
-        $request->validate( $rules, $messages );
-      
+        $request->validate($rules, $messages);
+
         $record           = Age::find($age->id);
         $input            = $request->record;
         $record->fill($input);
@@ -141,7 +141,7 @@ class AgeController extends Controller
      */
     public function destroy(Age $age)
     {
-        
+
         $age->delete();
         return redirect()->back()->with('success', 'Success! Record has been deleted');
     }
