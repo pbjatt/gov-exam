@@ -66,7 +66,9 @@
                                 <a class="nav-link active show" href="#project" data-toggle="tab">{{ $exam->name }} Information</a>
                             </li>
                         </ul>
+                        @if ($notification != '')
                         <a class="nav-link active show float-right" href="{{ url('notification/'.$notification->slug) }}">{{ $exam->name }} Notification</a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -82,8 +84,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="body" style="min-height: 320px;">
-                                    {{ $exam->description }}
+                                <div class="body" style="min-height: 320px;" id="exam-content">
+                                    {!! $exam->description !!}
                                 </div>
                             </div>
                         </div>
@@ -102,7 +104,7 @@
                                 </div>
                                 <div class="body" style="min-height: 320px;">
                                     <p class="m-t-30">
-                                        {{ $exam->description }}
+                                        {!! $exam->description !!}
                                     </p>
                                     <br>
                                 </div>

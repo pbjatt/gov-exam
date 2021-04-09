@@ -3,7 +3,7 @@
 
 <section class="container" style="margin-top: 80px;">
     <div class="row clearfix">
-        <div class="col-lg-8 col-md-8">
+        <div class="col-lg-8 col-xs-12 col-md-8">
             <div class="card">
                 <div class="profile-tab-box">
                     <div class="p-l-10">
