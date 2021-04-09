@@ -7,6 +7,7 @@ use App\Model\NotificationInfo;
 use App\Model\ExamNotification;
 use App\Model\InfoType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Image;
 
 class NotificationInfoController extends Controller
@@ -81,6 +82,8 @@ class NotificationInfoController extends Controller
         $record           = new NotificationInfo;
         $input            = $request->record;
 
+        $input['slug']    = Str::slug($input['title'], '-');
+
         if ($request->hasFile('image')) {
             $file = $request->image;
             $optimizeImage = Image::make($file);
@@ -88,6 +91,15 @@ class NotificationInfoController extends Controller
             $name = time() . $file->getClientOriginalName();
             $optimizeImage->save($optimizePath . $name, 72);
             $input['image'] = $name;
+        }
+
+        if ($request->hasFile('attachment')) {
+            $pdf       = $request->file('attachment');
+            // $filename    = $pdf->getClientOriginalName();
+            $name = time() . $input['slug'] . '.' . $pdf->getClientOriginalExtension();
+            $request->attachment->move(public_path('files/notification/'), $name);
+
+            $input['attachment'] = $name;
         }
 
         $record->fill($input);
@@ -191,6 +203,7 @@ class NotificationInfoController extends Controller
         $input            = $request->record;
         $record = NotificationInfo::where('info_type_id', $input['info_type_id'])->where('examnotification_id', $input['examnotification_id'])->first();
 
+        $input['slug']    = Str::slug($input['title'], '-');
         if ($request->hasFile('image')) {
             $file = $request->image;
             $optimizeImage = Image::make($file);
@@ -198,6 +211,16 @@ class NotificationInfoController extends Controller
             $name = time() . $file->getClientOriginalName();
             $optimizeImage->save($optimizePath . $name, 72);
             $input['image'] = $name;
+        }
+
+
+        if ($request->hasFile('attachment')) {
+            $pdf       = $request->file('attachment');
+            // $filename    = $pdf->getClientOriginalName();
+            $name = time() . $input['slug'] . '.' . $pdf->getClientOriginalExtension();
+            $request->attachment->move(public_path('files/notification/'), $name);
+
+            $input['attachment'] = $name;
         }
 
         $record->fill($input);

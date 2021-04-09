@@ -45,34 +45,34 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-5">
-                            Vacancy Date :
+                        <div class="col-md-6">
+                            <i class="fas fa-calendar"></i> Vacancy Date :
                         </div>
-                        <div class="col-md-7">
+                        <div class="col-md-6">
                             {{ $lists->vacancy_date }}
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-5">
-                            Form Start Date :
+                        <div class="col-md-6">
+                            <i class="fas fa-calendar"></i> Form Start Date :
                         </div>
-                        <div class="col-md-7">
+                        <div class="col-md-6">
                             {{ $lists->form_start_date }}
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-5">
-                            Form End Date :
+                        <div class="col-md-6">
+                            <i class="fas fa-calendar"></i> Form End Date :
                         </div>
-                        <div class="col-md-7">
+                        <div class="col-md-6">
                             {{ $lists->form_end_date }}
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-5">
-                            Exam Date :
+                        <div class="col-md-6">
+                            <i class="fas fa-calendar"></i> Exam Date :
                         </div>
-                        <div class="col-md-7">
+                        <div class="col-md-6">
                             @if($lists->exam_date != '')
                             {{ $lists->exam_date  }}
                             @endif

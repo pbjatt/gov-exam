@@ -137,7 +137,7 @@ class ExamCategoryController extends Controller
      */
     public function update(Request $request, $exam_category)
     {
-        $record           = Exam_category::find($id);
+        $record           = Exam_category::find($exam_category);
         $input            = $request->record;
 
         $input['slug']    = $input['slug'] == '' ? Str::slug($input['title'], '-') : $input['slug'];
