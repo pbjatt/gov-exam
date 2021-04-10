@@ -120,7 +120,7 @@
     function handleUpload() {
         var form = document.getElementById('uploadFormModal')
         var category_id = document.getElementsByClassName('category_id').val;
-        form.action = 'user/question/import-excel/?category=3'
+        form.action = 'user/question/import-excel/'
         $('#uploadModal').modal('show')
     }
 </script>
