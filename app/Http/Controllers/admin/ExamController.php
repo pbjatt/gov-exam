@@ -78,6 +78,7 @@ class ExamController extends Controller
         $rules = [
             'record'        => 'required|array',
             'record.name'  => 'required|string',
+            'record.short_description'  => 'max:870|min:600',
         ];
 
         $messages = [

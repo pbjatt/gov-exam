@@ -24,14 +24,14 @@ $setting = App\Model\Setting::first();
 
 <body class="light">
     <!-- Page Loader -->
-    <!--<div class="page-loader-wrapper">-->
-    <!--    <div class="loader">-->
-    <!--        <div class="m-t-30">-->
+    <!-- <div class="page-loader-wrapper"> -->
+    <!-- <div class="loader"> -->
+    <!-- <div class="m-t-30"> -->
     <!--            <img class="loading-img-spin" src="{{ url('assets/images/loading.png') }}" width="20" height="20" alt="admin">-->
-    <!--        </div>-->
-    <!--        <p>Please wait...</p>-->
-    <!--    </div>-->
-    <!--</div>-->
+    <!-- </div> -->
+    <!-- <p>Please wait...</p> -->
+    <!-- </div> -->
+    <!-- </div> -->
     <!-- #END# Page Loader -->
     <!-- Overlay For Sidebars -->
     <div class="overlay"></div>
@@ -40,7 +40,7 @@ $setting = App\Model\Setting::first();
     <nav class="navbar active" style="background-color: #353c48 !important;">
         <div class="container">
             <div class="row">
-                <div class="col-md-3 col-xs-6 col-8">
+                <div class="col-md-3 col-xs-6 col-7">
                     <div class="d-inline-block">
                         <a href="{{ url('/') }}"><img src="{{ url('/public/images/logo/'.$setting->logo) }}" alt="" class="logo-main"></a>
                     </div>
@@ -58,9 +58,33 @@ $setting = App\Model\Setting::first();
                         <i class="material-icons" onclick="openNav()" style="cursor: pointer;">search</i>
                     </div>
                 </div>
-                <div class="col-md-3 col-xs-1 col-2 text-right">
+                <div class="col-md-3 col-xs-1 col-3 text-right">
                     @if(auth()->user())
-                    <img src="{{ url('extraimage/images.jpg') }}" alt="user image" width="32" height="32" class="d-inline-block" title="{{ auth()->user()->name }}">
+                    <div class="user_profile d-inline-block">
+                        <div class="dropdown">
+                            <a href="#" onClick="return false;" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                                <img src="{{ url('extraimage/images.jpg') }}" alt="user image" style="border-radius: 100%;" width="24" height="24" class="d-inline-block" title="{{ auth()->user()->name }}">
+                            </a>
+                            <ul class="dropdown-menu pullDown">
+                                <li class="body">
+                                    <ul class="user_dw_menu">
+                                        <li>
+                                            <a href="{{ url('user') }}">
+                                                <i class="material-icons">person</i>
+                                                Profile
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ url('account/logout') }}">
+                                                <i class="material-icons">power_settings_new</i>
+                                                Logout
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                     @endif
                     <div class="d-inline-block">
                         <div class="menu-icon">

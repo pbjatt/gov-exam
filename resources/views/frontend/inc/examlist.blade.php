@@ -56,7 +56,34 @@
                 </div>
             </div>
         </div>
-    </div>
+        <div class="col-lg-8 col-md-8">
+            <div class="">
+                @if(count($blogs) != 0 )
+                @foreach($blogs as $key => $blog)
+                <div class="card project_widget">
+                    <div class="body p-0">
+                        <div class="row p-4">
+                            <div class="col-10 blog-title">
+                                <!-- <a href="#">
+                                    <img src="http://localhost/gov-exam/extraimage/images.jpg" alt="user image" style="border-radius: 100%;" width="24" height="24" class="d-inline-block" title="pbjatt">
+                                </a> -->
+                                <span>{{ $blog->blog_title }}</span>
+                            </div>
+                            <div class="col-2 text-right"><i class="fas fa-ellipsis-v"></i></div>
+                        </div>
+                        <div class="card-image">
+                            <img src="{{ url('storage/blog/'.$blog->blog_image) }}" alt="{{ $blog->blog_image }}" width="100%">
+                        </div>
+                        <hr class="m-0 p-0">
+                        <div class="description p-4">
+                            {!! $blog->blog_desc !!}
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                @endif
+            </div>
+        </div>
 </section>
 
 @stop

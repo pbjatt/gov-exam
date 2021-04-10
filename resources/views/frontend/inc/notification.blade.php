@@ -112,8 +112,11 @@
                     <div class="row clearfix">
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="card project_widget">
-                                <div class="body" style="min-height: 325px;" id="exam-content">
-                                    {!! $info->description !!}
+                                <div class="body" style="height: 320px; overflow: hidden;" id="exam-content">
+                                    {!! $info->short_description !!}
+                                    <div style="position: absolute; bottom: 10px; right: 20px;">
+                                        <a href="">Read More...</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -125,8 +128,11 @@
                     <div class="row clearfix">
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="card project_widget">
-                                <div class="body" style="min-height: 325px;" id="exam-content">
-                                    {!! $info->description !!}
+                                <div class="body" style="height: 320px; overflow: hidden;" id="exam-content">
+                                    {!! $info->short_description !!}
+                                    <div style="position: absolute; bottom: 10px; right: 20px;">
+                                        <a href="">Read More...</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

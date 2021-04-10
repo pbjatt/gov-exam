@@ -1,14 +1,14 @@
 'use strict';
-$(function () {
+$(function() {
     //Horizontal form basic
     $('#wizard_horizontal').steps({
         headerTag: 'h2',
         bodyTag: 'section',
         transitionEffect: 'slideLeft',
-        onInit: function (event, currentIndex) {
+        onInit: function(event, currentIndex) {
             setButtonWavesEffect(event);
         },
-        onStepChanged: function (event, currentIndex, priorIndex) {
+        onStepChanged: function(event, currentIndex, priorIndex) {
             setButtonWavesEffect(event);
         }
     });
@@ -19,10 +19,10 @@ $(function () {
         bodyTag: 'section',
         transitionEffect: 'slideLeft',
         stepsOrientation: 'vertical',
-        onInit: function (event, currentIndex) {
+        onInit: function(event, currentIndex) {
             setButtonWavesEffect(event);
         },
-        onStepChanged: function (event, currentIndex, priorIndex) {
+        onStepChanged: function(event, currentIndex, priorIndex) {
             setButtonWavesEffect(event);
         }
     });
@@ -33,7 +33,7 @@ $(function () {
         headerTag: 'h3',
         bodyTag: 'fieldset',
         transitionEffect: 'slideLeft',
-        onInit: function (event, currentIndex) {
+        onInit: function(event, currentIndex) {
 
             //Set tab width
             var $tab = $(event.currentTarget).find('ul[role="tablist"] li');
@@ -43,7 +43,7 @@ $(function () {
             //set button waves effect
             setButtonWavesEffect(event);
         },
-        onStepChanging: function (event, currentIndex, newIndex) {
+        onStepChanging: function(event, currentIndex, newIndex) {
             if (currentIndex > newIndex) { return true; }
 
             if (currentIndex < newIndex) {
@@ -54,26 +54,26 @@ $(function () {
             form.validate().settings.ignore = ':disabled,:hidden';
             return form.valid();
         },
-        onStepChanged: function (event, currentIndex, priorIndex) {
+        onStepChanged: function(event, currentIndex, priorIndex) {
             setButtonWavesEffect(event);
         },
-        onFinishing: function (event, currentIndex) {
+        onFinishing: function(event, currentIndex) {
             form.validate().settings.ignore = ':disabled';
             return form.valid();
         },
-        onFinished: function (event, currentIndex) {
+        onFinished: function(event, currentIndex) {
             swal("Good job!", "Submitted!", "success");
         }
     });
 
     form.validate({
-        highlight: function (input) {
+        highlight: function(input) {
             $(input).parents('.form-line').addClass('error');
         },
-        unhighlight: function (input) {
+        unhighlight: function(input) {
             $(input).parents('.form-line').removeClass('error');
         },
-        errorPlacement: function (error, element) {
+        errorPlacement: function(error, element) {
             $(element).parents('.form-group').append(error);
         },
         rules: {

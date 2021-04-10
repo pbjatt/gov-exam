@@ -17,17 +17,8 @@
         @php
         $sn = $key + 1;
         @endphp
-        <div class="row">
-            <div class="col-md-1 col-2 b-r mb-0">
-                <strong>{{ $sn++ }}.</strong>
-            </div>
-            <div class="col-md-8 col-10 b-r mb-0">
-                <strong> <a href="{{ url('exam/'.$exam->slug) }}">{{ $exam->name }}</a></strong>
-            </div>
-            <!-- <div class="col-md-3 col-6 b-r mb-0">
-                <strong>{{ $exam->vacancy_date }}</strong>
-            </div> -->
-        </div>
+        <strong class="mr-2">{{ $sn++ }}.</strong>
+        <strong> <a href="{{ url('exam/'.$exam->slug) }}">{{ $exam->name }}</a></strong>
         <hr>
         @endforeach
         {{ $exams->links() }}
