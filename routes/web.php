@@ -43,8 +43,11 @@ Route::group(['prefix' => '/account', 'as' => 'account.'], function () {
     Route::get('logout', 'UserController@logout')->name('logout');
 });
 Route::group(['middleware' => 'userauth', 'prefix' => '/user', 'as' => 'user.', 'namespace' => 'user'], function () {
+    Route::post('/question/import-excel', 'QuestionController@importExcel')->name('import.post');
+    Route::get('/question/download-sample', 'QuestionController@downloadSample')->name('download');
     Route::get('/', 'DashboardController@index')->name('dashboard');
     Route::resources([
         'blog' => 'BlogController',
+        'question' => 'QuestionController'
     ]);
 });
