@@ -18,80 +18,28 @@
                     </div>
                 </li>
                 <li class="active">
-                    <a href="{{ route('user.dashboard') }}" class="menu-toggle">
+                    <a href="{{ route('user.dashboard') }}" class="">
                         <i class="fas fa-tachometer-alt"></i>
                         <span>Home</span>
                     </a>
                 </li>
-                {{--<li>
-                    <a href="#" onClick="return false;" class="menu-toggle">
-                        <!-- <i class="fas fa-angle-double-down"></i> -->
-                        <i class="material-icons">folder</i>
-                        <span>Master</span>
-                    </a>
-                    <ul class="ml-menu">
-                        <li>
-                            <a href="#" onClick="return false;" class="menu-toggle">
-                                <i class="fas fa-mail-bulk"></i>
-                                <span>Age</span>
-                            </a>
-                            <ul class="ml-menu">
-                                <li>
-                                    <a href="{{ route('admin.age.create') }}">
-                                        <span>Add</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('admin.age.index') }}">
-                                        <span>View</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" onClick="return false;" class="menu-toggle">
-                                <i class="fas fa-mail-bulk"></i>
-                                <span>Qualification</span>
-                            </a>
-                            <ul class="ml-menu">
-                                <li>
-                                    <a href="{{ route('admin.qualification.create') }}">
-                                        <span>Add</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('admin.qualification.index') }}">
-                                        <span>View</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" onClick="return false;" class="menu-toggle">
-                                <i class="fas fa-mail-bulk"></i>
-                                <span>Syllabus</span>
-                            </a>
-                            <ul class="ml-menu">
-                                <li>
-                                    <a href="{{ route('admin.syllabus.create') }}">
-                                        <span>Add</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('admin.syllabus.index') }}">
-                                        <span>View</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>--}}
+
                 <li>
-                    <a href="{{ route('user.blog.index') }}" class="menu-toggle">
+                    <a href="{{ route('user.blog.index') }}" class="">
+                        <i class="fas fa-rss"></i>
                         <span>Blog</span>
                     </a>
                 </li>
-                <!-- #Menu -->
+
+                <li>
+                    <a href="{{ route('user.question.index') }}" class="">
+                        <i class="fas fa-question"></i>
+                        <span>Question & Answer</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- #Menu -->
     </aside>
     <!-- #END# Left Sidebar -->
     <!-- Right Sidebar -->

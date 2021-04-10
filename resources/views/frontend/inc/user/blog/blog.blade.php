@@ -32,7 +32,7 @@
                         <div class="formCard">
                             <div class="wrapper">
                                 @if(isset($blog))
-                                {{ Form::open(['url' => route('user.blog.update', $blog->id), 'method'=>'Put', 'files' => true, 'class' => 'user']) }}
+                                {{ Form::open(['url' => route('user.blog.update', $blog->id), 'method'=>'PUT', 'files' => true, 'class' => 'user']) }}
                                 @else
                                 {{ Form::open(['url' => route('user.blog.store'), 'method'=>'POST', 'files' => true, 'class' => 'user']) }}
                                 @endif
