@@ -41,8 +41,12 @@
         {{Form::label('image', 'Choose image'), ['class' => 'active']}}
     </div>
     <div class="col-lg-12">
+        {{ Form::textarea('record[short_description]','', ['class'=>'squareInput des-textarea tinymce', 'placeholder'=>'Enter short description']) }}
+        <!-- {{ Form::label('short_description', ''), ['class' => 'active'] }} -->
+    </div>
+    <div class="col-lg-12">
         {{ Form::textarea('record[description]','', ['class'=>'squareInput des-textarea tinymce', 'placeholder'=>'Enter description']) }}
-        {{ Form::label('description', 'Enter description'), ['class' => 'active'] }}
+        <!-- {{ Form::label('description', 'Enter description'), ['class' => 'active'] }} -->
     </div>
 </div>
 <!-- <hr>

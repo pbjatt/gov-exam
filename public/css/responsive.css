@@ -73,4 +73,11 @@
     .menu ul li.menu-header a {
         line-height: 10px;
     }
+    .user_profile {
+        right: 55px;
+    }
+    .site-name-main {
+        font-size: 24px;
+        top: 14px;
+    }
 }
