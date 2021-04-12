@@ -21,6 +21,16 @@
     function closeNav() {
         document.getElementById("mySidenav").style.right = "0";
     }
+
+    function Search() {
+        if (document.getElementById("search-part").classList.contains('d-block')) {
+            document.getElementById("search-part").classList.remove('d-block');
+            document.getElementById("search-part").classList.add('d-none');
+        } else {
+            document.getElementById("search-part").classList.remove('d-none');
+            document.getElementById("search-part").classList.add('d-block');
+        }
+    }
 </script>
 </body>
 

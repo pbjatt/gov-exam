@@ -31,6 +31,7 @@ Route::group(['namespace' => 'api'], function () {
 
     Route::get('/category', 'HomeController@category');
     Route::get('/exam', 'HomeController@exam');
+    Route::get('/blog', 'HomeController@blog');
 });
 
 Route::group(['namespace' => 'api', 'middleware' => 'auth:api'], function () {

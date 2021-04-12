@@ -42,7 +42,7 @@
                                     Coming Soon...
                                     @endif
                                 </span><br>
-                                <small>Form Start Date</small>
+                                <small>Form Start</small>
                             </div>
                         </div>
                     </div>

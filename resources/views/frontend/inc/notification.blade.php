@@ -39,42 +39,42 @@
             <div class="card project_widget">
                 <div class="body">
                     <div class="row">
-                        <div class="col-md-5">
+                        <div class="col-md-5 col-3">
                             Url :
                         </div>
-                        <div class="col-md-7">
-                            <a href="{{ $lists->url }}" target="_blank" title="{{ $lists->title }} Notification">{{ $lists->url }}</a>
+                        <div class="col-md-7 col-9">
+                            <a href="{{ $lists->url }}" class="one-line" target="_blank" title="{{ $lists->title }} Notification">{{ $lists->url }}</a>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
-                            <i class="fas fa-calendar"></i> Vacancy Date :
+                        <div class="col-md-6 col-6 one-line">
+                            <i class="fas fa-calendar"></i>&nbsp; Vacancy Date :
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 col-6">
                             {{ date("d M Y", strtotime($lists->vacancy_date)) }}
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
-                            <i class="fas fa-calendar"></i> Form Start Date :
+                        <div class="col-md-6 col-6 one-line">
+                            <i class="fas fa-calendar"></i>&nbsp; Start Date :
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 col-6">
                             {{ date("d M Y", strtotime($lists->form_start_date)) }}
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
-                            <i class="fas fa-calendar"></i> Form End Date :
+                        <div class="col-md-6 col-6 one-line">
+                            <i class="fas fa-calendar"></i>&nbsp; Form End Date :
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 col-6">
                             {{ date("d M Y", strtotime($lists->form_end_date)) }}
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
-                            <i class="fas fa-calendar"></i> Exam Date :
+                        <div class="col-md-6 col-6 one-line">
+                            <i class="fas fa-calendar"></i>&nbsp; Exam Date :
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 col-6">
                             @if($lists->exam_date != '')
                             {{ date("d M Y", strtotime($lists->exam_date)) }}
                             @endif

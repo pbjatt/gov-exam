@@ -8,6 +8,10 @@ $(function() {
     var url = window.location.origin;
     var host = window.location.host;
     var pathArray = window.location.pathname;
+
+    $('#exam-content').each(function() {
+        $(this).find('table').addClass('table-responsive');
+    });
     // alert(host);
     $(function() {
         $("#filterexam").change(function() {

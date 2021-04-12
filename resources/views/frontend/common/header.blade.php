@@ -55,7 +55,7 @@ $setting = App\Model\Setting::first();
                         </div>
                     </form>
                     <div class="search-icon d-inline-block">
-                        <i class="material-icons" onclick="openNav()" style="cursor: pointer;">search</i>
+                        <i class="material-icons" onclick="Search()" style="cursor: pointer;">search</i>
                     </div>
                 </div>
                 <div class="col-md-3 col-xs-1 col-3 text-right">
@@ -128,4 +128,14 @@ $setting = App\Model\Setting::first();
             </div>
         </section>
     </nav>
+    <div class="search-part d-none" id="search-part">
+        <a href="#" class="active"></a>
+        <form method="GET" action="{{ url('/examlist') }}" accept-charset="UTF-8" novalidate="novalidate">
+            <div class="search-box" style="display: block;">
+                <input type="text" name="s" class="squareInput" placeholder="Search">
+                <button><i class="material-icons">search</i></button>
+            </div>
+        </form>
+    </div>
+
     <!-- #Top Bar -->

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Model\Exam_category;
 use App\Model\Exam;
+use App\Model\Blog;
 
 class HomeController extends Controller
 {
@@ -31,6 +32,17 @@ class HomeController extends Controller
         $re = [
             'status'   => true,
             'data'     => $exam
+        ];
+        return response()->json($re);
+    }
+
+    public function blog()
+    {
+        $blog = Blog::with('user', 'category')->get();
+
+        $re = [
+            'status'   => true,
+            'data'     => $blog
         ];
         return response()->json($re);
     }
