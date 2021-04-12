@@ -62,10 +62,12 @@
     </script>
 
     <script>
-        $('.datepicker').datepicker({
-            autoclose: true,
-            format: 'yyyy-mm-dd',
-        });
+        // $('.datepicker').datepicker({
+        //     autoclose: true,
+        //     format: 'yyyy-mm-dd',
+        //     altField: "#field",
+        //     altFormat: "mm-yy-dd"
+        // });
 
         var useDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
     </script>

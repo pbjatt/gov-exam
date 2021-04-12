@@ -19,7 +19,7 @@
                                     @if ($notification != '')
                                     {{ $notification->posts }}
                                     @else
-                                    Not Found.
+                                    Coming Soon...
                                     @endif
                                 </span><br>
                                 <small>Posts</small>
@@ -27,9 +27,9 @@
                             <div class="col-4">
                                 <span class="font-weight-bold">
                                     @if ($notification != '')
-                                    {{ $notification->vacancy_date }}
+                                    {{ date("d M Y", strtotime($notification->vacancy_date)) }}
                                     @else
-                                    Not Found.
+                                    Coming Soon...
                                     @endif
                                 </span><br>
                                 <small>Vacancy Date</small>
@@ -37,9 +37,9 @@
                             <div class="col-4">
                                 <span class="font-weight-bold">
                                     @if ($notification != '')
-                                    {{ $notification->form_start_date }}
+                                    {{ date("d M Y", strtotime($notification->form_start_date)) }}
                                     @else
-                                    Not Found.
+                                    Coming Soon...
                                     @endif
                                 </span><br>
                                 <small>Form Start Date</small>

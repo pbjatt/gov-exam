@@ -36,19 +36,19 @@
     {{Form::label('image', 'Choose image'), ['class' => 'active']}}
   </div>
   <div class="col-lg-6">
-    {{Form::text('record[vacancy_date]', '', ['class' => 'squareInput datepicker', 'placeholder'=>'Enter Vacancy Date', 'autocomplete' => 'off' ])}}
+    {{Form::date('record[vacancy_date]', '', ['class' => 'squareInput', 'placeholder'=>'Enter Vacancy Date', 'autocomplete' => 'off' ])}}
     {{Form::label('vacancy_date', 'Enter Vacancy Date'), ['class' => 'active']}}
   </div>
   <div class="col-lg-6">
-    {{Form::text('record[form_start_date]', '', ['class' => 'squareInput datepicker', 'placeholder'=>'Enter Form Start Date', 'autocomplete' => 'off' ])}}
+    {{Form::date('record[form_start_date]', '', ['class' => 'squareInput', 'placeholder'=>'Enter Form Start Date', 'autocomplete' => 'off' ])}}
     {{Form::label('form_start_date', 'Enter Form Start Date'), ['class' => 'active']}}
   </div>
   <div class="col-lg-6">
-    {{Form::text('record[form_end_date]', '', ['class' => 'squareInput datepicker', 'placeholder'=>'Enter Form Last Date', 'autocomplete' => 'off' ])}}
+    {{Form::date('record[form_end_date]', '', ['class' => 'squareInput', 'placeholder'=>'Enter Form Last Date', 'autocomplete' => 'off' ])}}
     {{Form::label('form_end_date', 'Enter Form Last Date'), ['class' => 'active']}}
   </div>
   <div class="col-lg-6">
-    {{Form::text('record[exam_date]', '', ['class' => 'squareInput datepicker', 'placeholder'=>'Enter Exam Date', 'autocomplete' => 'off' ])}}
+    {{Form::date('record[exam_date]', '', ['class' => 'squareInput', 'placeholder'=>'Enter Exam Date', 'autocomplete' => 'off' ])}}
     {{Form::label('exam_date', 'Enter Exam Date'), ['class' => 'active']}}
   </div>
   <div class="col-lg-12">

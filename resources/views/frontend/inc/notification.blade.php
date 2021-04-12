@@ -18,15 +18,18 @@
                         </p>
                         <div class="row pt-2">
                             <div class="col-4">
-                                <span class="font-weight-bold">{{ $lists->vacancy_date }}</span><br>
+                                <span class="font-weight-bold">
+                                    {{ date("d M Y", strtotime($lists->vacancy_date)) }}</span><br>
                                 <small>Issue Date</small>
                             </div>
                             <div class="col-4">
-                                <span class="font-weight-bold">{{ $lists->form_start_date }}</span><br>
+                                <span class="font-weight-bold">
+                                    {{ date("d M Y", strtotime($lists->form_start_date)) }}</span><br>
                                 <small>Start Date</small>
                             </div>
                             <div class="col-4">
-                                <span class="font-weight-bold">{{ $lists->form_end_date }}</span><br>
+                                <span class="font-weight-bold">
+                                    {{ date("d M Y", strtotime($lists->form_end_date)) }}</span><br>
                                 <small>End Date</small>
                             </div>
                         </div>
@@ -41,7 +44,6 @@
                         </div>
                         <div class="col-md-7">
                             <a href="{{ $lists->url }}" target="_blank" title="{{ $lists->title }} Notification">{{ $lists->url }}</a>
-
                         </div>
                     </div>
                     <div class="row">
@@ -49,7 +51,7 @@
                             <i class="fas fa-calendar"></i> Vacancy Date :
                         </div>
                         <div class="col-md-6">
-                            {{ $lists->vacancy_date }}
+                            {{ date("d M Y", strtotime($lists->vacancy_date)) }}
                         </div>
                     </div>
                     <div class="row">
@@ -57,7 +59,7 @@
                             <i class="fas fa-calendar"></i> Form Start Date :
                         </div>
                         <div class="col-md-6">
-                            {{ $lists->form_start_date }}
+                            {{ date("d M Y", strtotime($lists->form_start_date)) }}
                         </div>
                     </div>
                     <div class="row">
@@ -65,7 +67,7 @@
                             <i class="fas fa-calendar"></i> Form End Date :
                         </div>
                         <div class="col-md-6">
-                            {{ $lists->form_end_date }}
+                            {{ date("d M Y", strtotime($lists->form_end_date)) }}
                         </div>
                     </div>
                     <div class="row">
@@ -74,7 +76,7 @@
                         </div>
                         <div class="col-md-6">
                             @if($lists->exam_date != '')
-                            {{ $lists->exam_date  }}
+                            {{ date("d M Y", strtotime($lists->exam_date)) }}
                             @endif
                             @if($lists->exam_date == '')
                             Coming Soon...
