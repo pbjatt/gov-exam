@@ -55,7 +55,7 @@
 
                                     <tr>
                                         <td>{{ $sn++ }}</td>
-                                        <td>{{ $row->question }}</td>
+                                        <td>{!! $row->question !!}</td>
                                         <td>
                                             <ol>
                                                 <li>{{ $row->option_1 }}</li>

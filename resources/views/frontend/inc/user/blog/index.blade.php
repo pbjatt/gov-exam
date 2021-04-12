@@ -40,7 +40,6 @@
                                         <th>Attachment</th>
                                         <th>Status</th>
                                         <th>Action</th>
-                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -52,7 +51,7 @@
                                     <tr>
                                         <td>{{ $sn++ }}</td>
                                         <td>{{ $list->blog_title }}</td>
-                                        <td>{{ $list->category_id }}</td>
+                                        <td>{{ $list->categories }}</td>
                                         <td class="table-img" style="width: 10%;">
                                             <img src="{{ url('/').'/storage/blog/'.$list->blog_image }}" alt="">
                                         </td>
@@ -75,8 +74,7 @@
                                                 <a style="color: black;"><i class="material-icons">delete</i></a>
                                             </button>
                                             {{ Form::close() }}
-                                        </td>
-                                        <td>
+
                                             <button class="btn tblActnBtn">
                                                 <a href="{{ route('user.blog.show',$list->id) }}" style="color: black;"><i class="material-icons">info</i></a>
                                             </button>

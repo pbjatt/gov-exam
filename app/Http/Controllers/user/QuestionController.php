@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\QuestionRequest;
 use App\Imports\QuestionImport;
 use App\Model\Exam_category;
 use App\Model\Question;
+use Illuminate\Support\Str;
 use App\Model\Setting;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -55,7 +57,33 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        //
+        // fetch data from particular user
+        $guardData = Auth::guard()->user();
+
+        //for Page title
+        $setting = Setting::first();
+
+        $examcategory = Exam_category::orderBy('id', 'desc')->get();
+        $examcategoryArr  = ['' => 'Select category'];
+        if (!$examcategory->isEmpty()) {
+            foreach ($examcategory as $cat) {
+                $examcategoryArr[$cat->id] = $cat->title;
+            }
+        }
+
+        $difficulty  = [
+            'Easy' => 'Easy',
+            'Medium' => 'Medium',
+            'Hard' => 'Hard'
+        ];
+
+        // set page and title ------------------
+        $page = 'question.question';
+        $title = 'Edit Question';
+        $data = compact('page', 'title', 'examcategoryArr', 'setting', 'guardData', 'difficulty');
+        // return data to view
+
+        return view('frontend.layout.user.app', $data);
     }
 
     /**
@@ -64,9 +92,46 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(QuestionRequest $request)
     {
-        //
+        $userId = Auth::guard()->user()->id;
+        // dd($request->question);
+
+        // dd($request->question['correct_answer']);
+
+
+        $question = new Question($request->question);
+        // $question->blog_slug = Str::slug($request->question['question'] . '-' . $userId, '-');
+
+        switch ($request->question['correct_answer']) {
+            case '1':
+                $question->correct_answer = $request->question['option_1'];
+                break;
+
+            case '2':
+                $question->correct_answer = $request->question['option_2'];
+                break;
+
+            case '3':
+                $question->correct_answer = $request->question['option_3'];
+                break;
+
+            case '4':
+                $question->correct_answer = $request->question['option_4'];
+                break;
+
+            case '5':
+                $question->correct_answer = $request->question['option_5'];
+                break;
+        }
+
+        $question->status = 'pending';
+
+        $question->user_id = $userId;
+
+        $question->save();
+
+        return redirect(route('user.question.index'))->with('success', 'Question successfully added.');
     }
 
     /**
@@ -107,7 +172,11 @@ class QuestionController extends Controller
             }
         }
 
-        $difficulty  = ['Easy', 'Medium', 'Hard'];
+        $difficulty  = [
+            'Easy' => 'Easy',
+            'Medium' => 'Medium',
+            'Hard' => 'Hard'
+        ];
 
         // set page and title ------------------
         $page = 'question.question';
@@ -125,9 +194,13 @@ class QuestionController extends Controller
      * @param  \App\Model\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $question)
+    public function update(QuestionRequest $request, Question $question)
     {
-        //
+        $questions = $request->question;
+
+        $question->update($questions);
+
+        return redirect(route('user.question.index'))->with('success', 'Question successfully update.');
     }
 
     /**
@@ -138,7 +211,8 @@ class QuestionController extends Controller
      */
     public function destroy(Question $question)
     {
-        //
+        $question->delete();
+        return redirect()->back()->with('success', 'Success! Question has been deleted');
     }
 
     /**

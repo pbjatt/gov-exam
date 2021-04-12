@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
 {
+    protected $guarded = [];
+
     protected $fillable = [
         'question',
         'option_1',
@@ -15,6 +17,7 @@ class Question extends Model
         'option_5',
         'correct_answer',
         'difficulty',
+        'category_id'
     ];
 
     protected $appends = ['categories'];
