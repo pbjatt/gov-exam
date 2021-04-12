@@ -79,7 +79,7 @@ class QuestionController extends Controller
 
         // set page and title ------------------
         $page = 'question.question';
-        $title = 'Edit Question';
+        $title = 'Add Question';
         $data = compact('page', 'title', 'examcategoryArr', 'setting', 'guardData', 'difficulty');
         // return data to view
 
@@ -160,6 +160,13 @@ class QuestionController extends Controller
         $setting = Setting::first();
 
         $editData =  ['question' => $question->toArray()];
+
+        for ($i = 1; $i <= 5; $i++) {
+            if ($question->{'option_' . $i} == $question->correct_answer) {
+                $editData['question']['correct_answer'] = "$i";
+            }
+        }
+
         $request->replace($editData);
         //send to view
         $request->flash();
