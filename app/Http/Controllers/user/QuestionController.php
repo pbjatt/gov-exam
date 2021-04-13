@@ -205,6 +205,28 @@ class QuestionController extends Controller
     {
         $questions = $request->question;
 
+        switch ($request->question['correct_answer']) {
+            case '1':
+                $questions['correct_answer'] = $request->question['option_1'];
+                break;
+
+            case '2':
+                $questions['correct_answer'] = $request->question['option_2'];
+                break;
+
+            case '3':
+                $questions['correct_answer'] = $request->question['option_3'];
+                break;
+
+            case '4':
+                $questions['correct_answer'] = $request->question['option_4'];
+                break;
+
+            case '5':
+                $questions['correct_answer'] = $request->question['option_5'];
+                break;
+        }
+
         $question->update($questions);
 
         return redirect(route('user.question.index'))->with('success', 'Question successfully update.');
