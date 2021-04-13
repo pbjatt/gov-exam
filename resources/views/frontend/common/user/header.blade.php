@@ -20,9 +20,9 @@
     {{ HTML::style('assets/js/bundles/multiselect/css/multi-select.css') }}
 
     <style>
-    .tox-notification--warning{
-        display: none !important;
-    }
+        .tox-notification--warning {
+            display: none !important;
+        }
     </style>
 </head>
 
@@ -82,7 +82,7 @@
                         </ul>
                     </li>
                     <!-- #END# Tasks -->
-                    
+
                 </ul>
             </div>
         </div>

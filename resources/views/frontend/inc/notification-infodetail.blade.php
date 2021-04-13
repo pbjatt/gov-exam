@@ -13,7 +13,7 @@
                                     <h2>{{ $lists->infodata->title }}</h2>
                                 </div>
                                 <hr class="m-0">
-                                <div class="body" style="height: 320px; overflow: hidden;" id="exam-content">
+                                <div class="body" style="min-height: 320px;" id="exam-content">
                                     {!! $lists->infodata->description !!}
                                 </div>
                             </div>

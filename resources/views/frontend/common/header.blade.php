@@ -24,14 +24,14 @@ $setting = App\Model\Setting::first();
 
 <body class="light">
     <!-- Page Loader -->
-    <!-- <div class="page-loader-wrapper"> -->
-    <!-- <div class="loader"> -->
-    <!-- <div class="m-t-30"> -->
-    <!--            <img class="loading-img-spin" src="{{ url('assets/images/loading.png') }}" width="20" height="20" alt="admin">-->
-    <!-- </div> -->
-    <!-- <p>Please wait...</p> -->
-    <!-- </div> -->
-    <!-- </div> -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="m-t-30">
+                <img class="loading-img-spin" src="{{ url('/public/images/logo/'.$setting->logo) }}" width="20" height="20" alt="admin">
+            </div>
+            <p>Please wait...</p>
+        </div>
+    </div>
     <!-- #END# Page Loader -->
     <!-- Overlay For Sidebars -->
     <div class="overlay"></div>

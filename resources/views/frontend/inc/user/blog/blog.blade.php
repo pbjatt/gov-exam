@@ -67,6 +67,9 @@
                                     </div>
 
                                     <div class="col-lg-12">
+                                        {{ Form::textarea('blog[blog_short_desc]','', ['class'=>'squareInput des-textarea ty', 'placeholder'=>'Enter Blog Short description']) }}
+                                    </div>
+                                    <div class="col-lg-12">
                                         {{ Form::textarea('blog[blog_desc]','', ['class'=>'squareInput des-textarea editor', 'placeholder'=>'Enter Blog description']) }}
                                     </div>
 

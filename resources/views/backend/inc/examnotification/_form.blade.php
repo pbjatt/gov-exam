@@ -24,16 +24,20 @@
     {{Form::label('slug', 'Enter slug'), ['class' => 'active']}}
   </div>
   <div class="col-lg-6">
-    {{Form::select('record[exam_id]', $examArr,'0', ['class' => 'squareInput des-select form-control'])}}
+    {{Form::select('record[exam_id]', $examArr,'0', ['class' => 'squareInput des-select form-control','required'=>'required'])}}
     {{Form::label('record[exam_id]', 'Select Exam'), ['class' => 'active']}}
   </div>
   <div class="col-lg-6">
-    {{Form::text('record[url]', '', ['class' => 'squareInput', 'placeholder'=>'Enter Url' ])}}
+    {{Form::text('record[url]', '', ['class' => 'squareInput', 'placeholder'=>'Enter Url','required'=>'required' ])}}
     {{Form::label('url', 'Enter Url'), ['class' => 'active']}}
   </div>
   <div class="col-lg-6">
     {{Form::file('image',['class'=>'form-control squareInput'])}}
     {{Form::label('image', 'Choose image'), ['class' => 'active']}}
+  </div>
+  <div class="col-lg-6">
+    {{Form::number('record[posts]', '', ['class' => 'squareInput', 'placeholder'=>'Enter no of Posts','required'=>'required' ])}}
+    {{Form::label('url', 'Enter no of Posts'), ['class' => 'active']}}
   </div>
   <div class="col-lg-6">
     {{Form::date('record[vacancy_date]', '', ['class' => 'squareInput', 'placeholder'=>'Enter Vacancy Date', 'autocomplete' => 'off' ])}}
@@ -52,7 +56,7 @@
     {{Form::label('exam_date', 'Enter Exam Date'), ['class' => 'active']}}
   </div>
   <div class="col-lg-12">
-    {{ Form::textarea('record[description]','', ['class'=>'squareInput des-textarea tinymce1', 'placeholder'=>'Enter Exam Notification description', 'id' => 'abctinymce1']) }}
-    {{ Form::label('description', 'Enter Exam Notification description'), ['class' => 'active'] }}
+    {{ Form::textarea('record[description]','', ['class'=>'squareInput des-textarea tinymce', 'placeholder'=>'Enter Exam Notification description', 'id' => 'abctinymce1']) }}
+    <!-- {{ Form::label('description', 'Enter Exam Notification description'), ['class' => 'active'] }} -->
   </div>
 </div>

@@ -11,6 +11,7 @@ use App\Model\Exam_category;
 use App\Model\ExamNotification;
 use App\Model\Qualification;
 use App\Model\Blog;
+use App\Model\Setting;
 use Illuminate\Contracts\Session\Session;
 
 class HomeController extends Controller
@@ -64,11 +65,12 @@ class HomeController extends Controller
         }
 
         $notification = ExamNotification::get();
+        $setting = Setting::first();
 
         $blogs = Blog::where('status', 'verified')->get();
 
 
-        $data = compact('exams', 'ageArr', 'categoryArr', 'qualificationArr', 'notification', 'blogs');
+        $data = compact('exams', 'ageArr', 'categoryArr', 'qualificationArr', 'notification', 'blogs', 'setting');
         return view('frontend.inc.examlist', $data);
     }
 
