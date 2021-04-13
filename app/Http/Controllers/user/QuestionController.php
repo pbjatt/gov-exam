@@ -274,7 +274,7 @@ class QuestionController extends Controller
 
 
         try {
-            Excel::import(new QuestionImport, $path);
+            $excel = Excel::import(new QuestionImport, $path);
             return redirect(route('user.question.index'))->with('success', 'Excel Data Imported successfully.');
         } catch (ValidationException $e) {
             $failures = $e->failures();
