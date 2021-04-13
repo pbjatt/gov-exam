@@ -67,16 +67,16 @@
                                 <!-- <a href="#">
                                     <img src="http://localhost/gov-exam/extraimage/images.jpg" alt="user image" style="border-radius: 100%;" width="24" height="24" class="d-inline-block" title="pbjatt">
                                 </a> -->
-                                <span>{{ $blog->blog_title }}</span>
+                                <span><a href="">{{ $blog->blog_title }}</a></span>
                             </div>
                             <div class="col-2 text-right"><i class="fas fa-ellipsis-v"></i></div>
                         </div>
                         <div class="card-image">
-                            <img src="{{ url('storage/blog/'.$blog->blog_image) }}" alt="{{ $blog->blog_image }}" width="100%">
+                            <a href="{{ route('blog-detail') }}"><img src="{{ url('storage/blog/'.$blog->blog_image) }}" alt="{{ $blog->blog_image }}" width="100%"></a>
                         </div>
                         <hr class="m-0 p-0">
-                        <div class="description p-4">
-                            {!! $blog->blog_desc !!}
+                        <div class="description">
+                            <div class="three-line" style="height: 65px; overflow: hidden; margin: 20px">{{ $blog->blog_short_desc }}</div>
                         </div>
                     </div>
                 </div>
