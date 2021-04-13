@@ -4,11 +4,12 @@ namespace App\Imports;
 
 use App\Model\Question;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithValidation;
 
-class QuestionImport implements ToModel, WithHeadingRow
+class QuestionImport implements ToModel, WithHeadingRow, WithValidation
 {
     /**
      * @param array $row
@@ -32,5 +33,28 @@ class QuestionImport implements ToModel, WithHeadingRow
         $question->category_id = $category;
         $question->user_id = $guardData;
         return $question;
+    }
+
+    /**
+     * Get the validation rules that apply to the upload file.
+     *
+     * @return array
+     */
+    public function rules(): array
+    {
+        return [
+            'question' => 'unique:questions,question',
+            'difficulty' => Rule::in(['Easy', 'Medium', 'Hard'])
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function customValidationMessages()
+    {
+        return [
+            'question.unique' => 'Question alredy Exist',
+        ];
     }
 }

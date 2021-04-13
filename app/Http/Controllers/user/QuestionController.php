@@ -7,11 +7,11 @@ use App\Http\Requests\QuestionRequest;
 use App\Imports\QuestionImport;
 use App\Model\Exam_category;
 use App\Model\Question;
-use Illuminate\Support\Str;
 use App\Model\Setting;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Validators\ValidationException;
 
 class QuestionController extends Controller
 {
@@ -250,7 +250,22 @@ class QuestionController extends Controller
 
         $path = $request->file('select_file')->getRealPath();
 
-        Excel::import(new QuestionImport, $path);
-        return redirect(route('user.question.index'))->with('success', 'Excel Data Imported successfully.');
+
+        try {
+            Excel::import(new QuestionImport, $path);
+            return redirect(route('user.question.index'))->with('success', 'Excel Data Imported successfully.');
+        } catch (ValidationException $e) {
+            $failures = $e->failures();
+
+            foreach ($failures as $failure) {
+                $failure->row(); // row that went wrong
+                $failure->attribute(); // either heading key (if using heading row concern) or column index
+                $failure->errors(); // Actual error messages from Laravel validator
+                $failure->values(); // The values of the row that has failed.
+            }
+
+            $error = 'In '.$failure->row().' row '.$failure->attribute().' column '.implode(",", $failure->errors()).' so please remove the row ';
+            return redirect(route('user.question.index'))->with('error', $error);
+        }
     }
 }
