@@ -19,17 +19,17 @@
                         <div class="row pt-2">
                             <div class="col-4">
                                 <span class="font-weight-bold">
-                                    {{ date("d M Y", strtotime($lists->vacancy_date)) }}</span><br>
+                                    {{ date("d M, Y", strtotime($lists->vacancy_date)) }}</span><br>
                                 <small>Issue Date</small>
                             </div>
                             <div class="col-4">
                                 <span class="font-weight-bold">
-                                    {{ date("d M Y", strtotime($lists->form_start_date)) }}</span><br>
+                                    {{ date("d M, Y", strtotime($lists->form_start_date)) }}</span><br>
                                 <small>Start Date</small>
                             </div>
                             <div class="col-4">
                                 <span class="font-weight-bold">
-                                    {{ date("d M Y", strtotime($lists->form_end_date)) }}</span><br>
+                                    {{ date("d M, Y", strtotime($lists->form_end_date)) }}</span><br>
                                 <small>End Date</small>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                             <i class="fas fa-calendar"></i>&nbsp; Vacancy Date :
                         </div>
                         <div class="col-md-6 col-6">
-                            {{ date("d M Y", strtotime($lists->vacancy_date)) }}
+                            {{ date("d M, Y", strtotime($lists->vacancy_date)) }}
                         </div>
                     </div>
                     <div class="row">
@@ -59,7 +59,7 @@
                             <i class="fas fa-calendar"></i>&nbsp; Start Date :
                         </div>
                         <div class="col-md-6 col-6">
-                            {{ date("d M Y", strtotime($lists->form_start_date)) }}
+                            {{ date("d M, Y", strtotime($lists->form_start_date)) }}
                         </div>
                     </div>
                     <div class="row">
@@ -67,7 +67,7 @@
                             <i class="fas fa-calendar"></i>&nbsp; Form End Date :
                         </div>
                         <div class="col-md-6 col-6">
-                            {{ date("d M Y", strtotime($lists->form_end_date)) }}
+                            {{ date("d M, Y", strtotime($lists->form_end_date)) }}
                         </div>
                     </div>
                     <div class="row">
@@ -76,7 +76,7 @@
                         </div>
                         <div class="col-md-6 col-6">
                             @if($lists->exam_date != '')
-                            {{ date("d M Y", strtotime($lists->exam_date)) }}
+                            {{ date("d M, Y", strtotime($lists->exam_date)) }}
                             @endif
                             @if($lists->exam_date == '')
                             Coming Soon...
@@ -117,7 +117,7 @@
                                 <div class="body" style="height: 320px; overflow: hidden;" id="exam-content">
                                     {!! $info->short_description !!}
                                     <div style="position: absolute; bottom: 10px; right: 20px;">
-                                        <a href="">Read More...</a>
+                                        <a href="{{ url('notification/'.$lists->slug.'/'.$info->infotype->slug) }}">Read More...</a>
                                     </div>
                                 </div>
                             </div>
@@ -133,7 +133,7 @@
                                 <div class="body" style="height: 320px; overflow: hidden;" id="exam-content">
                                     {!! $info->short_description !!}
                                     <div style="position: absolute; bottom: 10px; right: 20px;">
-                                        <a href="">Read More...</a>
+                                        <a href="{{ url('notification/'.$lists->slug.'/'.$info->infotype->slug) }}">Read More...</a>
                                     </div>
                                 </div>
                             </div>

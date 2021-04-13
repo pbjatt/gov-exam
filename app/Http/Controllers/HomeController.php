@@ -91,4 +91,20 @@ class HomeController extends Controller
         $data = compact('lists');
         return view('frontend.inc.notification', $data);
     }
+
+    public function notificationinfo($slug, $infoslug)
+    {
+        $lists = ExamNotification::with('notificationdetail')->where('slug', $slug)->firstOrFail();
+        $infodata = NotificationInfo::with('infotype')->whereHas('infotype', function ($q) use ($infoslug) {
+            $q->where('slug', $infoslug);
+        })->where('examnotification_id', $lists->id)->firstOrFail();
+        $lists->infodata = $infodata;
+
+        $releted = NotificationInfo::with('infotype')->whereHas('infotype', function ($q) use ($infoslug) {
+            $q->whereNotIn('slug', [$infoslug]);
+        })->where('examnotification_id', $lists->id)->get();
+        // dd($releted);
+        $data = compact('lists', 'releted', 'slug');
+        return view('frontend.inc.notification-infodetail', $data);
+    }
 }

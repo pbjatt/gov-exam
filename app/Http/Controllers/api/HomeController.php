@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Model\Exam_category;
+use App\Model\NotificationInfo;
+use App\Model\ExamNotification;
 use App\Model\Exam;
 use App\Model\Blog;
 
@@ -43,6 +45,42 @@ class HomeController extends Controller
         $re = [
             'status'   => true,
             'data'     => $blog
+        ];
+        return response()->json($re);
+    }
+    public function notification()
+    {
+        $lists = ExamNotification::with('notificationdetail')->get();
+        $re = [
+            'status'   => true,
+            'data'     => $lists
+        ];
+        return response()->json($re);
+    }
+    public function notificationdetails($slug)
+    {
+        $lists = ExamNotification::with('notificationdetail')->where('slug', $slug)->firstOrFail();
+
+        $infodata = NotificationInfo::with('infotype')->where('examnotification_id', $lists->id)->get();
+        $lists->infodata = $infodata;
+
+        $re = [
+            'status'   => true,
+            'data'     => $lists
+        ];
+        return response()->json($re);
+    }
+
+    public function testquestion($slug)
+    {
+        $lists = ExamNotification::with('notificationdetail')->where('slug', $slug)->firstOrFail();
+
+        $infodata = NotificationInfo::with('infotype')->where('examnotification_id', $lists->id)->get();
+        $lists->infodata = $infodata;
+
+        $re = [
+            'status'   => true,
+            'data'     => $lists
         ];
         return response()->json($re);
     }

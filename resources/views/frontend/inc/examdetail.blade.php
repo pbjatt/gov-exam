@@ -27,7 +27,7 @@
                             <div class="col-4">
                                 <span class="font-weight-bold">
                                     @if ($notification != '')
-                                    {{ date("d M Y", strtotime($notification->vacancy_date)) }}
+                                    {{ date("d M, Y", strtotime($notification->vacancy_date)) }}
                                     @else
                                     Coming Soon...
                                     @endif
@@ -37,7 +37,7 @@
                             <div class="col-4">
                                 <span class="font-weight-bold">
                                     @if ($notification != '')
-                                    {{ date("d M Y", strtotime($notification->form_start_date)) }}
+                                    {{ date("d M, Y", strtotime($notification->form_start_date)) }}
                                     @else
                                     Coming Soon...
                                     @endif
