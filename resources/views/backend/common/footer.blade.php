@@ -8,7 +8,6 @@
     {{ HTML::script('assets/js/pages/dashboard/dashboard3.js') }}
     {{ HTML::script('assets/js/pages/forms/editors.js') }}
     {{ HTML::script('assets/js/bundles/tinymce/tinymce.min.js') }}
-    <!-- {{ HTML::script('https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.7.1/tinymce.min.js') }} -->
     {{ HTML::script('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js') }}
 
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
@@ -19,7 +18,7 @@
             plugins: "code, link, image code, textcolor, emoticons, hr, lists, charmap, table, fullscreen",
             fontsizeselect: true,
             // toolbar: 'undo redo | link image | code',
-            toolbar: 'bold italic underline strikethrough link image | formatselect h1 h2 h3 h4 | table hr superscript subscript | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | uploadImageButton | fullscreen | code',
+            toolbar: 'bold italic underline strikethrough link image forecolor backcolor | formatselect h1 h2 h3 h4 | table hr superscript subscript | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | uploadImageButton | fullscreen | code',
             //     
             /* enable title field in the Image dialog*/
             image_title: true,

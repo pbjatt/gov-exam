@@ -67,10 +67,10 @@
                                     </div>
 
                                     <div class="col-lg-12">
-                                        {{ Form::textarea('blog[blog_short_desc]','', ['class'=>'squareInput des-textarea ty', 'placeholder'=>'Enter Blog Short description']) }}
+                                        {{ Form::textarea('blog[blog_short_desc]','', ['class'=>'squareInput des-textarea', 'placeholder'=>'Enter Blog Short description']) }}
                                     </div>
                                     <div class="col-lg-12">
-                                        {{ Form::textarea('blog[blog_desc]','', ['class'=>'squareInput des-textarea editor', 'placeholder'=>'Enter Blog description']) }}
+                                        {{ Form::textarea('blog[blog_desc]','', ['class'=>'squareInput des-textarea tinymce', 'placeholder'=>'Enter Blog description']) }}
                                     </div>
 
                                     <div class="col-lg-6">
