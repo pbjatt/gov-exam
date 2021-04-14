@@ -68,7 +68,7 @@
                             <li class="body">
                                 <ul class="user_dw_menu">
                                     <li>
-                                        <a href="">
+                                        <a href="{{ route('user.profile') }}">
                                             <i class="material-icons">person</i>Profile
                                         </a>
                                     </li>

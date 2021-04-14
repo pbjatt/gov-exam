@@ -46,8 +46,10 @@ Route::group(['middleware' => 'userauth', 'prefix' => '/user', 'as' => 'user.', 
     Route::post('/question/import-excel', 'QuestionController@importExcel')->name('import.post');
     Route::get('/question/download-sample', 'QuestionController@downloadSample')->name('download');
     Route::get('/', 'DashboardController@index')->name('dashboard');
+    Route::get('/profile', 'DashboardController@profile')->name('profile');
     Route::resources([
         'blog' => 'BlogController',
-        'question' => 'QuestionController'
+        'question' => 'QuestionController',
+        'currentaffair' => 'CurrentAffairController'
     ]);
 });
