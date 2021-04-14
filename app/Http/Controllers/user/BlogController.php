@@ -248,6 +248,6 @@ class BlogController extends Controller
             }
         }
         $blog->delete();
-        return redirect()->back()->with('success', 'Success! Record has been deleted');
+        return redirect()->back()->with('success', 'Success! Blog has been deleted');
     }
 }
