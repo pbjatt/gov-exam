@@ -35,7 +35,7 @@ class ExamNotificationController extends Controller
 
     public function index()
     {
-        $lists = ExamNotification::orderBy('id', 'desc')->with('exam')->paginate(10);
+        $lists = ExamNotification::orderBy('id', 'desc')->with('exam')->get();
 
         // set page and title ------------------
         $page  = 'examnotification.list';

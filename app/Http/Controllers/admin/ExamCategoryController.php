@@ -16,7 +16,7 @@ class ExamCategoryController extends Controller
      */
     public function index()
     {
-        $lists = Exam_category::orderBy('id', 'desc')->paginate(10);
+        $lists = Exam_category::orderBy('id', 'desc')->get();
 
         // set page and title ------------------
         $page  = 'category.list';
@@ -137,7 +137,7 @@ class ExamCategoryController extends Controller
      */
     public function update(Request $request, $exam_category)
     {
-        $record           = Exam_category::find($id);
+        $record           = Exam_category::find($exam_category);
         $input            = $request->record;
 
         $input['slug']    = $input['slug'] == '' ? Str::slug($input['title'], '-') : $input['slug'];

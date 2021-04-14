@@ -15,20 +15,24 @@
 </div>
 @endif
 <div class="row">
-  <div class="col-lg-6">
-    {{Form::select('record[examnotification_id]', $examnotificationArr,'0', ['class' => 'squareInput des-select form-control'])}}
-    {{Form::label('record[examnotification_id]', 'Select Exam Notification'), ['class' => 'active']}}
-  </div>
-  <div class="col-lg-6">
-    {{Form::select('record[info_type_id]', $infotypeArr,'0', ['class' => 'squareInput des-select form-control', 'id' => 'type', 'onchange' => 'cityChangedTrigger()'])}}
-    {{Form::label('record[info_type_id]', 'Select Info Type'), ['class' => 'active']}}
-  </div>
 
   <div class="col-lg-8">
     <div class="row">
+      <div class="col-lg-6">
+        {{Form::select('record[examnotification_id]', $examnotificationArr,'0', ['class' => 'squareInput des-select form-control','required'=>'required'])}}
+        {{Form::label('record[examnotification_id]', 'Select Exam Notification'), ['class' => 'active']}}
+      </div>
+      <div class="col-lg-6">
+        {{Form::select('record[info_type_id]', $infotypeArr,'0', ['class' => 'squareInput des-select form-control', 'id' => 'type', 'onchange' => 'cityChangedTrigger()','required'=>'required'])}}
+        {{Form::label('record[info_type_id]', 'Select Info Type'), ['class' => 'active']}}
+      </div>
       <div class="col-lg-12">
-        {{ Form::textarea('record[description]','', ['class'=>'squareInput des-textarea tinymce1', 'placeholder'=>'Enter Exam Notification description', 'id' => 'abctinymce1']) }}
-        {{ Form::label('description', 'Enter Exam Notification description'), ['class' => 'active'] }}
+        {{Form::text('record[title]', '', ['class' => 'squareInput', 'placeholder'=>'Enter Title','required'=>'required'])}}
+        {{Form::label('record[title]', 'Enter Title'), ['class' => 'active']}}
+      </div>
+      <div class="col-lg-12">
+        {{ Form::textarea('record[short_description]','', ['class'=>'squareInput des-textarea', 'placeholder'=>'Enter short description']) }}
+        {{ Form::label('short_description', 'Enter short description'), ['class' => 'active'] }}
       </div>
     </div>
   </div>
@@ -45,3 +49,8 @@
       </div>
     </div>
   </div>
+  <div class="col-lg-12">
+    {{ Form::textarea('record[description]','', ['class'=>'squareInput des-textarea tinymce', 'placeholder'=>'Enter Exam Notification description']) }}
+    {{ Form::label('description', 'Enter Exam Notification description'), ['class' => 'active'] }}
+  </div>
+</div>

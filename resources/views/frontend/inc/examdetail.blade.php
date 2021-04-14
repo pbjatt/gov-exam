@@ -8,29 +8,47 @@
                 <div class="m-b-20">
                     <div class="contact-grid">
                         <div class="profile-header bg-dark" style="min-height: 85px;">
-                            <div class="user-name" style="padding-top: 25px;">{{ $exam->name }}</div>
+                            <div class="user-name" style="padding-top: 15px;">{{ $exam->name }}</div>
                             <div class="name-center">{{ $exam->category->title }}</div>
                         </div>
                         <p>
                         </p>
                         <div class="row pt-2">
                             <div class="col-4">
-                                <span class="font-weight-bold">sfgds</span><br>
-                                <small>Products</small>
+                                <span class="font-weight-bold">
+                                    @if ($notification != '')
+                                    {{ $notification->posts }}
+                                    @else
+                                    Coming Soon...
+                                    @endif
+                                </span><br>
+                                <small>Posts</small>
                             </div>
                             <div class="col-4">
-                                <span class="font-weight-bold">sfgds</span><br>
-                                <small>Start Date</small>
+                                <span class="font-weight-bold">
+                                    @if ($notification != '')
+                                    {{ date("d M, Y", strtotime($notification->vacancy_date)) }}
+                                    @else
+                                    Coming Soon...
+                                    @endif
+                                </span><br>
+                                <small>Vacancy Date</small>
                             </div>
                             <div class="col-4">
-                                <span class="font-weight-bold">sfgds</span><br>
-                                <small>Users</small>
+                                <span class="font-weight-bold">
+                                    @if ($notification != '')
+                                    {{ date("d M, Y", strtotime($notification->form_start_date)) }}
+                                    @else
+                                    Coming Soon...
+                                    @endif
+                                </span><br>
+                                <small>Form Start</small>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card">
+            <div class="card" style="min-height: 250px;">
                 <div class="header">
                     <h6 class="mb-0">Details</h6>
                 </div>
@@ -39,7 +57,7 @@
                     <div class="contact-grid text-left">
                         <div class="row py-2">
                             <div class="col-6">
-                                Age :
+                                Age Limit :
                             </div>
                             <div class="col-6">
                                 {{ $exam->exam_age->age }}
@@ -63,10 +81,12 @@
                     <div class="p-l-20">
                         <ul class="nav d-inline-block">
                             <li class="nav-item tab-all">
-                                <a class="nav-link active show" href="#project" data-toggle="tab">{{ $exam->name }} Information</a>
+                                <a class="nav-link active show" data-toggle="tab">{{ $exam->name }} Information</a>
                             </li>
                         </ul>
+                        @if ($notification != '')
                         <a class="nav-link active show float-right" href="{{ url('notification/'.$notification->slug) }}">{{ $exam->name }} Notification</a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -75,36 +95,8 @@
                     <div class="row clearfix">
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="card project_widget">
-                                <div class="header">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-md-6 col-sm-6">
-                                            <h2>Details</h2>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="body" style="min-height: 320px;">
-                                    {{ $exam->description }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="usersettings" aria-expanded="true">
-                    <div class="row clearfix">
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-                            <div class="card project_widget">
-                                <div class="header">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-md-6 col-sm-6">
-                                            <h2>Description</h2>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="body" style="min-height: 320px;">
-                                    <p class="m-t-30">
-                                        {{ $exam->description }}
-                                    </p>
-                                    <br>
+                                <div class="body" style="min-height: 320px;" id="exam-content">
+                                    {!! $exam->description !!}
                                 </div>
                             </div>
                         </div>

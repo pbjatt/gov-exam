@@ -13,11 +13,11 @@ use Illuminate\Http\Request;
 
 class ExamController extends Controller
 {
-    
+
     public function index()
     {
-        $lists = Exam::orderBy('id', 'desc')->paginate(10);
-    
+        $lists = Exam::orderBy('id', 'desc')->get();
+
         // set page and title ------------------
         $page  = 'exam.list';
         $title = 'Exam list';
@@ -78,31 +78,32 @@ class ExamController extends Controller
         $rules = [
             'record'        => 'required|array',
             'record.name'  => 'required|string',
+            'record.short_description'  => 'max:870|min:600',
         ];
-        
+
         $messages = [
             'record.name'  => 'Please Enter Name.',
             'image'  => 'Please Select Image'
         ];
-        
-        $request->validate( $rules, $messages );
-        
+
+        $request->validate($rules, $messages);
+
         $record           = new Exam;
         $input            = $request->record;
-        $input['slug']    = $input['slug'] == '' ? Str::slug($input['name'], '-'):$input['slug'];
-        
+        $input['slug']    = $input['slug'] == '' ? Str::slug($input['name'], '-') : $input['slug'];
+
         if ($request->hasFile('image')) {
             $file = $request->image;
             $optimizeImage = Image::make($file);
-            $optimizePath = public_path().'/images/shop/';
-            $name = time().$file->getClientOriginalName();
-            $optimizeImage->save($optimizePath.$name, 72);
+            $optimizePath = public_path() . '/images/exam/';
+            $name = time() . $file->getClientOriginalName();
+            $optimizeImage->save($optimizePath . $name, 72);
             $input['image'] = $name;
         }
 
         $record->fill($input);
         $record->save();
-        
+
         return redirect(route('admin.exam.index'))->with('success', 'Success! New record has been added.');
     }
 
@@ -115,7 +116,7 @@ class ExamController extends Controller
     public function show(Exam $exam)
     {
         $lists = Exam::findOrFail($exam->id);
-    
+
         // set page and title ------------------
         $page = 'exam.single';
         $title = 'Exam';
@@ -134,12 +135,12 @@ class ExamController extends Controller
     public function edit(Request $request, Exam $exam)
     {
         $edit     =  $exam;
-        
-        $editData =  ['record'=>$edit->toArray()];
+
+        $editData =  ['record' => $edit->toArray()];
         $request->replace($editData);
         //send to view
         $request->flash();
-       
+
         $examcategory = Exam_category::orderBy('id', 'desc')->get();
         $examcategoryArr  = ['' => 'Select category'];
         if (!$examcategory->isEmpty()) {
@@ -160,12 +161,12 @@ class ExamController extends Controller
             foreach ($qualification as $cat) {
                 $qualificationArr[$cat->id] = $cat->title;
             }
-        } 
-        
+        }
+
         // set page and title ------------------
         $page = 'exam.edit';
         $title = 'Edit Exam';
-        $data = compact('page', 'title','exam', 'examcategoryArr', 'ageArr', 'qualificationArr');
+        $data = compact('page', 'title', 'exam', 'examcategoryArr', 'ageArr', 'qualificationArr');
         // return data to view
 
         return view('backend.layout.master', $data);
@@ -184,24 +185,24 @@ class ExamController extends Controller
             'record'        => 'required|array',
             'record.name'  => 'required|string'
         ];
-        
+
         $messages = [
             'record.name'  => 'Please Enter Name.'
         ];
-        
-        $request->validate( $rules, $messages );
-        
+
+        $request->validate($rules, $messages);
+
         $record           = $exam;
         $input            = $request->record;
 
         if ($request->hasFile('image')) {
             $file = $request->image;
             $optimizeImage = Image::make($file);
-            $optimizePath = public_path().'/images/shop/';
-            $name = time().$file->getClientOriginalName();
-            $optimizeImage->save($optimizePath.$name, 72);
+            $optimizePath = public_path() . '/images/exam/';
+            $name = time() . $file->getClientOriginalName();
+            $optimizeImage->save($optimizePath . $name, 72);
             $input['image'] = $name;
-        } 
+        }
 
         $record->fill($input);
         $record->save();

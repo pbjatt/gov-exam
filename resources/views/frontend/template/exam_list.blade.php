@@ -13,24 +13,17 @@
     <hr class="m-0">
     <div class="body p-4">
         @if(count($exams) != 0 )
-        @foreach($exams as $key => $exam)
         @php
-        $sn = $key + 1;
+        $sn = $exams->firstItem();
         @endphp
-        <div class="row">
-            <div class="col-md-1 col-6 b-r mb-0">
-                <strong>{{ $sn++ }}.</strong>
-            </div>
-            <div class="col-md-8 col-6 b-r mb-0">
-                <strong> <a href="{{ url('exam/'.$exam->slug) }}">{{ $exam->name }}</a></strong>
-            </div>
-            <div class="col-md-3 col-6 b-r mb-0">
-                <strong>{{ $exam->vacancy_date }}</strong>
-            </div>
-        </div>
+        @foreach($exams as $key => $exam)
+        <strong class="mr-2">{{ $sn++ }}.</strong>
+        <strong> <a href="{{ url('exam/'.$exam->slug) }}">{{ $exam->name }}</a></strong>
         <hr>
         @endforeach
-        {{ $exams->links() }}
+        <div id="pagination" class="mx-auto">
+            {!! $exams->links() !!}
+        </div>
         @endif
         @if(count($exams) == 0 )
         No records found.

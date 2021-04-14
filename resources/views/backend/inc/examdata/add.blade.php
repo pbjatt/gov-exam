@@ -28,7 +28,7 @@ $guardData = Auth::guard()->user();
                     <div class="body">
                         <div class="header">
                             <h2 class="pt-2"><b>Notification Info Add</b></h2>
-                            <h2 class="header-dropdown m-r--5" style="top:10px;"><a href="{{ route('admin.examdata.index') }}" class="btn btn-primary" style="padding-top: 8px;">View Notification Info</a></h2>
+                            <h2 class="header-dropdown m-r--5" style="top:10px;"><a href="{{ route('admin.notificationinfo.index') }}" class="btn btn-primary" style="padding-top: 8px;">View Notification Info</a></h2>
                         </div>
                         <hr>
                         <div class="formCard">

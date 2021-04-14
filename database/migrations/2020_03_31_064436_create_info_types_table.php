@@ -16,6 +16,7 @@ class CreateInfoTypesTable extends Migration
         Schema::create('info_types', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }

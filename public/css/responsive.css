@@ -1,0 +1,86 @@
+@media (max-width: 1024px) and (min-width: 768px) {
+    .menu {
+        width: 30%;
+    }
+}
+
+@media (max-width: 768px) {
+    .search-input {
+        display: block;
+    }
+    .menu {
+        width: 30%;
+    }
+}
+
+@media (max-width: 768px) and (min-width: 448px) {
+    .menu {
+        width: 30%;
+    }
+    .site-name-main {
+        position: absolute;
+        top: 16px;
+        font-size: 20px;
+    }
+    .search-icon {
+        display: none !important;
+    }
+    .logo-main {
+        width: 40px;
+    }
+    .menu-logo {
+        width: 50px;
+    }
+    .site-name {
+        font-size: 20px !important;
+    }
+    .menu-header {
+        line-height: 20px;
+        padding: 0;
+    }
+    .menu-logo {
+        width: 60px;
+    }
+}
+
+@media (max-width: 448px) and (min-width: 320px) {
+    .menu {
+        width: 50%;
+    }
+    .search-input {
+        display: none;
+    }
+    .search-icon {
+        display: block !important;
+    }
+    .logo-main {
+        width: 40px;
+    }
+    .menu-logo {
+        width: 50px;
+    }
+    .site-name {
+        font-size: 20px !important;
+    }
+    .menu-header {
+        line-height: 20px;
+        padding: 0;
+    }
+    .menu-logo {
+        width: 60px;
+        margin: 0 28px;
+    }
+    .menu ul li.menu-header a {
+        line-height: 10px;
+    }
+    .user_profile {
+        right: 55px;
+    }
+    .site-name-main {
+        font-size: 24px;
+        top: 14px;
+    }
+    .search-part {
+        display: block;
+    }
+}

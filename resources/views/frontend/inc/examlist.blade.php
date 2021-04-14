@@ -3,12 +3,11 @@
 
 <section class="container" style="margin-top: 80px;">
     <div class="row clearfix">
-        <div class="col-lg-8 col-md-8">
+        <div class="col-lg-8 col-xs-12 col-md-8">
             <div class="card">
                 <div class="profile-tab-box">
                     <div class="p-l-10">
-                        <!-- {{ Form::open(['url' => url('examlist'), 'method'=>'GET', 'id' => 'filterexam']) }} -->
-                        <ul class="nav ">
+                        <ul class="nav">
                             <li class="nav-item tab-all">
                                 <a class="nav-link active show">
                                     {{Form::select('age', $ageArr,'0', ['class' => 'nav-select form-control searchExam', 'id' => 'age'])}}
@@ -24,8 +23,8 @@
                                     {{Form::select('qualification', $qualificationArr,'0', ['class' => 'nav-select form-control searchExam', 'id' => 'qualification'])}}
                                 </a>
                             </li>
+                            <span id="baseUrl" data-url="{{ url('/examsearch') }}"></span>
                         </ul>
-                        <!-- {{ Form::close() }} -->
                     </div>
                 </div>
             </div>
@@ -46,10 +45,10 @@
                 </div>
                 <hr class="m-0">
                 <div class="body p-4">
-                    @foreach($notification as $key => $exam)
                     @php
-                    $sn = $key + 1;
+                    $sn = $exams->firstItem();
                     @endphp
+                    @foreach($notification as $key => $exam)
                     <strong class="mr-2">{{ $sn++ }}.</strong>
                     <strong> <a href="{{ url('notification/'.$exam->slug) }}">{{ $exam->title }}</a></strong>
                     <hr>
@@ -57,7 +56,34 @@
                 </div>
             </div>
         </div>
-    </div>
+        <div class="col-lg-8 col-md-8">
+            <div class="">
+                @if(count($blogs) != 0 )
+                @foreach($blogs as $key => $blog)
+                <div class="card project_widget">
+                    <div class="body p-0">
+                        <div class="row p-4">
+                            <div class="col-10 blog-title">
+                                <!-- <a href="#">
+                                    <img src="http://localhost/gov-exam/extraimage/images.jpg" alt="user image" style="border-radius: 100%;" width="24" height="24" class="d-inline-block" title="pbjatt">
+                                </a> -->
+                                <span><a href="{{ url('blog/'.$blog->blog_slug) }}">{{ $blog->blog_title }}</a></span>
+                            </div>
+                            <div class="col-2 text-right"><i class="fas fa-ellipsis-v"></i></div>
+                        </div>
+                        <div class="card-image">
+                            <a href="{{ url('blog/'.$blog->blog_slug) }}"><img src="{{ url('storage/blog/'.$blog->blog_image) }}" alt="{{ $blog->blog_image }}" width="100%"></a>
+                        </div>
+                        <hr class="m-0 p-0">
+                        <div class="description">
+                            <div class="three-line" style="height: 65px; overflow: hidden; margin: 20px">{{ $blog->blog_short_desc }}</div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                @endif
+            </div>
+        </div>
 </section>
 
 @stop

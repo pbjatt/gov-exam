@@ -17,7 +17,8 @@ class CreateExamsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->enum('visiable',['true','false'])->default('true');
+            $table->enum('visiable', ['true', 'false'])->default('true');
+            $table->enum('post_type', ['exam', 'notification'])->default('exam');
             $table->string('age')->nullable();
             $table->string('category_id')->nullable();
             $table->string('qualification')->nullable();

@@ -22,7 +22,7 @@ $guardData = Auth::guard()->user();
                     </div>
                 </li>
                 <li class="active">
-                    <a href="{{ url(env('ADMIN_DIR').'/') }}" class="menu-toggle">
+                    <a href="{{ url(env('ADMIN_DIR').'/') }}">
                         <i class="fas fa-tachometer-alt"></i>
                         <span>Home</span>
                     </a>
@@ -88,6 +88,25 @@ $guardData = Auth::guard()->user();
                                 </li>
                             </ul>
                         </li>
+
+                        <li>
+                            <a href="#" onClick="return false;" class="menu-toggle">
+                                <i class="fas fa-mail-bulk"></i>
+                                <span>Info Type</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li>
+                                    <a href="{{ route('admin.infotype.create') }}">
+                                        <span>Add</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.infotype.index') }}">
+                                        <span>View</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
                 <li>
@@ -119,24 +138,10 @@ $guardData = Auth::guard()->user();
                     </ul>
                 </li>
                 <li>
-                    <a href="{{ route('admin.notification.master') }}" class="menu-toggle">
+                    <a href="{{ route('admin.notification.master') }}">
                         <i class="material-icons">shop</i>
                         <span>Exam Notification</span>
                     </a>
-                </li>
-                <li>
-                    <a href="#" onClick="return false;" class="menu-toggle">
-                        <i class="material-icons">shop</i>
-                        <span>Exam Data</span>
-                    </a>
-                    <ul class="ml-menu">
-                        <li>
-                            <a href="{{ route('admin.examdata.create') }}">Add</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('admin.examdata.index') }}">View</a>
-                        </li>
-                    </ul>
                 </li>
 
 
