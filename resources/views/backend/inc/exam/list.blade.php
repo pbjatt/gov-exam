@@ -47,11 +47,10 @@ $guardData = Auth::guard()->user();
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($lists as $key => $list)
                                     @php
-                                    $sn = $lists->firstItem();
+                                    $sn = $key + 1;
                                     @endphp
-                                    @foreach($lists as $list)
-
                                     <tr>
                                         <td>{{ $sn++ }}</td>
                                         <td>{{ $list->name }}</td>

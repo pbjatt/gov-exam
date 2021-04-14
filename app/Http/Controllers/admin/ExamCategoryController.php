@@ -16,7 +16,7 @@ class ExamCategoryController extends Controller
      */
     public function index()
     {
-        $lists = Exam_category::orderBy('id', 'desc')->paginate(10);
+        $lists = Exam_category::orderBy('id', 'desc')->get();
 
         // set page and title ------------------
         $page  = 'category.list';

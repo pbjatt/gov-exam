@@ -16,7 +16,7 @@ class ExamController extends Controller
 
     public function index()
     {
-        $lists = Exam::orderBy('id', 'desc')->paginate(10);
+        $lists = Exam::orderBy('id', 'desc')->get();
 
         // set page and title ------------------
         $page  = 'exam.list';
