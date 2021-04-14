@@ -29,6 +29,8 @@ Route::group([], function () {
     Route::get('notification/{slug}', 'HomeController@notification');
     Route::get('notification/{slug}/{infoslug}', 'HomeController@notificationinfo');
 
+    Route::get('blog/{slug}', 'HomeController@blogdetail');
+
     Route::get('/ajex/search', 'AjexController@search');
 });
 

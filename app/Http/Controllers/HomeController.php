@@ -109,4 +109,14 @@ class HomeController extends Controller
         $data = compact('lists', 'releted', 'slug');
         return view('frontend.inc.notification-infodetail', $data);
     }
+
+    public function blogdetail($slug)
+    {
+        $blog = Blog::with('user', 'category')->where('blog_slug', $slug)->first();
+
+        $releted = Blog::with('user', 'category')->where('category_id', $blog->category_id)->whereNotIn('id', [$blog->id])->get();
+
+        $data = compact('blog', 'releted');
+        return view('frontend.inc.blogdetail', $data);
+    }
 }

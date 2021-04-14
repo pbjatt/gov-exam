@@ -8,12 +8,10 @@ class Blog extends Model
 {
     protected $guarded = [];
 
-    public function category()
+    protected $appends = ['categories'];
+
+    public function getCategoriesAttribute()
     {
-        return $this->belongsTo(Exam_category::class);
-    }
-    public function user()
-    {
-        return $this->belongsTo(User::class);
+        return !empty($this->category->title) ? $this->category->title : null;
     }
 }

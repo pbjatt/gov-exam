@@ -27,7 +27,7 @@ $setting = App\Model\Setting::first();
     <div class="page-loader-wrapper">
         <div class="loader">
             <div class="m-t-30">
-                <img class="loading-img-spin" src="{{ url('/public/images/logo/'.$setting->logo) }}" width="20" height="20" alt="admin">
+                <!-- <img class="loading-img-spin" src="{{ url('assets/images/loading.png') }}" width="20" height="20" alt="admin"> -->
             </div>
             <p>Please wait...</p>
         </div>
