@@ -10,11 +10,13 @@ class Blog extends Model
 
     protected $appends = ['categories'];
 
-    public function getCategoriesAttribute() {
+    public function getCategoriesAttribute()
+    {
         return !empty($this->category->title) ? $this->category->title : null;
     }
 
-    public function category() {
+    public function category()
+    {
         return $this->belongsTo(Exam_category::class);
     }
 }
