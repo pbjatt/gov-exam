@@ -11,6 +11,7 @@ use App\Model\Exam_category;
 use App\Model\ExamNotification;
 use App\Model\Qualification;
 use App\Model\Blog;
+use App\Model\Setting;
 use Illuminate\Contracts\Session\Session;
 
 class HomeController extends Controller
@@ -36,7 +37,7 @@ class HomeController extends Controller
         if ($request->qualification != '') {
             $query->where('qualification', $request->qualification);
         }
-        $exams = $query->paginate(10);
+        $exams = $query->paginate(5);
         // dd($request);
 
         $age = Age::get();
@@ -64,12 +65,17 @@ class HomeController extends Controller
         }
 
         $notification = ExamNotification::get();
+        $setting = Setting::first();
 
         $blogs = Blog::where('status', 'verified')->get();
 
-
-        $data = compact('exams', 'ageArr', 'categoryArr', 'qualificationArr', 'notification', 'blogs');
-        return view('frontend.inc.examlist', $data);
+        if ($request->ajax()) {
+            $data = compact('exams', 'ageArr', 'categoryArr', 'qualificationArr', 'notification', 'blogs');
+            return view('frontend.template.exam_list', $data)->render();
+        } else {
+            $data = compact('exams', 'ageArr', 'categoryArr', 'qualificationArr', 'notification', 'blogs');
+            return view('frontend.inc.examlist', $data);
+        }
     }
 
     public function examdetails($slug)
@@ -90,5 +96,31 @@ class HomeController extends Controller
 
         $data = compact('lists');
         return view('frontend.inc.notification', $data);
+    }
+
+    public function notificationinfo($slug, $infoslug)
+    {
+        $lists = ExamNotification::with('notificationdetail')->where('slug', $slug)->firstOrFail();
+        $infodata = NotificationInfo::with('infotype')->whereHas('infotype', function ($q) use ($infoslug) {
+            $q->where('slug', $infoslug);
+        })->where('examnotification_id', $lists->id)->firstOrFail();
+        $lists->infodata = $infodata;
+
+        $releted = NotificationInfo::with('infotype')->whereHas('infotype', function ($q) use ($infoslug) {
+            $q->whereNotIn('slug', [$infoslug]);
+        })->where('examnotification_id', $lists->id)->get();
+        // dd($releted);
+        $data = compact('lists', 'releted', 'slug');
+        return view('frontend.inc.notification-infodetail', $data);
+    }
+
+    public function blogdetail($slug)
+    {
+        $blog = Blog::with('user', 'category')->where('blog_slug', $slug)->first();
+
+        $releted = Blog::with('user', 'category')->where('category_id', $blog->category_id)->whereNotIn('id', [$blog->id])->get();
+
+        $data = compact('blog', 'releted');
+        return view('frontend.inc.blogdetail', $data);
     }
 }

@@ -27,11 +27,9 @@
                                     @php
                                     $sn = $key + 1;
                                     @endphp
-                                    <div class="row">
-                                        <div class="col-md-1 col-6 b-r mb-0">
-                                            <strong>{{ $sn++ }}.</strong>
-                                        </div>
-                                        <div class="col-md-8 col-6 b-r mb-0">
+                                    <div>
+                                        <div class="mb-0">
+                                            <strong class="mr-2">{{ $sn++ }}.</strong>
                                             <strong>
                                                 @if($exam->post_type == 'exam')
                                                 <a href="{{ url('exam/'.$exam->slug) }}">{{ $exam->name }}</a>

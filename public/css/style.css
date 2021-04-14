@@ -213,3 +213,82 @@
         font-size: 18px;
         font-weight: bolder;
     }
+    
+    .one-line {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+    }
+    
+    .two-line {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+    
+    .three-line {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+    
+    .search-part {
+        display: none;
+        position: fixed;
+        top: 60px;
+        width: 100%;
+        padding: 8px 0px;
+        z-index: 999;
+        background-color: #fff;
+        box-shadow: 0 0 58px 3px #000;
+        transition: all 5s;
+    }
+    
+    .search-part button {
+        position: absolute;
+        top: 15px;
+        border: 0;
+        background-color: transparent;
+        right: 10px;
+    }
+    
+    #pagination nav {
+        background-color: transparent;
+        line-height: 20px;
+        height: auto;
+        box-shadow: none;
+        text-align: center;
+    }
+    
+    #pagination nav .paginaion {
+        margin: 0;
+        /* display: flex; */
+        display: inline-block;
+        justify-content: center;
+    }
+    
+    #pagination nav .paginaion li.disabled {
+        display: none;
+    }
+    
+    #pagination nav .paginaion .page-item.active .page-link {
+        border-radius: 0 !important;
+    }
+    
+    .theme-black .page-item.active .page-link {
+        border-radius: 0 !important;
+    }
+    
+    .theme-black .page-item.active:hover .page-link {
+        background-color: #353c48 !important;
+    }
+    
+    .theme-black .page-item:hover .page-link {
+        background-color: lightgray;
+    }

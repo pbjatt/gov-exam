@@ -55,7 +55,7 @@
 
                                     <tr>
                                         <td>{{ $sn++ }}</td>
-                                        <td>{{ $row->question }}</td>
+                                        <td>{!! $row->question !!}</td>
                                         <td>
                                             <ol>
                                                 <li>{{ $row->option_1 }}</li>
@@ -94,7 +94,7 @@
                                         <div class="modal-content">
                                             <div class="row">
                                                 <div class="col-12 my-5">
-                                                    {{Form::select('category_id', $examcategoryArr,'0', ['class' => 'squareInput des-select form-control category_id'])}}
+                                                    {{Form::select('category_id', $examcategoryArr,'0', ['class' => 'squareInput des-select form-control category_id', 'required'=>'required'])}}
                                                 </div>
                                                 <div class="col-12">
                                                     <input type="file" name="select_file" accept=".xls,.xlsx" />

@@ -18,15 +18,18 @@
                         </p>
                         <div class="row pt-2">
                             <div class="col-4">
-                                <span class="font-weight-bold">{{ $lists->vacancy_date }}</span><br>
+                                <span class="font-weight-bold">
+                                    {{ date("d M, Y", strtotime($lists->vacancy_date)) }}</span><br>
                                 <small>Issue Date</small>
                             </div>
                             <div class="col-4">
-                                <span class="font-weight-bold">{{ $lists->form_start_date }}</span><br>
+                                <span class="font-weight-bold">
+                                    {{ date("d M, Y", strtotime($lists->form_start_date)) }}</span><br>
                                 <small>Start Date</small>
                             </div>
                             <div class="col-4">
-                                <span class="font-weight-bold">{{ $lists->form_end_date }}</span><br>
+                                <span class="font-weight-bold">
+                                    {{ date("d M, Y", strtotime($lists->form_end_date)) }}</span><br>
                                 <small>End Date</small>
                             </div>
                         </div>
@@ -36,45 +39,44 @@
             <div class="card project_widget">
                 <div class="body">
                     <div class="row">
-                        <div class="col-md-5">
+                        <div class="col-md-5 col-3">
                             Url :
                         </div>
-                        <div class="col-md-7">
-                            <a href="{{ $lists->url }}" target="_blank" title="{{ $lists->title }} Notification">{{ $lists->url }}</a>
-
+                        <div class="col-md-7 col-9">
+                            <a href="{{ $lists->url }}" class="one-line" target="_blank" title="{{ $lists->title }} Notification">{{ $lists->url }}</a>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
-                            <i class="fas fa-calendar"></i> Vacancy Date :
+                        <div class="col-md-6 col-6 one-line">
+                            <i class="fas fa-calendar"></i>&nbsp; Vacancy Date :
                         </div>
-                        <div class="col-md-6">
-                            {{ $lists->vacancy_date }}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <i class="fas fa-calendar"></i> Form Start Date :
-                        </div>
-                        <div class="col-md-6">
-                            {{ $lists->form_start_date }}
+                        <div class="col-md-6 col-6">
+                            {{ date("d M, Y", strtotime($lists->vacancy_date)) }}
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
-                            <i class="fas fa-calendar"></i> Form End Date :
+                        <div class="col-md-6 col-6 one-line">
+                            <i class="fas fa-calendar"></i>&nbsp; Start Date :
                         </div>
-                        <div class="col-md-6">
-                            {{ $lists->form_end_date }}
+                        <div class="col-md-6 col-6">
+                            {{ date("d M, Y", strtotime($lists->form_start_date)) }}
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
-                            <i class="fas fa-calendar"></i> Exam Date :
+                        <div class="col-md-6 col-6 one-line">
+                            <i class="fas fa-calendar"></i>&nbsp; Form End Date :
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 col-6">
+                            {{ date("d M, Y", strtotime($lists->form_end_date)) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-6 one-line">
+                            <i class="fas fa-calendar"></i>&nbsp; Exam Date :
+                        </div>
+                        <div class="col-md-6 col-6">
                             @if($lists->exam_date != '')
-                            {{ $lists->exam_date  }}
+                            {{ date("d M, Y", strtotime($lists->exam_date)) }}
                             @endif
                             @if($lists->exam_date == '')
                             Coming Soon...
@@ -115,7 +117,7 @@
                                 <div class="body" style="height: 320px; overflow: hidden;" id="exam-content">
                                     {!! $info->short_description !!}
                                     <div style="position: absolute; bottom: 10px; right: 20px;">
-                                        <a href="">Read More...</a>
+                                        <a href="{{ url('notification/'.$lists->slug.'/'.$info->infotype->slug) }}">Read More...</a>
                                     </div>
                                 </div>
                             </div>
@@ -131,7 +133,7 @@
                                 <div class="body" style="height: 320px; overflow: hidden;" id="exam-content">
                                     {!! $info->short_description !!}
                                     <div style="position: absolute; bottom: 10px; right: 20px;">
-                                        <a href="">Read More...</a>
+                                        <a href="{{ url('notification/'.$lists->slug.'/'.$info->infotype->slug) }}">Read More...</a>
                                     </div>
                                 </div>
                             </div>

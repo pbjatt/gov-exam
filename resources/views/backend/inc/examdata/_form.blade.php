@@ -19,11 +19,11 @@
   <div class="col-lg-8">
     <div class="row">
       <div class="col-lg-6">
-        {{Form::select('record[examnotification_id]', $examnotificationArr,'0', ['class' => 'squareInput des-select form-control'])}}
+        {{Form::select('record[examnotification_id]', $examnotificationArr,'0', ['class' => 'squareInput des-select form-control','required'=>'required'])}}
         {{Form::label('record[examnotification_id]', 'Select Exam Notification'), ['class' => 'active']}}
       </div>
       <div class="col-lg-6">
-        {{Form::select('record[info_type_id]', $infotypeArr,'0', ['class' => 'squareInput des-select form-control', 'id' => 'type', 'onchange' => 'cityChangedTrigger()'])}}
+        {{Form::select('record[info_type_id]', $infotypeArr,'0', ['class' => 'squareInput des-select form-control', 'id' => 'type', 'onchange' => 'cityChangedTrigger()','required'=>'required'])}}
         {{Form::label('record[info_type_id]', 'Select Info Type'), ['class' => 'active']}}
       </div>
       <div class="col-lg-12">

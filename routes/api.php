@@ -31,11 +31,15 @@ Route::group(['namespace' => 'api'], function () {
 
     Route::get('/category', 'HomeController@category');
     Route::get('/exam', 'HomeController@exam');
+    Route::get('/blog', 'HomeController@blog');
+    Route::get('/notification', 'HomeController@notification');
+    Route::get('/notification/{slug}', 'HomeController@notificationdetails');
+
+    Route::get('/test-question', 'HomeController@notificationdetails');
 });
 
 Route::group(['namespace' => 'api', 'middleware' => 'auth:api'], function () {
 
     Route::get('/logout', 'LoginController@logout');
-
     Route::get('/home', 'HomeController@index');
 });

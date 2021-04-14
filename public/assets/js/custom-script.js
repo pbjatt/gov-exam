@@ -5,9 +5,14 @@ $(function() {
         }
     });
 
+    var fullurl = window.location;
     var url = window.location.origin;
     var host = window.location.host;
     var pathArray = window.location.pathname;
+
+    $('#exam-content').each(function() {
+        $(this).find('table').addClass('table-responsive');
+    });
     // alert(host);
     $(function() {
         $("#filterexam").change(function() {
@@ -97,6 +102,22 @@ $(function() {
             count++;
         });
     });
+
+    $(document).on('click', '.pagination a', function(event) {
+        event.preventDefault();
+        var page = $(this).attr('href').split('page=')[1];
+        var url = $(this).attr('href').split('page=')[1];
+        fetch_data(page, url);
+    });
+
+    function fetch_data(page) {
+        $.ajax({
+            url: fullurl + '?page=' + page,
+            success: function(data) {
+                $('#exam_list').html(data);
+            }
+        });
+    }
 
     $(document).ready(function() {
         function clone() {
