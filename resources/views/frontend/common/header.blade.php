@@ -115,12 +115,9 @@ $setting = App\Model\Setting::first();
                                     <img src="{{ url('images/istore.png') }}" alt="">
                                 </a>
                             </div>
-
-
-
                         </div>
                     </li>
-                    <li> <a href="">Home</a></li>
+                    <li> <a href="{{ url('/') }}">Home</a></li>
                     <li> <a href="">Result</a></li>
                     <li> <a href="">Exams</a></li>
                     <li> <a href="">Notification</a></li>

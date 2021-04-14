@@ -45,10 +45,10 @@
                 </div>
                 <hr class="m-0">
                 <div class="body p-4">
-                    @foreach($notification as $key => $exam)
                     @php
-                    $sn = $key + 1;
+                    $sn = $exams->firstItem();
                     @endphp
+                    @foreach($notification as $key => $exam)
                     <strong class="mr-2">{{ $sn++ }}.</strong>
                     <strong> <a href="{{ url('notification/'.$exam->slug) }}">{{ $exam->title }}</a></strong>
                     <hr>

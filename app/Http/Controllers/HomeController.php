@@ -37,7 +37,7 @@ class HomeController extends Controller
         if ($request->qualification != '') {
             $query->where('qualification', $request->qualification);
         }
-        $exams = $query->paginate(10);
+        $exams = $query->paginate(5);
         // dd($request);
 
         $age = Age::get();
@@ -69,9 +69,13 @@ class HomeController extends Controller
 
         $blogs = Blog::where('status', 'verified')->get();
 
-
-        $data = compact('exams', 'ageArr', 'categoryArr', 'qualificationArr', 'notification', 'blogs', 'setting');
-        return view('frontend.inc.examlist', $data);
+        if ($request->ajax()) {
+            $data = compact('exams', 'ageArr', 'categoryArr', 'qualificationArr', 'notification', 'blogs');
+            return view('frontend.template.exam_list', $data)->render();
+        } else {
+            $data = compact('exams', 'ageArr', 'categoryArr', 'qualificationArr', 'notification', 'blogs');
+            return view('frontend.inc.examlist', $data);
+        }
     }
 
     public function examdetails($slug)

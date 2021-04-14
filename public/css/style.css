@@ -257,3 +257,38 @@
         background-color: transparent;
         right: 10px;
     }
+    
+    #pagination nav {
+        background-color: transparent;
+        line-height: 20px;
+        height: auto;
+        box-shadow: none;
+        text-align: center;
+    }
+    
+    #pagination nav .paginaion {
+        margin: 0;
+        /* display: flex; */
+        display: inline-block;
+        justify-content: center;
+    }
+    
+    #pagination nav .paginaion li.disabled {
+        display: none;
+    }
+    
+    #pagination nav .paginaion .page-item.active .page-link {
+        border-radius: 0 !important;
+    }
+    
+    .theme-black .page-item.active .page-link {
+        border-radius: 0 !important;
+    }
+    
+    .theme-black .page-item.active:hover .page-link {
+        background-color: #353c48 !important;
+    }
+    
+    .theme-black .page-item:hover .page-link {
+        background-color: lightgray;
+    }
