@@ -8,6 +8,7 @@
 {{ HTML::script('assets/js/pages/dashboard/dashboard3.js') }}
 {{ HTML::script('assets/js/pages/forms/editors.js') }}
 {{ HTML::script('assets/js/bundles/tinymce/tinymce.min.js') }}
+{{ HTML::script('js/main.js') }}
 {{ HTML::script('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js') }}
 
 

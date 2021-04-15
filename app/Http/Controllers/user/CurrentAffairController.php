@@ -19,22 +19,77 @@ class CurrentAffairController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // fetch data from particular user
         $guardData = Auth::guard()->user();
-        $currentaffair = CurrentAffair::where('user_id', $guardData->id)->get();
 
         //for Page title
         $setting = Setting::first();
 
+        // Category Array
+        $currentaffaircategory = CurrentAffairCategory::orderBy('id', 'desc')->get();
+        $currentaffaircategoryArr  = ['' => 'Select category'];
+        if (!$currentaffaircategory->isEmpty()) {
+            foreach ($currentaffaircategory as $cat) {
+                $currentaffaircategoryArr[$cat->id] = $cat->title;
+            }
+        }
+
+        //Year Array
+        $yearArr  = ['' => 'Select year'];
+        for ($i = date('Y'); $i > 1947; $i--) {
+            $yearArr[$i] = $i;
+        }
+
+        //Month Array
+        $monthArr  = ['' => 'Select Month', '01' => 'Jan.', '02' => 'Feb.', '03' => 'Mar.', '04' => 'Apr.', '05' => 'May', '06' => 'Jun.', '07' => 'Jul.', '08' => 'Aug.', '09' => 'Sep.', '10' => 'Oct.', '11' => 'Nov.', '12' => 'Dec.'];
+
+        //Date Array
+        $dateArr  = ['' => 'Select date'];
+        for ($i = 1; $i <= 31; $i++) {
+            $dateArr[$i] = $i;
+        }
+
         // set page and title ------------------
         $page  = 'currentaffairs.index';
         $title = 'Current Affair';
-        $data  = compact('page', 'title', 'currentaffair', 'setting', 'guardData');
+
+        $query = CurrentAffair::latest();
+        if ($request->year != '') {
+            $query->where('year', $request->year);
+        }
+        if ($request->month != '') {
+            $query->where('month', $request->month);
+        }
+        if ($request->date != '') {
+            $query->where('day', $request->date);
+        }
+        if ($request->category_id != '') {
+            $query->where('category_id', $request->category_id);
+        }
 
         // return data to view
-        return view('frontend.layout.user.app', $data);
+        if ($request->ajax()) {
+            $currentaffair = $query->get();
+            // dd($currentaffair);
+            $data  = compact('page', 'title', 'currentaffair', 'setting', 'guardData', 'currentaffaircategoryArr', 'yearArr', 'monthArr', 'dateArr');
+            return view('frontend.layout.user.app', $data);
+        } else {
+            $currentaffair = CurrentAffair::where('user_id', $guardData->id)->get();
+            $data  = compact('page', 'title', 'currentaffair', 'setting', 'guardData', 'currentaffaircategoryArr', 'yearArr', 'monthArr', 'dateArr');
+            return view('frontend.layout.user.app', $data);
+        }
+    }
+
+    public function ajax()
+    {
+        // fetch data from particular user
+        // $guardData = Auth::guard()->user();
+
+
+
+        // return response()->json($currentaffair, 200);
     }
 
     /**
@@ -104,8 +159,8 @@ class CurrentAffairController extends Controller
 
         $currentaffair->year = date('Y');
         $currentaffair->month = date('m');
-        $currentaffair->day = date('d');    
-        
+        $currentaffair->day = date('d');
+
         $currentaffair->save();
 
         return redirect(route('user.currentaffair.index'))->with('success', 'Current Affair successfully added.');

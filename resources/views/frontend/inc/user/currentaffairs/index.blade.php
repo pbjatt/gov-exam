@@ -29,8 +29,32 @@
                         <h2 class="header-dropdown m-r--5"><a href="{{ route('user.currentaffair.create') }}" class="btn btn-primary" style="padding-top: 8px;">Add Current Affair</a></h2>
                     </div>
                     <div class="body">
+                        <div class="formCard">
+                            <div class="wrapper">
+                                <div class="row mt-4">
+                                    <div class="col-lg-3">
+                                        {{Form::select('currentaffair[year]', $yearArr,'', ['class' => 'squareInput des-select form-control affairyear currentsearch'])}}
+                                        {{Form::label('record[category_id]', 'Select Year'), ['class' => 'active']}}
+                                    </div>
+                                    <div class="col-lg-3">
+                                        {{Form::select('currentaffair[month]', $monthArr,'', ['class' => 'squareInput des-select form-control affairmonth currentsearch'])}}
+                                        {{Form::label('record[category_id]', 'Select Month'), ['class' => 'active']}}
+                                    </div>
+                                    <div class="col-lg-3">
+                                        {{Form::select('currentaffair[date]', $dateArr,'', ['class' => 'squareInput des-select form-control affairdate currentsearch'])}}
+                                        {{Form::label('record[category_id]', 'Select Date'), ['class' => 'active']}}
+                                    </div>
+                                    <div class="col-lg-3">
+                                        {{Form::select('currentaffair[category_id]', $currentaffaircategoryArr,'', ['class' => 'squareInput des-select form-control affaircategory currentsearch'])}}
+                                        {{Form::label('record[category_id]', 'Select Current Affair Category'), ['class' => 'active']}}
+                                    </div>
+                                    <span id="affairUrl" data-url="{{ route('user.currentaffair.index') }}"></span>
+                                </div>
+
+                            </div>
+                        </div>
                         <div class="table-responsive">
-                            <table class="table table-hover js-basic-example contact_list">
+                            <table class="table table-hover js-basic-example contact_list" id="currentaffair">
                                 <thead>
                                     <tr>
                                         <th>#</th>
