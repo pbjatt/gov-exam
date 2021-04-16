@@ -22,37 +22,40 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="card">
-                    <div class="header">
+                    <div class="header d-flex justify-content-between">
 
-                        <h2 class="pt-2"><b>Current Affair List
-                            </b></h2>
-                        <h2 class="header-dropdown m-r--5"><a href="{{ route('user.currentaffair.create') }}" class="btn btn-primary" style="padding-top: 8px;">Add Current Affair</a></h2>
+                        <h2 class="pt-2">
+                            <b>
+                                Current Affair List
+                            </b>
+                        </h2>
+                        <h2 class="m-r--5"><a onclick="handleApply()" class="btn btn-primary" style="padding-top: 8px;"> <i class="fa fa-filter"></i> </a></h2>
+                        <h2 class="m-r--5"><a href="{{ route('user.currentaffair.create') }}" class="btn btn-primary" style="padding-top: 8px;">Add Current Affair</a></h2>
                     </div>
                     <div class="body">
-                        <div class="formCard">
+                        {{--<div class="formCard">
                             <div class="wrapper">
                                 <div class="row mt-4">
-                                    <div class="col-lg-3">
-                                        {{Form::select('currentaffair[year]', $yearArr,'', ['class' => 'squareInput des-select form-control affairyear currentsearch'])}}
+                                    <div class="col-lg-6">
+                                        {{Form::select('year', $yearArr,'', ['class' => 'squareInput des-select form-control affairyear currentsearch'])}}
                                         {{Form::label('record[category_id]', 'Select Year'), ['class' => 'active']}}
                                     </div>
-                                    <div class="col-lg-3">
-                                        {{Form::select('currentaffair[month]', $monthArr,'', ['class' => 'squareInput des-select form-control affairmonth currentsearch'])}}
+                                    <div class="col-lg-6">
+                                        {{Form::select('month', $monthArr,'', ['class' => 'squareInput des-select form-control affairmonth currentsearch'])}}
                                         {{Form::label('record[category_id]', 'Select Month'), ['class' => 'active']}}
                                     </div>
-                                    <div class="col-lg-3">
-                                        {{Form::select('currentaffair[date]', $dateArr,'', ['class' => 'squareInput des-select form-control affairdate currentsearch'])}}
-                                        {{Form::label('record[category_id]', 'Select Date'), ['class' => 'active']}}
+                                    <div class="col-lg-6">
+                                        {{Form::select('day', $dayArr,'', ['class' => 'squareInput des-select form-control affairday currentsearch'])}}
+                                        {{Form::label('record[category_id]', 'Select Day'), ['class' => 'active']}}
                                     </div>
-                                    <div class="col-lg-3">
-                                        {{Form::select('currentaffair[category_id]', $currentaffaircategoryArr,'', ['class' => 'squareInput des-select form-control affaircategory currentsearch'])}}
+                                    <div class="col-lg-6">
+                                        {{Form::select('category_id', $currentaffaircategoryArr,'', ['class' => 'squareInput des-select form-control affaircategory currentsearch'])}}
                                         {{Form::label('record[category_id]', 'Select Current Affair Category'), ['class' => 'active']}}
                                     </div>
-                                    <span id="affairUrl" data-url="{{ route('user.currentaffair.index') }}"></span>
+                                    <span id="affairUrl" data-url="{{ route('user.search') }}"></span>
                                 </div>
-
                             </div>
-                        </div>
+                        </div>--}}
                         <div class="table-responsive">
                             <table class="table table-hover js-basic-example contact_list" id="currentaffair">
                                 <thead>
@@ -100,6 +103,40 @@
                                     @endforeach
                                 </tbody>
                             </table>
+
+                            <div class="modal fade" id="applyModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-md modal-dialog-centered">
+                                    <form class="" action="" method="GET" id="applyFormModal" enctype="multipart/form-data">
+                                        <div class="modal-content">
+                                            <div class="formCard">
+                                                <div class="wrapper">
+                                                    <div class="row mt-4">
+                                                        <div class="col-lg-6">
+                                                            {{Form::select('year', $yearArr,'', ['class' => 'squareInput des-select form-control affairyear currentsearch'])}}
+                                                            {{Form::label('record[category_id]', 'Select Year'), ['class' => 'active']}}
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            {{Form::select('month', $monthArr,'', ['class' => 'squareInput des-select form-control affairmonth currentsearch'])}}
+                                                            {{Form::label('record[category_id]', 'Select Month'), ['class' => 'active']}}
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            {{Form::select('day', $dayArr,'', ['class' => 'squareInput des-select form-control affairday currentsearch'])}}
+                                                            {{Form::label('record[category_id]', 'Select Day'), ['class' => 'active']}}
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            {{Form::select('category_id', $currentaffaircategoryArr,'', ['class' => 'squareInput des-select form-control affaircategory currentsearch'])}}
+                                                            {{Form::label('record[category_id]', 'Select Current Affair Category'), ['class' => 'active']}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <input type="submit" name="apply" class="btn btn-primary" value="Apply">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -107,3 +144,12 @@
         </div>
     </div>
 </section>
+
+<script>
+    function handleApply() {
+        var form = document.getElementById('applyFormModal')
+        var category_id = document.getElementsByClassName('category_id').val;
+        form.action = 'user/currentaffair'
+        $('#applyModal').modal('show')
+    }
+</script>

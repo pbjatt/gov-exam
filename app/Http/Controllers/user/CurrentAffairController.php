@@ -46,50 +46,44 @@ class CurrentAffairController extends Controller
         $monthArr  = ['' => 'Select Month', '01' => 'Jan.', '02' => 'Feb.', '03' => 'Mar.', '04' => 'Apr.', '05' => 'May', '06' => 'Jun.', '07' => 'Jul.', '08' => 'Aug.', '09' => 'Sep.', '10' => 'Oct.', '11' => 'Nov.', '12' => 'Dec.'];
 
         //Date Array
-        $dateArr  = ['' => 'Select date'];
+        $dayArr  = ['' => 'Select day'];
         for ($i = 1; $i <= 31; $i++) {
-            $dateArr[$i] = $i;
+            $dayArr[$i] = $i;
         }
+
+        $currentaffair = CurrentAffair::where('user_id', $guardData->id)->filter()->paginate(5);
 
         // set page and title ------------------
         $page  = 'currentaffairs.index';
         $title = 'Current Affair';
 
-        $query = CurrentAffair::latest();
-        if ($request->year != '') {
-            $query->where('year', $request->year);
-        }
-        if ($request->month != '') {
-            $query->where('month', $request->month);
-        }
-        if ($request->date != '') {
-            $query->where('day', $request->date);
-        }
-        if ($request->category_id != '') {
-            $query->where('category_id', $request->category_id);
-        }
+        $data = compact('page', 'title', 'setting', 'currentaffair', 'currentaffaircategoryArr', 'yearArr', 'monthArr', 'dayArr', 'guardData');
 
-        // return data to view
-        if ($request->ajax()) {
-            $currentaffair = $query->get();
-            // dd($currentaffair);
-            $data  = compact('page', 'title', 'currentaffair', 'setting', 'guardData', 'currentaffaircategoryArr', 'yearArr', 'monthArr', 'dateArr');
-            return view('frontend.layout.user.app', $data);
-        } else {
-            $currentaffair = CurrentAffair::where('user_id', $guardData->id)->get();
-            $data  = compact('page', 'title', 'currentaffair', 'setting', 'guardData', 'currentaffaircategoryArr', 'yearArr', 'monthArr', 'dateArr');
-            return view('frontend.layout.user.app', $data);
-        }
+        return view('frontend.layout.user.app', $data);
     }
 
-    public function ajax()
+    public function ajax(Request $request)
     {
         // fetch data from particular user
-        // $guardData = Auth::guard()->user();
+        $guardData = Auth::guard()->user();
 
+        $currentaffair = CurrentAffair::latest();
+        if ($request->year != '') {
+            $currentaffair->where('year', $request->year);
+        }
+        if ($request->month != '') {
+            $currentaffair->where('month', $request->month);
+        }
+        if ($request->day != '') {
+            $currentaffair->where('day', $request->day);
+        }
+        if ($request->category_id != '') {
+            $currentaffair->where('category_id', $request->category_id);
+        }
 
+        $currentaffair = $currentaffair->get();
 
-        // return response()->json($currentaffair, 200);
+        return response()->json($currentaffair, 200);
     }
 
     /**

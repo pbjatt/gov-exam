@@ -19,4 +19,22 @@ class CurrentAffair extends Model
     {
         return $this->belongsTo(CurrentAffairCategory::class);
     }
+
+    public function scopeFilter($q)
+    {
+        if (request('year')) {
+            $q->where('year', request('year'));
+        }
+        if (request('month')) {
+            $q->where('month', request('month'));
+        }
+        if (request('date')) {
+            $q->where('day', request('date'));
+        }
+        if (request('category_id')) {
+            $q->where('day', request('category_id'));
+        }
+
+        return $q;
+    }
 }
