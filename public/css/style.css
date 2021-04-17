@@ -350,4 +350,45 @@
         font-size: 20px;
         margin-left: 9px;
     }
+
     /* side button end */
+
+    /* accordian */
+
+    /* .acc .grid-l1 {
+        width: 500px;
+        height: auto;
+        min-height: 500px;
+        overflow: hidden;
+        padding: 10px;
+        background: #000;
+    } */
+
+    .acc .header {
+        width: 100%;
+        text-align: left;
+        font-size: 14px;
+        text-transform: uppercase;
+        font-weight: bold;
+        padding: 5px;
+        cursor: pointer;
+        letter-spacing: 1px;
+        margin: 0px !important;
+    }
+
+    .acc .level-box {
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+        background: #ededed;
+        padding: 10px;
+        display: none;
+    }
+
+    .acc .box-a1 {
+        border-bottom: 1px solid #ddd;
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+        margin: 5px 0px;
+    }

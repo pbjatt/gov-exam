@@ -4,6 +4,7 @@
 <section class="container" style="margin-top: 80px;">
     <div class="row clearfix">
         <div class="col-lg-8 col-xs-12 col-md-8">
+            {{ Form::open(['url' => route('pdf'), 'method'=>'GET', 'files' => true, 'class' => 'user']) }}
             <div class="card">
                 <div class="profile-tab-box">
                     <div class="p-l-10">
@@ -29,6 +30,7 @@
                                 </a>
                             </li>
                             <span id="affairUrl" data-url="{{ route('search') }}"></span>
+                            
                         </ul>
                     </div>
                 </div>
@@ -42,6 +44,7 @@
                     </div>
                 </div>
             </div>
+            {{ Form::close() }}
         </div>
         <div class="col-lg-4 col-md-4">
             <div class="card project_widget">

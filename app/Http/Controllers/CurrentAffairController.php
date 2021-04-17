@@ -6,6 +6,7 @@ use App\Model\CurrentAffair;
 use App\Model\CurrentAffairCategory;
 use App\Model\ExamNotification;
 use App\Model\Setting;
+use PDF;
 use Illuminate\Http\Request;
 
 class CurrentAffairController extends Controller
@@ -57,11 +58,13 @@ class CurrentAffairController extends Controller
 
         $setting = Setting::first();
 
+        $status = 1;
+
         if ($request->ajax()) {
-            $data = compact('setting', 'notification', 'currentaffair', 'currentaffaircategoryArr', 'yearArr', 'monthArr', 'dayArr');
+            $data = compact('setting', 'status', 'notification', 'currentaffair', 'currentaffaircategoryArr', 'yearArr', 'monthArr', 'dayArr');
             return view('frontend.template.currentaffair', $data)->render();
         } else {
-            $data = compact('setting', 'notification', 'currentaffair', 'currentaffaircategoryArr', 'yearArr', 'monthArr', 'dayArr');
+            $data = compact('setting', 'status', 'notification', 'currentaffair', 'currentaffaircategoryArr', 'yearArr', 'monthArr', 'dayArr');
             return view('frontend.inc.currentaffair', $data);
         }
     }
@@ -84,8 +87,37 @@ class CurrentAffairController extends Controller
 
         $currentaffair = $currentaffair->paginate(25);
 
-        $ca_list = view('frontend.template.currentaffair', compact('currentaffair'))->render();
+        $status = '1';
+
+        $ca_list = view('frontend.template.currentaffair', compact('currentaffair', 'status'))->render();
 
         return response()->json($ca_list, 200);
+    }
+    public function currentaffairpdf(Request $request)
+    {
+        ini_set('max_execution_time', 300);
+        $currentaffair = CurrentAffair::latest();
+        if ($request->year != '') {
+            $currentaffair->where('year', $request->year);
+        }
+        if ($request->month != '') {
+            $currentaffair->where('month', $request->month);
+        }
+        if ($request->day != '') {
+            $currentaffair->where('day', $request->day);
+        }
+        if ($request->category_id != '') {
+            $currentaffair->where('category_id', $request->category_id);
+        }
+        // retreive all records from db
+        $currentaffair = $currentaffair->get();
+
+        // share data to view
+        view()->share('currentaffair', $currentaffair);
+        $pdf = PDF::loadView('frontend.template.currentaffair', $currentaffair);
+
+
+        // download PDF file with download method
+        return $pdf->download('pdf_file.pdf');
     }
 }

@@ -8,6 +8,7 @@
 {{ HTML::script('js/main.js') }}
 {{ HTML::script('assets/js/pages/dashboard/dashboard3.js') }}
 {{ HTML::script('assets/js/pages/todo/todo.js') }}
+
 <script>
     function openNav() {
         if (document.getElementById("mySidenav").classList.contains('menu-open')) {
