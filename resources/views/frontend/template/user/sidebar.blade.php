@@ -38,12 +38,6 @@
                     </a>
                 </li>
 
-                <li>
-                    <a href="{{ route('user.currentaffair.index') }}" class="">
-                        <i class="far fa-newspaper"></i>
-                        <span>Current Affairs</span>
-                    </a>
-                </li>
             </ul>
         </div>
         <!-- #Menu -->

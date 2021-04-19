@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CurrentAffairRequest;
@@ -59,7 +59,7 @@ class CurrentAffairController extends Controller
 
         $data = compact('page', 'title', 'setting', 'currentaffair', 'currentaffaircategoryArr', 'yearArr', 'monthArr', 'dayArr', 'guardData');
 
-        return view('frontend.layout.user.app', $data);
+        return view('backend.layout.master', $data);
     }
 
     public function ajax(Request $request)
@@ -114,7 +114,7 @@ class CurrentAffairController extends Controller
         $data  = compact('page', 'title', 'setting', 'currentaffaircategoryArr', 'guardData');
 
         // return data to view
-        return view('frontend.layout.user.app', $data);
+        return view('backend.layout.master', $data);
     }
 
     /**
@@ -157,7 +157,7 @@ class CurrentAffairController extends Controller
 
         $currentaffair->save();
 
-        return redirect(route('user.currentaffair.index'))->with('success', 'Current Affair successfully added.');
+        return redirect(route('admin.currentaffair.index'))->with('success', 'Current Affair successfully added.');
     }
 
     /**
@@ -205,7 +205,7 @@ class CurrentAffairController extends Controller
         $data = compact('page', 'title', 'currentaffaircategoryArr', 'currentaffair', 'setting', 'guardData');
         // return data to view
 
-        return view('frontend.layout.user.app', $data);
+        return view('backend.layout.master', $data);
     }
 
     /**
@@ -240,7 +240,7 @@ class CurrentAffairController extends Controller
 
         $currentaffair->update($currentaffairs);
 
-        return redirect(route('user.currentaffair.index'))->with('success', 'Current Affair successfully update.');
+        return redirect(route('admin.currentaffair.index'))->with('success', 'Current Affair successfully update.');
     }
 
     /**

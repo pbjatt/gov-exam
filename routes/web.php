@@ -20,6 +20,10 @@ Route::any('admin', function () {
     return false;
 });
 
+Route::get('/pdf', function () {
+    return view('frontend.template.currentpdf');
+});
+
 
 Route::group([], function () {
     Route::get('/', 'HomeController@examlist')->name('home');
@@ -55,10 +59,8 @@ Route::group(['middleware' => 'userauth', 'prefix' => '/user', 'as' => 'user.', 
     Route::get('/question/download-sample', 'QuestionController@downloadSample')->name('download');
     Route::get('/', 'DashboardController@index')->name('dashboard');
     Route::get('/profile', 'DashboardController@profile')->name('profile');
-    Route::post('currentaffairsearch', 'CurrentAffairController@ajax')->name('search');
     Route::resources([
         'blog' => 'BlogController',
         'question' => 'QuestionController',
-        'currentaffair' => 'CurrentAffairController'
     ]);
 });

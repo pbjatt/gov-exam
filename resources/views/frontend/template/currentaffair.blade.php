@@ -12,12 +12,15 @@
     </div>
     <hr class="m-0">
     <div class="body acc">
+        @php
+        $sn = 1;
+        @endphp
         @if(count($currentaffair) != 0 )
         <div class="grid-l1">
             @foreach($currentaffair as $key => $ca)
             <div class="box-a1">
                 <div class="header">
-                    {{ $key }}. {{ $ca->title }}
+                    {{ $sn++ }}. {{ $ca->title }}
                 </div>
 
                 <div class="level-box" style="@if($key == 0) display: block @endif">
@@ -49,7 +52,7 @@
             </div>
             <div class="text-right" style="padding-top: 25px;">
                 <h5>
-                    
+
                     <button type="submit" class="btn btn-outline-danger btn-border-radius"><i class="material-icons" style="font-size: 18px;">picture_as_pdf</i><span>Export PDF</span></button>
                 </h5>
             </div>

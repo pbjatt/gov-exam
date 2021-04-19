@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class CurrentAffairRequest extends FormRequest
+class CurrentAffairCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,14 +25,11 @@ class CurrentAffairRequest extends FormRequest
     public function rules()
     {
         return [
-            'currentaffair.title' => [
+            'currentaffaircategory.title' => [
                 'required',
-                Rule::unique('current_affairs', 'title')->where(function ($q) {
-                    $q->where('user_id', '!=', $this->user());
-                })
+                Rule::unique('current_affair_categories', 'title')
             ],
-            'image' => 'max:2048|mimes:jpeg,jpg,png,gif',
-            'currentaffair.category_id' => 'required',
+            'currentaffaircategory.description',
         ];
     }
 }

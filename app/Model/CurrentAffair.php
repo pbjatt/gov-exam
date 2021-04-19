@@ -28,11 +28,11 @@ class CurrentAffair extends Model
         if (request('month')) {
             $q->where('month', request('month'));
         }
-        if (request('date')) {
-            $q->where('day', request('date'));
+        if (request('day')) {
+            $q->where('day', request('day'));
         }
         if (request('category_id')) {
-            $q->where('day', request('category_id'));
+            $q->where('category_id', request('category_id'));
         }
 
         return $q;

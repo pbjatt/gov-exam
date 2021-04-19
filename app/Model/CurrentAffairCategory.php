@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class CurrentAffairCategory extends Model
 {
-    //
+    protected $guarded = [];
 }
