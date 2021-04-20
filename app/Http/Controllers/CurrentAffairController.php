@@ -6,7 +6,7 @@ use App\Model\CurrentAffair;
 use App\Model\CurrentAffairCategory;
 use App\Model\ExamNotification;
 use App\Model\Setting;
-use PDF;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 
 class CurrentAffairController extends Controller
@@ -112,12 +112,13 @@ class CurrentAffairController extends Controller
         // retreive all records from db
         $currentaffair = $currentaffair->get();
 
+        $setting = Setting::first();
+
         // share data to view
         view()->share('currentaffair', $currentaffair);
-        $pdf = PDF::loadView('frontend.template.currentpdf', $currentaffair);
-
+        $pdf = PDF::loadView('frontend.template.currentpdf', ['currentaffair' => $currentaffair, 'setting' => $setting]);
 
         // download PDF file with download method
-        return $pdf->download('pdf_file.pdf');
+        return $pdf->download('currentaffairs_'.$setting->title.'.pdf');
     }
 }
