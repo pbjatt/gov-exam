@@ -98,7 +98,7 @@ class UserController extends Controller
             'password.regex'   => 'Password must contain at least one number and both uppercase and lowercase letters and one symbol.',
         ];
 
-        $setting = Setting::first();
+        $setting = Setting::findOrFail(1);
 
         $request->validate($rules, $messages);
 
