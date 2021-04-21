@@ -31,7 +31,7 @@
         {{Form::label('record[title]', 'Enter Title'), ['class' => 'active']}}
       </div>
       <div class="col-lg-12">
-        {{ Form::textarea('record[short_description]','', ['class'=>'squareInput des-textarea', 'placeholder'=>'Enter short description']) }}
+        {{ Form::textarea('record[short_description]','', ['class'=>'squareInput des-textarea tinymce', 'placeholder'=>'Enter short description']) }}
         {{ Form::label('short_description', 'Enter short description'), ['class' => 'active'] }}
       </div>
     </div>
