@@ -4,7 +4,7 @@
 <section class="container" style="margin-top: 80px;">
     <div class="row clearfix">
         <div class="col-lg-8 col-xs-12 col-md-8">
-            <div class="card">
+            <div class="card filtertab">
                 <div class="profile-tab-box">
                     <div class="p-l-10">
                         <ul class="nav">
@@ -85,5 +85,44 @@
             </div>
         </div>
 </section>
+
+<!-- Filter Exam -->
+<div class="modal fade" id="examlistModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <form class="" action="" onsubmit="return false;" id="applyExamModal" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="formCard">
+                    <div class="wrapper">
+                        <div class="row mt-4 examData">
+                            <div class="col-md-6 mb-3">
+                                {{Form::select('age', $ageArr,'0', ['class' => 'squareInput des-select form-control currentsearch age'])}}
+                                {{Form::label('record[age]', 'Select Age'), ['class' => 'active']}}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{Form::select('qualification', $qualificationArr,'0', ['class' => 'squareInput des-select form-control currentsearch qualification'])}}
+                                {{Form::label('record[qualification]', 'Select Qualification'), ['class' => 'active']}}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{Form::select('category', $categoryArr,'0', ['class' => 'squareInput des-select form-control currentsearch category'])}}
+                                {{Form::label('record[category]', 'Select Exam Category'), ['class' => 'active']}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-primary" id="examform">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script>
+    function examlist() {
+        $('#examlistModal').modal('show')
+    }
+</script>
+
 
 @stop

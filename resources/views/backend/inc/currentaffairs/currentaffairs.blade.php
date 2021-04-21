@@ -61,11 +61,11 @@
                                     </div>
 
                                     <div class="col-lg-12">
-                                        {{ Form::textarea('currentaffair[except_text]','', ['class'=>'squareInput des-textarea editor', 'placeholder'=>'Enter Current Affair Short Description']) }}
+                                        {{ Form::textarea('currentaffair[except_text]','', ['class'=>'squareInput des-textarea tinymce', 'placeholder'=>'Enter Current Affair Short Description']) }}
                                     </div>
 
                                     <div class="col-lg-12">
-                                        {{ Form::textarea('currentaffair[description]','', ['class'=>'squareInput des-textarea editor', 'placeholder'=>'Enter Current Affair description']) }}
+                                        {{ Form::textarea('currentaffair[description]','', ['class'=>'squareInput des-textarea tinymce', 'placeholder'=>'Enter Current Affair description']) }}
                                     </div>
 
                                     {{--<div class="col-lg-6">

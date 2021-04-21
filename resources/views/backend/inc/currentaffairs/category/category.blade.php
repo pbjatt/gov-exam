@@ -51,7 +51,7 @@
                                     </div>
 
                                     <div class="col-lg-12">
-                                        {{ Form::textarea('currentaffaircategory[description]','', ['class'=>'squareInput des-textarea editor', 'placeholder'=>'Enter Current Affair Category description']) }}
+                                        {{ Form::textarea('currentaffaircategory[description]','', ['class'=>'squareInput des-textarea tinymce', 'placeholder'=>'Enter Current Affair Category description']) }}
                                     </div>
 
                                 </div>
