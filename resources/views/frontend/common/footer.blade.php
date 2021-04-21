@@ -31,6 +31,7 @@
         } else {
             document.getElementById("search-part").classList.remove('d-none');
             document.getElementById("search-part").classList.add('d-block');
+            document.getElementById("search-input").focus();
         }
     }
 </script>

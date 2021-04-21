@@ -129,10 +129,17 @@ $setting = App\Model\Setting::first();
         <a href="#" class="active"></a>
         <form method="GET" action="{{ url('/examlist') }}" accept-charset="UTF-8" novalidate="novalidate">
             <div class="search-box" style="display: block;">
-                <input type="text" name="s" class="squareInput" placeholder="Search">
+                <input type="text" name="s" class="squareInput" id="search-input" placeholder="Search">
                 <button><i class="material-icons">search</i></button>
             </div>
         </form>
     </div>
-
+    <div class="float-sm">
+        <a class="pb-2" href="{{ route('currentaffair') }}">
+            <div class="fl-fl float-su">
+                <i class="far fa-newspaper mr-4"></i>
+                Current Affairs
+            </div>
+        </a>
+    </div>
     <!-- #Top Bar -->

@@ -2,6 +2,15 @@
     .menu {
         width: 30%;
     }
+    .filtertab {
+        display: none;
+    }
+    .filter {
+        display: block;
+    }
+    .examcount {
+        display: none;
+    }
 }
 
 @media (max-width: 768px) {
@@ -40,6 +49,15 @@
     }
     .menu-logo {
         width: 60px;
+    }
+    .filtertab {
+        display: none;
+    }
+    .filter {
+        display: block;
+    }
+    .examcount {
+        display: none;
     }
 }
 
@@ -82,5 +100,14 @@
     }
     .search-part {
         display: block;
+    }
+    .filtertab {
+        display: none;
+    }
+    .filter {
+        display: block;
+    }
+    .examcount {
+        display: none;
     }
 }

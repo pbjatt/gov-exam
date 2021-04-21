@@ -1,12 +1,12 @@
 <div class="card project_widget">
     <div class="header p-4">
         <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-6">
                 <h2>Exam lists</h2>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 text-right">
-                <!-- <h2><a href="" style="color: #5b626b;"><i class="material-icons" style="font-size: 18px;">mode_edit</i> Edit</a></h2> -->
-                {{ $exams->count() }} records found
+            <div class="col-lg-6 col-md-6 col-sm-6 col-6 text-right">
+                <div class="filter"><a onclick="examlist()" style="color: #5b626b;"><i class="fa fa-filter"></i></a></div>
+                <span class="examcount">{{ $exams->count() }} records found</span>
             </div>
         </div>
     </div>

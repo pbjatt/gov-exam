@@ -107,7 +107,7 @@
 
             <div class="modal fade" id="applyModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-md modal-dialog-centered">
-                    <form class="" action="" method="GET" id="applyFormModal" enctype="multipart/form-data">
+                    <form class="" action="{{ url('admin/currentaffair') }}" method="GET" id="applyFormModal" enctype="multipart/form-data">
                         <div class="modal-content">
                             <div class="formCard">
                                 <div class="wrapper">
@@ -150,7 +150,7 @@
     function handleApply() {
         var form = document.getElementById('applyFormModal')
         var category_id = document.getElementsByClassName('category_id').val;
-        form.action = 'admin/currentaffair'
+        // form.action = 'admin/currentaffair'
         $('#applyModal').modal('show')
     }
 </script>
