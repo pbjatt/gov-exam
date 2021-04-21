@@ -53,6 +53,16 @@
         font-size: 15px !important;
     }
     
+    #exam-content p span {
+        line-height: 30px !important;
+        font-size: 15px !important;
+    }
+    
+    #exam-content li span {
+        line-height: 30px !important;
+        font-size: 15px !important;
+    }
+    
     #exam-content table {
         width: 100% !important;
     }
