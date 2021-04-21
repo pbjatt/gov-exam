@@ -18,6 +18,7 @@ class CreateCurrentAffairsTable extends Migration
             $table->string('title', 255);
             $table->longText('except_text')->nullable();
             $table->longText('description')->nullable();
+            $table->longText('slug')->unique();
             $table->foreignId('category_id')->constrained('current_affair_categories')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->string('image')->nullable();

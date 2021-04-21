@@ -128,6 +128,7 @@ class CurrentAffairController extends Controller
         $userId = Auth::guard()->user()->id;
 
         $currentaffair = new CurrentAffair($request->currentaffair);
+        $currentaffair->slug = Str::slug($request->currentaffair['title'], '-');
 
         $currentaffair->user_id = $userId;
 
@@ -135,13 +136,14 @@ class CurrentAffairController extends Controller
             mkdir(public_path('storage/currentaffair/'), 666, true);
         }
 
-        $img = Str::slug($request->currentaffair['title'] . '-');
+        // $img = Str::slug($request->currentaffair['title'] . '-');
 
         if ($request->hasFile('image')) {
 
             $image       = $request->file('image');
             // $filename    = $image->getClientOriginalName();
-            $name = time() . $img . '.' . $image->getClientOriginalExtension();
+            $name = time() . $currentaffair->slug . '.' . $image->getClientOriginalExtension();
+            // $name = time() . $img . '.' . $image->getClientOriginalExtension();
 
             $image_resize = Image::make($image->getRealPath());
             $image_resize->resize(500, 500, function ($constraint) {
@@ -217,6 +219,7 @@ class CurrentAffairController extends Controller
      */
     public function update(Request $request, CurrentAffair $currentaffair)
     {
+        $slug = $currentaffair->slug;
         $currentaffairs = $request->currentaffair;
 
         if (!file_exists(public_path('storage/currentaffair/'))) {
@@ -227,8 +230,12 @@ class CurrentAffairController extends Controller
 
         if ($request->hasFile('image')) {
 
+            if (file_exists(public_path('storage/currentaffair/' . $currentaffair->image))) {
+                unlink(public_path('storage/currentaffair/' . $currentaffair->image));
+            }
             $image       = $request->file('image');
-            $name = time() . $img . '.' . $image->getClientOriginalExtension();
+            $name = time() . $slug . '.' . $image->getClientOriginalExtension();
+            // $name = time() . $img . '.' . $image->getClientOriginalExtension();
 
             $image_resize = Image::make($image->getRealPath());
             $image_resize->resize(500, 500, function ($constraint) {
