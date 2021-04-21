@@ -10,7 +10,9 @@
     {{ HTML::script('assets/js/bundles/tinymce/tinymce.min.js') }}
     {{ HTML::script('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js') }}
 
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    {{ HTML::script('https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js') }}
+
+    <script src="" referrerpolicy="origin"></script>
     <script>
         tinymce.init({
             selector: '.tinymce',
