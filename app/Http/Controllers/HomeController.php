@@ -37,7 +37,7 @@ class HomeController extends Controller
         if ($request->qualification != '') {
             $query->where('qualification', $request->qualification);
         }
-        $exams = $query->paginate(5);
+        $exams = $query->paginate(10);
         // dd($request);
 
         $age = Age::get();
