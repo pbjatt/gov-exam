@@ -144,6 +144,21 @@ $guardData = Auth::guard()->user();
                     </a>
                 </li>
 
+                <li>
+                    <a href="#" onClick="return false;" class="menu-toggle">
+                        <i class="far fa-newspaper"></i>
+                        <span>Current Affairs</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="{{ route('admin.currentaffair.index') }}">Current Affairs</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.currentaffaircategory.index') }}">Current Affairs Category</a>
+                        </li>
+                    </ul>
+                </li>
+
 
                 <!-- #Menu -->
     </aside>

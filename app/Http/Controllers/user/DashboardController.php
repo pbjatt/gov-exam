@@ -22,4 +22,17 @@ class DashboardController extends Controller
 
         return view('frontend.layout.user.app', $data);
     }
+
+    public function profile()
+    {
+        $setting = Setting::first();
+
+        $guardData = Auth::guard()->user();
+
+        $page = 'profile.profile';
+        $title = 'User Profile';
+        $data = compact('page', 'title', 'setting', 'guardData');
+
+        return view('frontend.layout.user.app', $data);
+    }
 }

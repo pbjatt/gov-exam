@@ -20,10 +20,17 @@ Route::any('admin', function () {
     return false;
 });
 
+Route::get('/pdf', function () {
+    return view('frontend.template.currentpdf');
+});
+
 
 Route::group([], function () {
     Route::get('/', 'HomeController@examlist')->name('home');
     Route::get('/examlist', 'HomeController@index');
+    Route::get('/currentaffair', 'CurrentAffairController@currentaffair')->name('currentaffair');
+    Route::post('/currentaffair/currentaffairsearch', 'CurrentAffairController@currentaffairsearch')->name('search');
+    Route::get('/currentaffair/currentaffairpdf', 'CurrentAffairController@currentaffairpdf')->name('pdf');
     Route::get('exam/{slug}', 'HomeController@examdetails');
     Route::post('examsearch', 'AjexController@examsearch');
     Route::get('notification/{slug}', 'HomeController@notification');
@@ -51,8 +58,9 @@ Route::group(['middleware' => 'userauth', 'prefix' => '/user', 'as' => 'user.', 
     Route::post('/question/import-excel', 'QuestionController@importExcel')->name('import.post');
     Route::get('/question/download-sample', 'QuestionController@downloadSample')->name('download');
     Route::get('/', 'DashboardController@index')->name('dashboard');
+    Route::get('/profile', 'DashboardController@profile')->name('profile');
     Route::resources([
         'blog' => 'BlogController',
-        'question' => 'QuestionController'
+        'question' => 'QuestionController',
     ]);
 });

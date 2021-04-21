@@ -22,8 +22,11 @@ Route::group(['middleware' => 'auth:admin', 'namespace' => 'admin', 'as' => 'adm
         'exam'              => 'ExamController',
         'examnotification'  => 'ExamNotificationController',
         'syllabus'          => 'SyllabusController',
+        'currentaffair'     => 'CurrentAffairController',
+        'currentaffaircategory'     => 'CurrentAffairCategoryController'
     ]);
 
+    Route::post('currentaffairsearch', 'CurrentAffairController@ajax')->name('search');
     Route::get('examnotification/master/view', 'ExamNotificationController@master')->name('notification.master');
     Route::get('examnotification/submaster/view', 'ExamNotificationController@submaster')->name('notification.submaster');
 
