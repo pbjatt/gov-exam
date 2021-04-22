@@ -31,16 +31,11 @@
                     @else
                     @endif
                     <div class="mt-4"></div>
-                    <h6>
-                        <strong>Except Text</strong>
-                    </h6>
-                    <span>{!! $ca->except_text !!}</span>
-                    <br>
-                    <div class="mt-4"></div>
-                    <h6>
-                        <strong>Description</strong>
-                    </h6>
-                    <span>{!! $ca->description !!}</span>
+                    <span class="three-line">{!! $ca->except_text !!}</span>
+                    <div style="float:right;">
+                        <a href="{{ url('currentaffair/'.$ca->slug) }}">Read More...</a>
+                    </div>
+                    <hr class="m-0 p-0">
                 </div>
             </div>
             @endforeach
@@ -52,7 +47,6 @@
             </div>
             <div class="text-right" style="padding-top: 25px;">
                 <h5>
-
                     <button type="submit" class="btn btn-outline-danger btn-border-radius"><i class="material-icons" style="font-size: 18px;">picture_as_pdf</i><span>Export PDF</span></button>
                 </h5>
             </div>
