@@ -33,12 +33,12 @@
                 <hr class="m-0">
                 <div class="body p-4">
                     @if(count($releted) != 0)
-                    @foreach($releted as $key => $blog)
+                    @foreach($releted as $key => $currentaffair)
                     @php
                     $sn = $key + 1;
                     @endphp
                     <strong class="mr-2">{{ $sn++ }}.</strong>
-                    <strong> <a href="{{ url('blog/'.$blog->slug) }}">{{ $blog->title }}</a></strong>
+                    <strong> <a href="{{ url('currentaffair/detail/'.$currentaffair->slug) }}">{{ $currentaffair->title }}</a></strong>
                     <hr>
                     @endforeach
                     @else

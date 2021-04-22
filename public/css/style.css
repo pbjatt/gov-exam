@@ -431,3 +431,7 @@
         bottom: 10px;
         right: 20px;
     }
+    
+    .card .header h2 {
+        font-weight: bold !important;
+    }
