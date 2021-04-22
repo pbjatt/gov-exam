@@ -35,6 +35,7 @@
                     <div style="float:right;">
                         <a href="{{ url('currentaffair/detail/'.$ca->slug) }}">Read More...</a>
                     </div>
+                    <div class="clearfix"></div>
                     <hr class="m-0 p-0">
                 </div>
             </div>
