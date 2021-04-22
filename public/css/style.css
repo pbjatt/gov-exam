@@ -53,6 +53,16 @@
         font-size: 15px !important;
     }
     
+    #exam-content p span {
+        line-height: 30px !important;
+        font-size: 15px !important;
+    }
+    
+    #exam-content li span {
+        line-height: 30px !important;
+        font-size: 15px !important;
+    }
+    
     #exam-content table {
         width: 100% !important;
     }
@@ -386,13 +396,12 @@
         width: 100%;
         height: auto;
         overflow: hidden;
-        background: #ededed;
+        /* background: #ededed; */
         padding: 10px;
         display: none;
     }
     
     .acc .box-a1 {
-        border-bottom: 1px solid #ddd;
         width: 100%;
         height: auto;
         overflow: hidden;
@@ -421,4 +430,8 @@
         position: absolute;
         bottom: 10px;
         right: 20px;
+    }
+    
+    .card .header h2 {
+        font-weight: bold !important;
     }

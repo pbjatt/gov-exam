@@ -41,7 +41,6 @@ $guardData = Auth::guard()->user();
                                         <th>Image</th>
                                         <th>Age</th>
                                         <th>Qualification</th>
-                                        <!-- <th>Description</th> -->
                                         <th>Action</th>
                                         <th></th>
                                     </tr>
@@ -64,7 +63,6 @@ $guardData = Auth::guard()->user();
                                         </td>
                                         <td>{{ $list->exam_age->age }}</td>
                                         <td>{{ $list->exam_qualification->title }}</td>
-                                        <!-- <td>{!! $list->description !!}</td> -->
                                         <!-- <td>
                                                 <span class="label l-bg-purple shadow-style">In Stock</span>
                                             </td> -->
