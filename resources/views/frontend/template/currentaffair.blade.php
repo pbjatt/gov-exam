@@ -26,14 +26,14 @@
                 <div class="level-box" style="@if($key == 0) display: block @endif">
                     @if($ca->image)
                     <div class="card-image">
-                        <img src="{{ url('storage/currentaffair/'.$ca->image) }}" alt="{{ $ca->image }}" width="100%">
+                        <a href="{{ url('currentaffair/detail/'.$ca->slug) }}"><img src="{{ url('storage/currentaffair/'.$ca->image) }}" alt="{{ $ca->image }}" width="100%"></a>
                     </div>
                     @else
                     @endif
                     <div class="mt-4"></div>
                     <span class="three-line">{!! $ca->except_text !!}</span>
                     <div style="float:right;">
-                        <a href="{{ url('currentaffair/'.$ca->slug) }}">Read More...</a>
+                        <a href="{{ url('currentaffair/detail/'.$ca->slug) }}">Read More...</a>
                     </div>
                     <hr class="m-0 p-0">
                 </div>
