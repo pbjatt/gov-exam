@@ -67,7 +67,7 @@ class HomeController extends Controller
         $notification = ExamNotification::get();
         $setting = Setting::first();
 
-        $blogs = Blog::where('status', 'verified')->get();
+        $blogs =  Blog::list();
 
         if ($request->ajax()) {
             $data = compact('exams', 'ageArr', 'categoryArr', 'qualificationArr', 'notification', 'blogs');

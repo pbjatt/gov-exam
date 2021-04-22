@@ -21,6 +21,7 @@ class CreateBlogsTable extends Migration
             $table->longText('blog_short_desc')->nullable();
             $table->string('blog_image', 255);
             $table->string('blog_attachment')->nullable();
+            $table->enum('post_type', ['blog'])->default('blog');
             $table->foreignId('category_id')->constrained('exam_categories')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->enum('status', ['pending', 'veified', 'rejected']);
