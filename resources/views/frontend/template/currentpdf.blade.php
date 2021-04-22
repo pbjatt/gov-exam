@@ -4,46 +4,44 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <title>Current Affair PDF</title>
+    <title>Current Affair {{ $setting->title }}</title>
 
     <style>
-        table {
-            width: 200px;
-            height: 200px;
-            position: relative;
+        body {
+            font-family: "poppins";
         }
 
-        table::after {
-            background-image: url("{{ public_path('images/logo/'.$setting->logo ) }}");
-            opacity: 0.05;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            position: absolute;
-            z-index: -1;
-        }
+        header {
+            position: fixed;
+            top: -60px;
+            left: 0px;
+            right: 0px;
+            height: 50px;
 
-        table {
-            width: 100%;
-            display: table;
-            border-collapse: collapse;
-            border-spacing: 0;
-        }
-
-        thead,
-        tr {
-            border-bottom: 2px solid rgba(0, 0, 0, 0.12);
-            padding-bottom: 20px !important;
-        }
-
-
-        td,
-        th {
-            display: table-cell;
+            /** Extra personal styles **/
             text-align: left;
-            vertical-align: middle;
-            border-radius: 2px;
+            line-height: 35px;
+        }
+
+        footer {
+            position: fixed;
+            bottom: -60px;
+            left: 0px;
+            right: 0px;
+            height: 50px;
+
+            /** Extra personal styles **/
+            text-align: center;
+            line-height: 35px;
+        }
+
+
+        main {
+            background-image: url("{{ public_path('images/govtpdflogo.png' ) }}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
         }
 
         h1,
@@ -56,176 +54,151 @@
             line-height: 1.3;
         }
 
+        h1 a,
+        h2 a,
+        h3 a,
+        h4 a,
+        h5 a,
+        h6 a {
+            font-weight: inherit;
+        }
+
+        h1 {
+            font-size: 4.2rem;
+            line-height: 110%;
+            margin: 2.8rem 0 1.68rem 0;
+        }
+
+        h2 {
+            font-size: 3.56rem;
+            line-height: 110%;
+            margin: 2.3733333333rem 0 1.424rem 0;
+        }
+
         h3 {
-            font-size: 27px;
-            margin: 0px !important;
+            font-size: 2.92rem;
+            line-height: 110%;
+            margin: 1.9466666667rem 0 1.168rem 0;
         }
 
         h4 {
-            font-size: 14px;
+            font-size: 2.28rem;
             line-height: 110%;
             margin: 1.52rem 0 .912rem 0;
         }
 
         h5 {
-            font-size: 16px;
+            font-size: 1.64rem;
             line-height: 110%;
             margin: 1.0933333333rem 0 .656rem 0;
+        }
+
+        h6 {
+            font-size: 1.15rem;
+            line-height: 110%;
+            margin: .7666666667rem 0 .46rem 0;
         }
 
         span {
             font-size: 14px;
         }
 
-        .ibox-title {
-            background-color: #fff;
+        .mail-heading {
             border-color: #e7eaec;
-            border-image: none;
             border-style: solid solid none;
-            border-width: 3px 0 0;
-            color: inherit;
+            border-width: 1px 0 0;
             margin-bottom: 0;
             padding: 0px 15px 7px;
             min-height: 48px;
         }
 
-        .ibox-content {
-            background-color: #fff;
-            color: inherit;
-            padding: 15px 20px 20px;
-            border-color: #e7eaec;
-            border-image: none;
-            border-style: solid solid none;
-            border-width: 1px 0;
+        .inbox-body {
+            padding: 20px;
         }
 
-
-        .ibox-content .shoping-cart-table {
-            margin-bottom: 20px;
+        .media {
+            margin-bottom: 25px;
+            margin-top: 15px;
         }
 
-        .ibox-content .shoping-cart-table tr {
-            padding-bottom: 20px !important;
-            border-bottom: 2px solid rgba(0, 0, 0, 0.12) !important;
+        .media .media-left {
+            padding-right: 10px;
         }
 
-        .ibox-content .shoping-cart-table tr td {
-            text-align: right;
+        .media .media-body {
+            color: #777;
+            font-size: 13px;
         }
 
-        .ibox-content .shoping-cart-table tr td.desc {
-            text-align: left;
+        .media .media-body .media-heading {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
         }
 
-        .ibox-content .shoping-cart-table tr td:first-child {
-            text-align: left;
-            width: 180px;
+        section.content {
+            -moz-transition: .5s;
+            -o-transition: .5s;
+            -webkit-transition: .5s;
+            transition: .5s;
         }
 
-        .ibox-content .shoping-cart-table tr td:last-child {
-            width: 50px;
-            text-align: center;
+        section.content {
+            float: left;
+            width: 100%;
         }
 
-        .ibox-content .shoping-cart-table .text-price {
-            text-decoration: line-through;
-        }
-
-        .table-bordered {
-            border-top: 1px solid #eee
-        }
-
-        .table-bordered tbody tr td,
-        .table-bordered tbody tr th {
-            padding: 12px 10px 12px 5px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .table-bordered thead tr th {
-            padding: 12px 10px 12px 5px;
-            border-bottom: 1px solid #eee;
-            background-color: #ebf0f7
+        @page {
+            margin: 90px 25px 70px 25px;
         }
     </style>
-
-    <!-- Custom Css -->
-
 </head>
 
-<body>
+<body class="light">
 
-    <div>
-        <div style="display: flex;">
-            <div >
-                <img src="{{ public_path('images/logo/'.$setting->logo ) }}" width="60">
+    <section class="content">
+        <header>
+            <div style="width: 50%;    float: left;    height: 50px;">
+                <img src="{{ public_path('images/logo/'.$setting->logo ) }}" width="60" style="float: right;    margin-right: 25px;">
             </div>
-            <div style="padding-left: 70px; ">
-                <h1>{{$setting->title}}</h1>
+            <div style="width: 50%;    float: right;    height: 50px;">
+                <h4 style="margin: 0;    padding-top: 9px;">{{$setting->title}}</h4>
             </div>
-        </div>
-        <div class="ibox-title">
-            <span style="float: right; margin-top: 14px;">(<strong>{{ $currentaffair->count() }}</strong>) records</span>
-            <h5>Current Affair List</h5>
-        </div>
-        <div class="ibox-content">
-            <div>
-                <table class="shoping-cart-table table-bordered">
-                    <thead>
-                        <tr style="margin-bottom: 14px; border-bottom: 2px solid #000;">
-                            <th>Image</th>
-                            <th>Title & Description</th>
-                            <th>Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if(count($currentaffair) != 0 )
-                        @foreach($currentaffair as $key => $ca)
-                        <tr style="margin-bottom: 200px; border-bottom: 2px solid #000;">
-                            <td>
-                                @if($ca->image)
-                                <div>
-                                    <img src="{{ public_path('storage/currentaffair/' . $ca->image) }}" width="160">
-                                </div>
-                                @else
-                                <div>
-                                    <img src="{{ public_path('images/preview.png') }}" width="160">
-                                </div>
-                                @endif
-                            </td>
-                            <td style="text-align: left;">
-                                <h3 style="color: #1ab394;">
-                                    {{ $ca->title }}
-                                </h3>
-                                <h5>
-                                    <strong>Except Text</strong>
-                                </h5>
-                                <span>{!! $ca->except_text !!}</span>
-                                <br>
-                                <h5>
-                                    <strong>Description</strong>
-                                </h5>
-                                <span>{!! $ca->description !!}</span>
-                            </td>
+        </header>
+        <footer>
+            Copyright &copy; under {{ $setting->title }} @php echo date("Y"); @endphp
+        </footer>
+        <main class="mail_listing">
+            <div class="inbox-body">
+                <div class="mail-heading">
+                    <span style="float: right; margin-top: 20px;">(<strong>{{ $currentaffair->count() }}</strong>) records</span>
+                    <h5>Current Affair List</h5>
+                </div>
+                @if(count($currentaffair) != 0 )
+                @foreach($currentaffair as $key => $ca)
+                <div class="view-mail" style="border-bottom: 2px solid #333;">
+                    @if($ca->image)
+                    <div style="margin-top: 50px; text-align: center;">
+                        <img src="{{ public_path('storage/currentaffair/' . $ca->image) }}" alt="">
+                    </div>
+                    @else
+                    @endif
+                    <div class="media">
+                        <div class="media-body">
+                            <h4 class="text-primary"> {{ $ca->title }}</h4>
+                            <span class="date pull-right" style="float: right; margin-top: -52px; font-size: 20px;">{{$ca->day}}/{{$ca->month}}/{{$ca->year}}</span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px;">
+                        {!! $ca->description !!}
+                    </div>
+                </div>
 
-                            <td>
-                                <h5>
-                                    {{$ca->year}}
-                                </h5>
-                                <h5>
-                                    {{$ca->month}}
-                                </h5>
-                                <h4>
-                                    {{$ca->day}}
-                                </h4>
-                            </td>
-                        </tr>
-                        @endforeach
-                        @endif
-                    </tbody>
-                </table>
+                @endforeach
+                @endif
             </div>
-        </div>
-    </div>
+        </main>
+    </section>
 </body>
 
 </html>
