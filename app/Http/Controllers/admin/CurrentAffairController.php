@@ -219,7 +219,12 @@ class CurrentAffairController extends Controller
      */
     public function update(Request $request, CurrentAffair $currentaffair)
     {
-        $slug = $currentaffair->slug;
+        if ($currentaffair->slug) {
+            $slug = $currentaffair->slug;
+        } else {
+            $currentaffair->slug = Str::slug($request->currentaffair['title'], '-');
+            $slug = $currentaffair->slug;
+        }
         $currentaffairs = $request->currentaffair;
 
         if (!file_exists(public_path('storage/currentaffair/'))) {
@@ -229,9 +234,10 @@ class CurrentAffairController extends Controller
         $img = Str::slug($request->currentaffair['title'] . '-');
 
         if ($request->hasFile('image')) {
-
-            if (file_exists(public_path('storage/currentaffair/' . $currentaffair->image))) {
-                unlink(public_path('storage/currentaffair/' . $currentaffair->image));
+            if ($currentaffair->image) {
+                if (file_exists(public_path('storage/currentaffair/' . $currentaffair->image))) {
+                    unlink(public_path('storage/currentaffair/' . $currentaffair->image));
+                }
             }
             $image       = $request->file('image');
             $name = time() . $slug . '.' . $image->getClientOriginalExtension();
