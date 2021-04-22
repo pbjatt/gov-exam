@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Exam;
+use App\Model\User;
 use App\Model\NotificationInfo;
 use App\Model\Age;
 use App\Model\Exam_category;
 use App\Model\ExamNotification;
 use App\Model\Qualification;
 use App\Model\Blog;
+use App\Model\InfoType;
 use App\Model\Setting;
 use Illuminate\Contracts\Session\Session;
 
@@ -68,6 +70,16 @@ class HomeController extends Controller
         $setting = Setting::first();
 
         $blogs =  Blog::list();
+        foreach ($blogs as $key => $blog) {
+            if ($blog->post_type == 'notification') {
+                $blog->infotype = InfoType::find($blog->user_id);
+                $blog->notification = ExamNotification::find($blog->category_id);
+            }
+            if ($blog->post_type == 'blog') {
+                $blog->user = User::find($blog->user_id);
+                $blog->category = Exam_category::find($blog->category_id);
+            }
+        }
 
         if ($request->ajax()) {
             $data = compact('exams', 'ageArr', 'categoryArr', 'qualificationArr', 'notification', 'blogs');
