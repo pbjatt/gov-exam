@@ -201,6 +201,10 @@ class BlogController extends Controller
 
         if ($request->hasFile('blog_image')) {
 
+            if (file_exists(public_path('storage/blog/' . $blog->blog_image))) {
+                unlink(public_path('storage/blog/' . $blog->blog_image));
+            }
+
             $image       = $request->file('blog_image');
             $name = time() . $slug . '.' . $image->getClientOriginalExtension();
 
