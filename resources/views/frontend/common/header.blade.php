@@ -10,7 +10,7 @@ $setting = App\Model\Setting::first();
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $setting->title }}</title>
-    <!-- Favicon fasdf -->
+    <!-- Favicon-->
     <link rel="icon" href="{{ url('/public/images/logo/'.$setting->logo) }}" type="image/x-icon">
     <!-- Plugins Core Css -->
     <!-- {{ HTML::style('assets/css/app.min.css') }} -->
@@ -23,6 +23,7 @@ $setting = App\Model\Setting::first();
 </head>
 
 <body class="">
+    <!-- pankaj -->
     <!-- Page Loader -->
     <div class="page-loader-wrapper">
         <div class="loader">
