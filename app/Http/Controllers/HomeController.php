@@ -82,10 +82,10 @@ class HomeController extends Controller
         }
 
         if ($request->ajax()) {
-            $data = compact('exams', 'ageArr', 'categoryArr', 'qualificationArr', 'notification', 'blogs');
+            $data = compact('exams', 'ageArr', 'categoryArr', 'qualificationArr', 'notification', 'blogs', 'setting');
             return view('frontend.template.exam_list', $data)->render();
         } else {
-            $data = compact('exams', 'ageArr', 'categoryArr', 'qualificationArr', 'notification', 'blogs');
+            $data = compact('exams', 'ageArr', 'categoryArr', 'qualificationArr', 'notification', 'blogs', 'setting');
             return view('frontend.inc.examlist', $data);
         }
     }

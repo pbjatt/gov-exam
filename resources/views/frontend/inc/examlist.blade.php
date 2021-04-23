@@ -57,47 +57,14 @@
             </div>
         </div>
         <div class="col-lg-8 col-md-8">
-            <div class="">
-                @if(count($blogs) != 0 )
-                @foreach($blogs as $key => $blog)
-                <div class="card project_widget">
-                    <div class="body p-0">
-                        <div class="row p-4">
-                            <div class="col-10 blog-title">
-                                <!-- <a href="#">
-                                    <img src="http://localhost/gov-exam/extraimage/images.jpg" alt="user image" style="border-radius: 100%;" width="24" height="24" class="d-inline-block" title="pbjatt">
-                                </a> -->
-                                @if($blog->post_type == 'notification')
-                                <span><a href="{{ url('notification/'.$blog->notification->slug.'/'.$blog->infotype->slug) }}">{{ $blog->blog_title }}</a></span>
-                                @endif
-                                @if($blog->post_type == 'blog')
-                                <span><a href="{{ url('blog/'.$blog->blog_slug) }}">{{ $blog->blog_title }}</a></span>
-                                @endif
-                            </div>
-                            <!-- <div class="col-2 text-right"><i class="fas fa-ellipsis-v"></i></div> -->
-                        </div>
-                        <div class="card-image">
-                            @if($blog->post_type == 'notification')
-                            <a href="{{ url('notification/'.$blog->notification->slug.'/'.$blog->infotype->slug) }}">
-                                <img src="{{ url('images/notificationdata/'.$blog->blog_image) }}" alt="{{ $blog->blog_image }}" width="100%">
-                            </a>
-                            @endif
-                            @if($blog->post_type == 'blog')
-                            <a href="{{ url('blog/'.$blog->blog_slug) }}">
-                                <img src="{{ url('storage/blog/'.$blog->blog_image) }}" alt="{{ $blog->blog_image }}" width="100%">
-                            </a>
-                            @endif
-                        </div>
-                        <hr class="m-0 p-0">
-                        <div class="description">
-                            <div class="three-line" style="height: 65px; overflow: hidden; margin: 20px">{{ $blog->blog_short_desc }}</div>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-                @endif
+            <div class="scrolling-pagination">
+                @include('frontend.template.blog_list', compact('blogs'))
+            </div>
+            <div class="ajax-load text-center" style="display:none">
+                <p><img class="scroll-loader" src="{{ url('/public/images/logo/'.$setting->logo) }}"></p>
             </div>
         </div>
+
 </section>
 
 <!-- Filter Exam -->
