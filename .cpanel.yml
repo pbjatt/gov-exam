@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home4/govtexams/public_html
-    - /bin/cp -a * $DEPLOYPATH
+    - export DEPLOYPATH=/home4/govtexams/public_html/xyz
+    - /bin/cp -r * $DEPLOYPATH
