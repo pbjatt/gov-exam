@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/airoshot/public_html/xyz
-    - /bin/cp -R * $DEPLOYPATH
+    - export DEPLOYPATH=/home4/govtexams/public_html/xyz
+    - /bin/cp -R * $DEPLOYPATH  
