@@ -40,6 +40,7 @@ Route::group([], function () {
     Route::get('blog/{slug}', 'HomeController@blogdetail');
 
     Route::get('/ajex/search', 'AjexController@search');
+    Route::get('/ajex/bloglist', 'AjexController@blogscroll');
 });
 
 

@@ -87,6 +87,9 @@ class NotificationInfoController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->image;
             $optimizeImage = Image::make($file);
+            $optimizeImage->resize(730, 334, function ($constraint) {
+                $constraint->aspectRatio();
+            });
             $optimizePath = public_path() . '/images/notificationdata/';
             $name = time() . $file->getClientOriginalName();
             $optimizeImage->save($optimizePath . $name, 72);
@@ -207,6 +210,9 @@ class NotificationInfoController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->image;
             $optimizeImage = Image::make($file);
+            $optimizeImage->resize(730, 334, function ($constraint) {
+                $constraint->aspectRatio();
+            });
             $optimizePath = public_path() . '/images/notificationdata/';
             $name = time() . $file->getClientOriginalName();
             $optimizeImage->save($optimizePath . $name, 72);

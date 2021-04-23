@@ -10,6 +10,35 @@ $(function() {
     var host = window.location.host;
     var pathArray = window.location.pathname;
 
+
+    var page = 1;
+    $(window).scroll(function() {
+        if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+            page++;
+            loadMoreData(page);
+        }
+    });
+
+    function loadMoreData(page) {
+        $.ajax({
+                url: url + pathArray + 'ajex/bloglist?page=' + page,
+                type: "get",
+                beforeSend: function() {
+                    $('.ajax-load').show();
+                }
+            })
+            .done(function(data) {
+                setTimeout(function() {
+                    if (data.count == 0) {
+                        $('.ajax-load').html("");
+                        return;
+                    }
+                    $('.ajax-load').hide();
+                    $(".scrolling-pagination").append(data.blog_list);
+                }, 500);
+            });
+    }
+
     $('#exam-content').each(function() {
         $(this).find('table').addClass('table-responsive');
         $(this).find('table').removeClass('table-striped');

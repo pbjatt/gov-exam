@@ -118,6 +118,7 @@ class CurrentAffairController extends Controller
         view()->share('currentaffair', $currentaffair);
         $pdf = PDF::loadView('frontend.template.currentpdf', ['currentaffair' => $currentaffair, 'setting' => $setting]);
 
+        // return view('frontend.template.currentpdf' , compact('currentaffair', 'setting'));
         // download PDF file with download method
         return $pdf->download('currentaffairs_' . $setting->title . '.pdf');
     }

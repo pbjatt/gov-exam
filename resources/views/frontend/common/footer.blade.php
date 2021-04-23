@@ -1,3 +1,4 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 {{ HTML::script('assets/js/app.min.js') }}
 {{ HTML::script('assets/js/form.min.js') }}
 {{ HTML::script('assets/js/custom-script.js') }}
@@ -8,6 +9,29 @@
 {{ HTML::script('js/main.js') }}
 {{ HTML::script('assets/js/pages/dashboard/dashboard3.js') }}
 {{ HTML::script('assets/js/pages/todo/todo.js') }}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
+
+<script type="text/javascript">
+    // $('ul.pagination').hide();
+    $(function() {
+        $('document').ready(function() {
+            $('.scrolling-pagination').jscroll({
+                autoTrigger: true,
+                debug: true,
+                loadingHtml: '<img class="center-block" src="http://localhost/gov-exam/public/images/logo/1617885927govtexamlogo.png" alt="Loading..." />',
+                padding: 0,
+                refresh: true,
+                nextSelector: '.pagination li.active + li a',
+                contentSelector: '.scrolling-pagination',
+                callback: function() {
+                    // $('ul.pagination').remove();
+                }
+            });
+
+
+        });
+    });
+</script>
 
 <script>
     function openNav() {

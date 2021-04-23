@@ -6,6 +6,9 @@ use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 
 use App\Model\Exam;
+use App\Model\Blog;
+use App\Model\InfoType;
+use App\Model\User;
 use App\Model\Age;
 use App\Model\Exam_category;
 use App\Model\Qualification;
@@ -48,5 +51,30 @@ class AjexController extends Controller
         }
 
         return response()->json($li, 200);
+    }
+
+    public function blogscroll(Request $request)
+    {
+        $blogs =  Blog::list();
+        $count =  Blog::list()->count();
+        foreach ($blogs as $key => $blog) {
+            if ($blog->post_type == 'notification') {
+                $blog->infotype = InfoType::find($blog->user_id);
+                $blog->notification = ExamNotification::find($blog->category_id);
+            }
+            if ($blog->post_type == 'blog') {
+                $blog->user = User::find($blog->user_id);
+                $blog->category = Exam_category::find($blog->category_id);
+            }
+        }
+
+        $blog_list = view('frontend.template.blog_list', compact('blogs'))->render();
+        $re = [
+            'blog_list' => $blog_list,
+            'count' => $count
+        ];
+
+
+        return response()->json($re, 200);
     }
 }

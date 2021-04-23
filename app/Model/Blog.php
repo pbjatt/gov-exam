@@ -36,7 +36,7 @@ class Blog extends Model
 
 
         $merge = $blogs->unionAll($notification);
-        $search = \DB::table(\DB::raw("({$merge->toSql()}) AS mg"))->latest()->mergeBindings($merge)->get();
+        $search = \DB::table(\DB::raw("({$merge->toSql()}) AS mg"))->latest()->mergeBindings($merge)->paginate(10);
 
         return $search;
     }

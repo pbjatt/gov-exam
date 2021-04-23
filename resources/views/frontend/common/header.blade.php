@@ -22,7 +22,7 @@ $setting = App\Model\Setting::first();
     {{ HTML::style('css/responsive.css') }}
 </head>
 
-<body class="light">
+<body class="">
     <!-- Page Loader -->
     <div class="page-loader-wrapper">
         <div class="loader">
