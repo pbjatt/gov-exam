@@ -1,7 +1,7 @@
 @extends('frontend.layout.master')
-@section('title', 'Govt Exam')
-@section('keywords', '')
-@section('description', '')
+@section('title', $setting->home_seo_title)
+@section('keywords', $setting->home_seo_keywords)
+@section('description', $setting->home_seo_description)
 @section('contant')
 
 <section class="container" style="margin-top: 80px;">

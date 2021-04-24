@@ -23,7 +23,9 @@ class HomeController extends Controller
         $notification = ExamNotification::get();
         $exams = Exam::search($request->s);
 
-        $data = compact('exams', 'notification');
+        $setting = Setting::first();
+
+        $data = compact('exams', 'notification', 'setting');
         return view('frontend.inc.home', $data);
     }
 
