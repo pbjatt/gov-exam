@@ -68,30 +68,30 @@
                                         {{ Form::textarea('currentaffair[description]','', ['class'=>'squareInput des-textarea tinymce', 'placeholder'=>'Enter Current Affair description']) }}
                                     </div>
 
-                                    {{--<div class="col-lg-6">
-                                        {{Form::text('currentaffair[blog_seotitle]', '', ['class' => 'squareInput', 'placeholder'=>'Enter Current Affair SEO Title'])}}
-                                    {{Form::label('name', 'Enter Current Affair SEO Title'), ['class' => 'active']}}
-                                </div>
+                                    <div class="col-lg-6">
+                                        {{Form::text('currentaffair[seo_title]', '', ['class' => 'squareInput', 'placeholder'=>'Enter Current Affair SEO Title'])}}
+                                        {{Form::label('name', 'Enter Current Affair SEO Title'), ['class' => 'active']}}
+                                    </div>
 
-                                <div class="col-lg-6">
-                                    {{Form::text('currentaffair[blog_seokeyword]', '', ['class' => 'squareInput', 'placeholder'=>'Enter Current Affair SEO Keyword'])}}
-                                    {{Form::label('name', 'Enter Current Affair SEO Keyword'), ['class' => 'active']}}
-                                </div>
+                                    <div class="col-lg-6">
+                                        {{Form::text('currentaffair[seo_keywords]', '', ['class' => 'squareInput', 'placeholder'=>'Enter Current Affair SEO Keyword'])}}
+                                        {{Form::label('name', 'Enter Current Affair SEO Keyword'), ['class' => 'active']}}
+                                    </div>
 
-                                <div class="col-lg-12">
-                                    {{ Form::textarea('currentaffair[blog_seodesc]','', ['class'=>'squareInput des-textarea', 'placeholder'=>'Enter Current Affair SEO description']) }}
-                                    {{ Form::label('description', 'Enter Current Affair SEO description'), ['class' => 'active'] }}
-                                </div>--}}
+                                    <div class="col-lg-12">
+                                        {{ Form::textarea('currentaffair[seo_description]','', ['class'=>'squareInput des-textarea tinymce', 'placeholder'=>'Enter Current Affair SEO description']) }}
+                                        {{ Form::label('description', 'Enter Current Affair SEO description'), ['class' => 'active'] }}
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <input type="submit" class="btn btn-primary" name="save" value="{{ isset($currentaffair) ? 'Update' : 'Add' }}" />
+                                </div>
+                                {{ Form::close() }}
                             </div>
-                            <div class="text-right">
-                                <input type="submit" class="btn btn-primary" name="save" value="{{ isset($currentaffair) ? 'Update' : 'Add' }}" />
-                            </div>
-                            {{ Form::close() }}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </section>
