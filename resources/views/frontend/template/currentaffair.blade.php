@@ -31,8 +31,8 @@
                     @else
                     @endif
                     <div class="mt-4"></div>
-                    <span class="three-line">{!! $ca->except_text !!}</span>
-                    <div style="float:right;">
+                    <span class="p three-line">{!! $ca->except_text !!}</span>
+                    <div style="float:right; margin-right: 5px;">
                         <a href="{{ url('currentaffair/detail/'.$ca->slug) }}">Read More...</a>
                     </div>
                     <div class="clearfix"></div>

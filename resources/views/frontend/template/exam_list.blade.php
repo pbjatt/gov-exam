@@ -22,7 +22,7 @@
         <hr>
         @endforeach
         <div id="pagination" class="mx-auto">
-            <!-- {!! $exams->links() !!} -->
+            {!! $exams->links() !!}
         </div>
         @endif
         @if(count($exams) == 0 )
