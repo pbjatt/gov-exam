@@ -51,12 +51,12 @@
 </div>
 <hr>
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-6">
         {{Form::text('record[seo_title]', '', ['class' => 'squareInput', 'placeholder'=>'Enter seo title'])}}
         {{Form::label('seo_title', 'Enter seo title'), ['class' => 'active']}}
     </div>
-    <div class="col-lg-12">
-        {{ Form::textarea('record[seo_keywords]','', ['class'=>'squareInput des-textarea', 'placeholder'=>'Enter seo keyword', 'row' => '4']) }}
+    <div class="col-lg-6">
+        {{ Form::text('record[seo_keywords]','', ['class'=>'squareInput', 'placeholder'=>'Enter seo keyword']) }}
         {{ Form::label('seo_keywords', 'Enter seo keyword'), ['class' => 'active'] }}
     </div>
 

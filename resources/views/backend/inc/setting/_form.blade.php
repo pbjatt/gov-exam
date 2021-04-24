@@ -43,12 +43,12 @@
 
 <hr>
 <div class="row">
-  <div class="col-lg-12">
+  <div class="col-lg-6">
     {{Form::text('home_seo_title', '', ['class' => 'squareInput', 'placeholder'=>'Enter home seo title'])}}
     {{Form::label('seo_title', 'Enter home seo title'), ['class' => 'active']}}
   </div>
-  <div class="col-lg-12">
-    {{ Form::textarea('home_seo_keywords','', ['class'=>'squareInput des-textarea', 'placeholder'=>'Enter home seo keyword', 'row' => '4']) }}
+  <div class="col-lg-6">
+    {{ Form::textarea('home_seo_keywords','', ['class'=>'squareInput', 'placeholder'=>'Enter home seo keyword']) }}
     {{ Form::label('seo_keywords', 'Enter home seo keyword'), ['class' => 'active'] }}
   </div>
 
@@ -60,12 +60,12 @@
 
 <hr>
 <div class="row">
-  <div class="col-lg-12">
+  <div class="col-lg-6">
     {{Form::text('exam_seo_title', '', ['class' => 'squareInput', 'placeholder'=>'Enter exam seo title'])}}
     {{Form::label('seo_title', 'Enter exam seo title'), ['class' => 'active']}}
   </div>
-  <div class="col-lg-12">
-    {{ Form::textarea('exam_seo_keywords','', ['class'=>'squareInput des-textarea', 'placeholder'=>'Enter exam seo keyword', 'row' => '4']) }}
+  <div class="col-lg-6">
+    {{ Form::textarea('exam_seo_keywords','', ['class'=>'squareInput', 'placeholder'=>'Enter exam seo keyword']) }}
     {{ Form::label('seo_keywords', 'Enter exam seo keyword'), ['class' => 'active'] }}
   </div>
 
@@ -77,12 +77,12 @@
 
 <hr>
 <div class="row">
-  <div class="col-lg-12">
+  <div class="col-lg-6">
     {{Form::text('ca_seo_title', '', ['class' => 'squareInput', 'placeholder'=>'Enter current affair seo title'])}}
     {{Form::label('seo_title', 'Enter current affair seo title'), ['class' => 'active']}}
   </div>
-  <div class="col-lg-12">
-    {{ Form::textarea('ca_seo_keywords','', ['class'=>'squareInput des-textarea', 'placeholder'=>'Enter current affair seo keyword', 'row' => '4']) }}
+  <div class="col-lg-6">
+    {{ Form::textarea('ca_seo_keywords','', ['class'=>'squareInput', 'placeholder'=>'Enter current affair seo keyword']) }}
     {{ Form::label('seo_keywords', 'Enter current affair seo keyword'), ['class' => 'active'] }}
   </div>
 
@@ -94,12 +94,12 @@
 
 <hr>
 <div class="row">
-  <div class="col-lg-12">
+  <div class="col-lg-6">
     {{Form::text('notification_seo_title', '', ['class' => 'squareInput', 'placeholder'=>'Enter notification seo title'])}}
     {{Form::label('seo_title', 'Enter notification seo title'), ['class' => 'active']}}
   </div>
-  <div class="col-lg-12">
-    {{ Form::textarea('notification_seo_keywords','', ['class'=>'squareInput des-textarea', 'placeholder'=>'Enter notification seo keyword', 'row' => '4']) }}
+  <div class="col-lg-6">
+    {{ Form::textarea('notification_seo_keywords','', ['class'=>'squareInput', 'placeholder'=>'Enter notification seo keyword']) }}
     {{ Form::label('seo_keywords', 'Enter notification seo keyword'), ['class' => 'active'] }}
   </div>
 
