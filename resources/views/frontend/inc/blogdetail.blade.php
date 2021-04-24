@@ -1,6 +1,8 @@
 @extends('frontend.layout.master')
+@section('title', $blog->blog_seotitle)
+@section('keywords', $blog->blog_seokeyword)
+@section('description', $blog->blog_seodesc)
 @section('contant')
-
 <section class="container" style="margin-top: 80px;">
     <div class="row clearfix">
         <div class="col-lg-8 col-md-12">

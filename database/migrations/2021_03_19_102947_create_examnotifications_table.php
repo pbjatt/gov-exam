@@ -30,6 +30,9 @@ class CreateExamnotificationsTable extends Migration
             $table->date('vacancy_date')->nullable();
             $table->enum('type', ['true', 'false'])->default('true');
             $table->enum('visiable', ['true', 'false'])->default('true');
+            $table->string('seo_title', 90)->nullable();
+            $table->string('seo_keywords', 255)->nullable();
+            $table->longText('seo_description')->nullable();
             $table->timestamps();
         });
     }

@@ -27,6 +27,9 @@ class CreateExamsTable extends Migration
             $table->timestamp('end_date')->nullable();
             $table->timestamp('exam_date')->nullable();
             $table->longText('description')->nullable();
+            $table->string('seo_title', 90)->nullable();
+            $table->string('seo_keywords', 255)->nullable();
+            $table->longText('seo_description')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
