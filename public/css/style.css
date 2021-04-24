@@ -390,20 +390,26 @@
         font-size: 14px;
         text-transform: uppercase;
         font-weight: bold;
-        padding: 5px;
+        padding: 10px;
         cursor: pointer;
         letter-spacing: 1px;
         margin: 0px !important;
-        background: #ee6d733b;
+        background: #353c48;
+        color: #fff;
+    }
+    
+    .acc .p {
+        margin-top: 0;
+        margin-bottom: 1rem;
+        padding: 5px;
     }
     
     .acc .level-box {
         width: 100%;
         height: auto;
         overflow: hidden;
-        /* background: #ededed; */
-        padding: 10px;
-        display: none;
+        border: 1px solid #ccc;
+        border-top: 0px;
     }
     
     .acc .box-a1 {
