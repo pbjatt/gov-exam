@@ -25,6 +25,9 @@ class CreateCurrentAffairsTable extends Migration
             $table->string('day', 2);
             $table->string('month', 2);
             $table->year('year');
+            $table->string('seo_title', 90)->nullable();
+            $table->string('seo_keywords', 255)->nullable();
+            $table->longText('seo_description')->nullable();
             $table->timestamps();
         });
     }

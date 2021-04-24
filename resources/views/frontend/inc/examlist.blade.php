@@ -1,4 +1,7 @@
 @extends('frontend.layout.master')
+@section('title', '')
+@section('keywords', '')
+@section('description', '')
 @section('contant')
 
 <section class="container" style="margin-top: 80px;">

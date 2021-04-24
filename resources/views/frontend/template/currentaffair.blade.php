@@ -19,43 +19,50 @@
         <div class="grid-l1">
             @foreach($currentaffair as $key => $ca)
             <div class="box-a1">
-                <div class="header">
+                <div class="header one-line">
                     {{ $sn++ }}. {{ $ca->title }}
                 </div>
-
-                <div class="level-box" style="@if($key == 0) display: block @endif">
-                    @if($ca->image)
-                    <div class="card-image">
-                        <a href="{{ url('currentaffair/detail/'.$ca->slug) }}"><img src="{{ url('storage/currentaffair/'.$ca->image) }}" alt="{{ $ca->image }}" width="100%"></a>
-                    </div>
-                    @else
+                @if($key == 0)
+                <div class="level-box" style="display: block">
                     @endif
-                    <div class="mt-4"></div>
-                    <span class="p three-line">{!! $ca->except_text !!}</span>
-                    <div style="float:right; margin-right: 5px;">
-                        <a href="{{ url('currentaffair/detail/'.$ca->slug) }}">Read More...</a>
+                    @if($key != 0)
+                    <div class="level-box">
+                        @endif
+                        @if($ca->image)
+                        <div class="card-image">
+                            <a href="{{ url('currentaffair/detail/'.$ca->slug) }}">
+                                <img class="currentaffair-img" src="{{ url('storage/currentaffair/'.$ca->image) }}" alt="{{ $ca->image }}" width="100%">
+                            </a>
+                        </div>
+                        @else
+                        @endif
+                        <div class="mt-4"></div>
+                        <span class="p three-line">{!! $ca->except_text !!}
+                            <a href="{{ url('currentaffair/detail/'.$ca->slug) }}">Read More...</a></span>
+                        <!-- <div style="float:right; margin-right: 5px;">
+                            <a href="{{ url('currentaffair/detail/'.$ca->slug) }}">Read More...</a>
+                        </div> -->
+                        <div class="clearfix"></div>
+                        <hr class="m-0 p-0">
                     </div>
-                    <div class="clearfix"></div>
-                    <hr class="m-0 p-0">
+                </div>
+                @endforeach
+            </div>
+            @if(isset($status))
+            <div class="d-flex justify-content-between">
+                <div id="pagination">
+                    {!! $currentaffair->links() !!}
+                </div>
+                <div class="text-right" style="padding-top: 25px;">
+                    <h5>
+                        <button type="submit" class="btn btn-outline-danger btn-border-radius"><i class="material-icons" style="font-size: 18px;">picture_as_pdf</i><span>Export PDF</span></button>
+                    </h5>
                 </div>
             </div>
-            @endforeach
+            @endif
+            @endif
+            @if(count($currentaffair) == 0 )
+            No records found.
+            @endif
         </div>
-        @if(isset($status))
-        <div class="d-flex justify-content-between">
-            <div id="pagination">
-                {!! $currentaffair->links() !!}
-            </div>
-            <div class="text-right" style="padding-top: 25px;">
-                <h5>
-                    <button type="submit" class="btn btn-outline-danger btn-border-radius"><i class="material-icons" style="font-size: 18px;">picture_as_pdf</i><span>Export PDF</span></button>
-                </h5>
-            </div>
-        </div>
-        @endif
-        @endif
-        @if(count($currentaffair) == 0 )
-        No records found.
-        @endif
     </div>
-</div>

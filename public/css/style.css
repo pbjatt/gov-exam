@@ -396,6 +396,7 @@
         margin: 0px !important;
         background: #353c48;
         color: #fff;
+        line-height: 34px;
     }
     
     .acc .p {
@@ -408,8 +409,9 @@
         width: 100%;
         height: auto;
         overflow: hidden;
-        border: 1px solid #ccc;
+        border: 1px solid #353c48;
         border-top: 0px;
+        display: none;
     }
     
     .acc .box-a1 {
@@ -460,4 +462,8 @@
         -webkit-animation: spin 1.5s linear infinite;
         -moz-animation: spin 1.5s linear infinite;
         animation: spin 1.5s linear infinite;
+    }
+    
+    .level-box img.currentaffair-img {
+        border-radius: 0;
     }

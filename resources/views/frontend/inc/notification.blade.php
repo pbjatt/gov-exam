@@ -1,4 +1,7 @@
 @extends('frontend.layout.master')
+@section('title', $lists->seo_title)
+@section('keywords', $lists->seo_keywords)
+@section('description', $lists->seo_description)
 @section('contant')
 
 <section class="container" style="margin-top: 80px;">

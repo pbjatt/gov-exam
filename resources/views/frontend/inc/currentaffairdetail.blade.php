@@ -1,4 +1,7 @@
 @extends('frontend.layout.master')
+@section('title', $currentaffair->seo_title)
+@section('keywords', $currentaffair->seo_keywords)
+@section('description', $currentaffair->seo_description)
 @section('contant')
 
 <section class="container" style="margin-top: 80px;">
@@ -32,21 +35,30 @@
                 </div>
                 <hr class="m-0">
                 <div class="body p-4">
-                    @if(count($releted) != 0)
-                    @foreach($releted as $key => $currentaffair)
-                    @php
-                    $sn = $key + 1;
-                    @endphp
-                    <strong class="mr-2">{{ $sn++ }}.</strong>
-                    <strong> <a href="{{ url('currentaffair/detail/'.$currentaffair->slug) }}">{{ $currentaffair->title }}</a></strong>
-                    <hr>
-                    @endforeach
-                    @else
-                    <div class="text-center">No Records Found.</div>
-                    @endif
+                    <div class="row">
+                        @if(count($releted) != 0)
+                        @foreach($releted as $key => $currentaffair)
+                        @php
+                        $sn = $key + 1;
+                        @endphp
+                        <div class="col-1 pr-0">
+                            <strong class="mr-2">{{ $sn++ }}.</strong>
+                        </div>
+                        <div class="col-11 pl-2">
+                            <strong> <a href="{{ url('currentaffair/detail/'.$currentaffair->slug) }}">{{ $currentaffair->title }}</a></strong>
+                        </div>
+                        <hr>
+                        @endforeach
+                        @else
+                        <div class="text-center">No Records Found.</div>
+                        @endif
+
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+    </div>
     </div>
 </section>
 
