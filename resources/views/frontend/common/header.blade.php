@@ -9,7 +9,7 @@ $setting = App\Model\Setting::first();
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ $setting->title }} - @yield('title')</title>
+    <title>@yield('title')</title>
     <meta name="description" content="@yield('description')">
     <meta name="keywords" content="@yield('keywords')">
     <meta name="author" content="Pankaj Choudhary">
