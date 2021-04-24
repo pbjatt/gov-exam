@@ -10,36 +10,38 @@ $(function() {
     var host = window.location.host;
     var pathArray = window.location.pathname;
 
+
+    var page = 1;
+    $(window).scroll(function() {
+        if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+            page++;
+            loadMoreData(page);
+        }
+    });
+
+    function loadMoreData(page) {
+        $.ajax({
+                url: url + pathArray + 'ajex/bloglist?page=' + page,
+                type: "get",
+                beforeSend: function() {
+                    $('.ajax-load').show();
+                }
+            })
+            .done(function(data) {
+                setTimeout(function() {
+                    if (data.count == 0) {
+                        $('.ajax-load').html("");
+                        return;
+                    }
+                    $('.ajax-load').hide();
+                    $(".scrolling-pagination").append(data.blog_list);
+                }, 500);
+            });
+    }
+
     $('#exam-content').each(function() {
         $(this).find('table').addClass('table-responsive');
-    });
-    // alert(host);
-    $(function() {
-        $("#filterexam").change(function() {
-            $age = $('#age').val();
-            $examcategory = $('#examcategory').val();
-            $qualification = $('#qualification').val();
-            localStorage.age = $age;
-            localStorage.examcategory = $examcategory;
-            localStorage.qualification = $qualification;
-            this.submit();
-        });
-    });
-    $(function() {
-        $age = localStorage.getItem("age");
-        $examcategory = localStorage.getItem("examcategory");
-        $qualification = localStorage.getItem("qualification");
-
-        $("#age").val($age);
-        $("#examcategory").val($examcategory);
-        $("#qualification").val($qualification);
-    });
-
-    $(document).on('click', '#clearFilter', function() {
-        localStorage.removeItem("age");
-        localStorage.removeItem("examcategory");
-        localStorage.removeItem("qualification");
-        window.location.href = "/gov-exam/examlist";
+        $(this).find('table').removeClass('table-striped');
     });
 
     $(document).on('change', '.searchExam', function() {
@@ -57,6 +59,27 @@ $(function() {
                 qualification: qualification
             },
             success: function(res) {
+                $('#exam_list').html(res);
+            }
+        });
+    });
+
+    $(document).on('click', '#examform', function() {
+        let ajax_url = $('#baseUrl').data('url');
+        let age = $('.examData .age').val();
+        let category = $('.examData .category').val();
+        let qualification = $('.examData .qualification').val();
+        $.ajax({
+            url: ajax_url,
+            type: 'POST',
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            data: {
+                age: age,
+                category: category,
+                qualification: qualification
+            },
+            success: function(res) {
+                $('#examlistModal').modal('hide')
                 $('#exam_list').html(res);
             }
         });

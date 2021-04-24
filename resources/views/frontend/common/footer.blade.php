@@ -1,3 +1,5 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
 {{ HTML::script('assets/js/app.min.js') }}
 {{ HTML::script('assets/js/form.min.js') }}
 {{ HTML::script('assets/js/custom-script.js') }}
@@ -31,6 +33,7 @@
         } else {
             document.getElementById("search-part").classList.remove('d-none');
             document.getElementById("search-part").classList.add('d-block');
+            document.getElementById("search-input").focus();
         }
     }
 </script>

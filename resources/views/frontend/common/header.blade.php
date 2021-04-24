@@ -22,12 +22,13 @@ $setting = App\Model\Setting::first();
     {{ HTML::style('css/responsive.css') }}
 </head>
 
-<body class="light">
+<body class="">
+    <!-- pankaj djfgdf djh -->
     <!-- Page Loader -->
     <div class="page-loader-wrapper">
         <div class="loader">
             <div class="m-t-30">
-                <!-- <img class="loading-img-spin" src="{{ url('assets/images/loading.png') }}" width="20" height="20" alt="admin"> -->
+                <img class="loading-img-spin" src="{{ url('/public/images/logo/'.$setting->logo) }}" width="20" height="20" alt="admin">
             </div>
             <p>Please wait...</p>
         </div>
@@ -129,10 +130,17 @@ $setting = App\Model\Setting::first();
         <a href="#" class="active"></a>
         <form method="GET" action="{{ url('/examlist') }}" accept-charset="UTF-8" novalidate="novalidate">
             <div class="search-box" style="display: block;">
-                <input type="text" name="s" class="squareInput" placeholder="Search">
+                <input type="text" name="s" class="squareInput" id="search-input" placeholder="Search">
                 <button><i class="material-icons">search</i></button>
             </div>
         </form>
     </div>
-
+    <div class="float-sm">
+        <a class="pb-2" href="{{ route('currentaffair') }}">
+            <div class="fl-fl float-su">
+                <i class="far fa-newspaper mr-4"></i>
+                Current Affairs
+            </div>
+        </a>
+    </div>
     <!-- #Top Bar -->

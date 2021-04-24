@@ -30,7 +30,7 @@
                                 </a>
                             </li>
                             <span id="affairUrl" data-url="{{ route('search') }}"></span>
-                            
+
                         </ul>
                     </div>
                 </div>

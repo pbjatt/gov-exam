@@ -120,6 +120,16 @@ class CurrentAffairController extends Controller
 
         // return view('frontend.template.currentpdf' , compact('currentaffair', 'setting'));
         // download PDF file with download method
-        return $pdf->download('currentaffairs_'.$setting->title.'.pdf');
+        return $pdf->download('currentaffairs_' . $setting->title . '.pdf');
+    }
+
+    public function currentaffairdetail($slug)
+    {
+        $currentaffair = CurrentAffair::where('slug', $slug)->first();
+
+        $releted = CurrentAffair::with('user', 'category')->where('category_id', $currentaffair->category_id)->whereNotIn('id', [$currentaffair->id])->get();
+
+        $data = compact('currentaffair', 'releted');
+        return view('frontend.inc.currentaffairdetail', $data);
     }
 }

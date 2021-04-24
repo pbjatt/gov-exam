@@ -24,6 +24,7 @@ class CreateNotificationInfosTable extends Migration
             $table->string('image')->nullable();
             $table->string('attachment')->nullable();
             $table->enum('post_type', ['exam', 'notification'])->default('notification');
+            $table->enum('status', ['true', 'false'])->default('true');
             $table->longText('short_description')->nullable();
             $table->longText('description')->nullable();
             $table->timestamps();
