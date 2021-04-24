@@ -7,28 +7,13 @@ use App\Model\CurrentAffairCategory;
 use App\Model\ExamNotification;
 use App\Model\Setting;
 use Barryvdh\DomPDF\Facade as PDF;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CurrentAffairController extends Controller
 {
     public function currentaffair(Request $request)
     {
-        $currentaffair = CurrentAffair::latest();
-        if ($request->year != '') {
-            $currentaffair->where('year', $request->year);
-        }
-        if ($request->month != '') {
-            $currentaffair->where('month', $request->month);
-        }
-        if ($request->day != '') {
-            $currentaffair->where('day', $request->day);
-        }
-        if ($request->category_id != '') {
-            $currentaffair->where('category_id', $request->category_id);
-        }
-
-        $currentaffair = $currentaffair->paginate(25);
-
         //Exam Notification
         $notification = ExamNotification::get();
 
@@ -61,9 +46,41 @@ class CurrentAffairController extends Controller
         $status = 1;
 
         if ($request->ajax()) {
+
+            $currentaffair = CurrentAffair::latest();
+            if ($request->year != '') {
+                $currentaffair->where('year', $request->year);
+            }
+            if ($request->month != '') {
+                $currentaffair->where('month', $request->month);
+            }
+            if ($request->day != '') {
+                $currentaffair->where('day', $request->day);
+            }
+            if ($request->category_id != '') {
+                $currentaffair->where('category_id', $request->category_id);
+            }
+
+            $currentaffair = $currentaffair->paginate(25);
             $data = compact('setting', 'status', 'notification', 'currentaffair', 'currentaffaircategoryArr', 'yearArr', 'monthArr', 'dayArr');
             return view('frontend.template.currentaffair', $data)->render();
         } else {
+
+            
+            $currentaffair = CurrentAffair::latest();
+            
+            if ($request->date != '') {
+                $date = new Carbon($request->date);
+                $currentaffair->where('year', $date->year)
+                              ->where('month', $date->format('m'))
+                              ->where('day', $date->format('d'));
+            }
+
+            if ($request->category_id != '') {
+                $currentaffair->where('category_id', $request->category_id);
+            }
+
+            $currentaffair = $currentaffair->paginate(25);
             $data = compact('setting', 'status', 'notification', 'currentaffair', 'currentaffaircategoryArr', 'yearArr', 'monthArr', 'dayArr');
             return view('frontend.inc.currentaffair', $data);
         }
@@ -125,11 +142,20 @@ class CurrentAffairController extends Controller
 
     public function currentaffairdetail($slug)
     {
+        // Category Array
+        $currentaffaircategory = CurrentAffairCategory::orderBy('id', 'desc')->get();
+        $currentaffaircategoryArr  = ['' => 'Select category'];
+        if (!$currentaffaircategory->isEmpty()) {
+            foreach ($currentaffaircategory as $cat) {
+                $currentaffaircategoryArr[$cat->id] = $cat->title;
+            }
+        }
+
         $currentaffair = CurrentAffair::where('slug', $slug)->first();
 
         $releted = CurrentAffair::with('user', 'category')->where('category_id', $currentaffair->category_id)->whereNotIn('id', [$currentaffair->id])->get();
 
-        $data = compact('currentaffair', 'releted');
+        $data = compact('currentaffair', 'releted', 'currentaffaircategoryArr');
         return view('frontend.inc.currentaffairdetail', $data);
     }
 }
