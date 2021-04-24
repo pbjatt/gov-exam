@@ -1,5 +1,5 @@
 @extends('frontend.layout.master')
-@section('title', '')
+@section('title', 'Govt Exam')
 @section('keywords', '')
 @section('description', '')
 @section('contant')
