@@ -51,7 +51,7 @@ class CurrentAffairController extends Controller
             $dayArr[$i] = $i;
         }
 
-        $currentaffair = CurrentAffair::where('user_id', $guardData->id)->filter()->paginate(5);
+        $currentaffair = CurrentAffair::where('user_id', $guardData->id)->filter()->get();
 
         // set page and title ------------------
         $page  = 'currentaffairs.index';
@@ -60,30 +60,6 @@ class CurrentAffairController extends Controller
         $data = compact('page', 'title', 'setting', 'currentaffair', 'currentaffaircategoryArr', 'yearArr', 'monthArr', 'dayArr', 'guardData');
 
         return view('backend.layout.master', $data);
-    }
-
-    public function ajax(Request $request)
-    {
-        // fetch data from particular user
-        $guardData = Auth::guard()->user();
-
-        $currentaffair = CurrentAffair::latest();
-        if ($request->year != '') {
-            $currentaffair->where('year', $request->year);
-        }
-        if ($request->month != '') {
-            $currentaffair->where('month', $request->month);
-        }
-        if ($request->day != '') {
-            $currentaffair->where('day', $request->day);
-        }
-        if ($request->category_id != '') {
-            $currentaffair->where('category_id', $request->category_id);
-        }
-
-        $currentaffair = $currentaffair->get();
-
-        return response()->json($currentaffair, 200);
     }
 
     /**
