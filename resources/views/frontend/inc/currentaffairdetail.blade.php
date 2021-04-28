@@ -39,7 +39,7 @@
                         $sn = $key + 1;
                         @endphp
                         <div class="col-1 pr-0">
-                            <strong class="mr-2">{{ $sn++ }}.</strong>
+                            <strong>{{ $sn++ }}.</strong>
                         </div>
                         <div class="col-11 pl-2">
                             <strong> <a href="{{ url('currentaffair/detail/'.$currentaffair->slug) }}">{{ $currentaffair->title }}</a></strong>
@@ -54,34 +54,8 @@
                 </div>
             </div>
 
-            <div class="card project_widget">
-                <div class="header p-4">
-                    <h2>Current Affair Filter</h2>
-                </div>
-                <hr class="m-0">
-                <div class="formCard">
-                    <div class="wrapper">
-                        <div class="body p-4">
-                            {{ Form::open(['url' => route('currentaffair'), 'method'=>'GET', 'files' => true, 'class' => 'user']) }}
-                            <div class="row pr-4">
-                                <div class="col-lg-12">
-                                    {{Form::date('date', now(), ['class' => 'squareInput'])}}
-                                    {{Form::label('date', 'Select Date'), ['class' => 'active']}}
-                                </div>
+            @include('frontend.template.currentfilter')
 
-                                <div class="col-lg-12">
-                                    {{Form::select('category_id', $currentaffaircategoryArr,'', ['class' => 'squareInput des-select form-control'])}}
-                                    {{Form::label('category_id', 'Select Category'), ['class' => 'active']}}
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <input type="submit" class="btn btn-primary" value="Apply Filter" />
-                            </div>
-                            {{ Form::close() }}
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     </div>

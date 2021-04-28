@@ -55,7 +55,9 @@
                 </div>
                 <div class="text-right" style="padding-top: 25px;">
                     <h5>
-                        <button type="submit" class="btn btn-outline-danger btn-border-radius"><i class="material-icons" style="font-size: 18px;">picture_as_pdf</i><span>Export PDF</span></button>
+                        <button type="submit" class="btn btn-outline-danger btn-border-radius" id="exportpdf">
+                            <i class="material-icons" style="font-size: 18px;">picture_as_pdf</i><span>Export PDF</span>
+                        </button>
                     </h5>
                 </div>
             </div>
