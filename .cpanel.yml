@@ -2,5 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home4/govtexams/public_html/xyz
-    - /bin/cp -R * $DEPLOYPATH  
-    dkjfn
+    - /bin/cp -R * $DEPLOYPATH
