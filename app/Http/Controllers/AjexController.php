@@ -13,6 +13,7 @@ use App\Model\Age;
 use App\Model\Exam_category;
 use App\Model\Qualification;
 use App\Model\ExamNotification;
+use App\Model\PostComment;
 
 class AjexController extends Controller
 {
@@ -76,5 +77,22 @@ class AjexController extends Controller
 
 
         return response()->json($re, 200);
+    }
+
+    public function blogcomment(Request $request)
+    {
+        $blog = Blog::find($request->blog_id);
+        $record = new PostComment();
+        $record->blog_id = $request->blog_id;
+        $record->user_id = auth()->user()->id;
+        if($request->comment_id != ''){
+            $record->comment_id = $request->comment_id;
+        }
+        $record->message = $request->message;
+        $record->save();
+        $comments =  PostComment::where('blog_id', $request->blog_id)->get();
+        $blogcomments = view('frontend.template.postcomment', compact('comments','blog'))->render();
+        
+        return response()->json($blogcomments, 200);
     }
 }
