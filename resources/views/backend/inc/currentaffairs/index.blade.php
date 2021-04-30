@@ -90,12 +90,15 @@
                             <button class="btn tblActnBtn">
                                 <a href="{{ route('admin.currentaffair.edit',$list->id) }}" style="color: black;"><i class="material-icons">mode_edit</i></a>
                             </button>
-                            {{ Form::open(array('url' => route('admin.currentaffair.destroy',$list->id), 'class' => 'btn tblActnBtn')) }}
+                            <!-- {{ Form::open(array('url' => route('admin.currentaffair.destroy',$list->id), 'class' => 'btn tblActnBtn')) }}
                             {{ Form::hidden('_method', 'DELETE') }}
                             <button class="btn tblActnBtn">
                                 <a style="color: black;"><i class="material-icons">delete</i></a>
                             </button>
-                            {{ Form::close() }}
+                            {{ Form::close() }} -->
+                            <button class="btn tblActnBtn" onclick="handleDelete({{$list->id}})">
+                                <a style="color: black;"><i class="fa fa-trash"></i></a>
+                            </button>
                             <button class="btn tblActnBtn">
                                 <a href="{{ route('admin.currentaffair.show',$list->id) }}" style="color: black;"><i class="material-icons">info</i></a>
                             </button>
@@ -152,5 +155,16 @@
         var category_id = document.getElementsByClassName('category_id').val;
         // form.action = 'admin/currentaffair'
         $('#applyModal').modal('show')
+    }
+</script>
+
+<script>
+    function handleDelete(id) {
+        var form = document.getElementById('deleteFormModal')
+        var url = window.location.pathname;
+
+        form.action = url + '/' + id
+
+        $('#deleteModal').modal('show')
     }
 </script>
