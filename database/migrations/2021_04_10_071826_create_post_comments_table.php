@@ -15,10 +15,13 @@ class CreatePostCommentsTable extends Migration
     {
         Schema::create('post_comments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('blog_id')->constrained('blogs')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('parent_user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->longText('message');
+            $table->unsignedBigInteger('blog_id')->nullable();
+            $table->foreign('blog_id')->references('id')->on('blogs');
+            $table->unsignedBigInteger('comment_id')->nullable();
+            $table->foreign('comment_id')->references('id')->on('post_comments');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->longText('message') ;
             $table->softDeletes();
             $table->timestamps();
         });

@@ -41,6 +41,7 @@ Route::group([], function () {
 
     Route::get('/ajex/search', 'AjexController@search');
     Route::get('/ajex/bloglist', 'AjexController@blogscroll');
+    Route::get('/ajex/blogcomment', 'AjexController@blogcomment');
 });
 
 

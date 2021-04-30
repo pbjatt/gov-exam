@@ -13,6 +13,7 @@ use App\Model\ExamNotification;
 use App\Model\Qualification;
 use App\Model\Blog;
 use App\Model\InfoType;
+use App\Model\PostComment;
 use App\Model\Setting;
 use Illuminate\Contracts\Session\Session;
 
@@ -131,10 +132,11 @@ class HomeController extends Controller
     public function blogdetail($slug)
     {
         $blog = Blog::with('user', 'category')->where('blog_slug', $slug)->first();
+        $comments = PostComment::with('blog','user')->where('blog_id', $blog->id)->get();
 
         $releted = Blog::with('user', 'category')->where('category_id', $blog->category_id)->whereNotIn('id', [$blog->id])->get();
 
-        $data = compact('blog', 'releted');
+        $data = compact('blog', 'releted','comments');
         return view('frontend.inc.blogdetail', $data);
     }
 }

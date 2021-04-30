@@ -64,6 +64,27 @@ $(function() {
         });
     });
 
+    $(document).on('click', '.addblogcomment', function() {
+        let ajax_url = $(this).data('url');
+        let blog_id = $(this).data('blog');
+        // let comment_id = $(this).val();
+        let comment_id = '';
+        let message = $('.blogmessage').val();
+        $.ajax({
+            url: ajax_url,
+            type: 'get',
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            data: {
+                blog_id: blog_id,
+                comment_id: comment_id,
+                message: message
+            },
+            success: function(res) {
+                $('#blogcomment').html(res);
+            }
+        });
+    });
+
     $(document).on('click', '#examform', function() {
         let ajax_url = $('#baseUrl').data('url');
         let age = $('.examData .age').val();
