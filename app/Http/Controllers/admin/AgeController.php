@@ -18,7 +18,7 @@ class AgeController extends Controller
     public function index()
     {
 
-        $lists = Age::orderBy('id', 'asc')->paginate(10);
+        $lists = Age::orderBy('id', 'asc')->paginate(100);
 
         // set page and title -------------
         $page  = 'age.list';

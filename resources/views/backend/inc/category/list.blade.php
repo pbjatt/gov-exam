@@ -51,12 +51,15 @@
                                             <button class="btn tblActnBtn">
                                                 <a href="{{ route('admin.examcategory.edit',$list->id) }}" style="color: black;"><i class="material-icons">mode_edit</i></a>
                                             </button>
-                                            {{ Form::open(array('url' => route('admin.examcategory.destroy',$list->id), 'class' => 'btn tblActnBtn')) }}
+                                            <!-- {{ Form::open(array('url' => route('admin.examcategory.destroy',$list->id), 'class' => 'btn tblActnBtn')) }}
                                             {{ Form::hidden('_method', 'DELETE') }}
                                             <button class="btn tblActnBtn">
                                                 <a style="color: black;"><i class="material-icons">delete</i></a>
                                             </button>
-                                            {{ Form::close() }}
+                                            {{ Form::close() }} -->
+                                            <button class="btn tblActnBtn" onclick="handleDelete({{$list->id}})">
+                                                <a style="color: black;"><i class="fa fa-trash"></i></a>
+                                            </button>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -69,3 +72,14 @@
         </div>
     </div>
 </section>
+
+<script>
+    function handleDelete(id) {
+        var form = document.getElementById('deleteFormModal')
+        var url = window.location.pathname;
+
+        form.action = url + '/' + id
+
+        $('#deleteModal').modal('show')
+    }
+</script>
