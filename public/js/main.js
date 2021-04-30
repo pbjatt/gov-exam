@@ -50,7 +50,7 @@ $(function () {
             },
             success: function (res) {
                 $('#ca_list').html(res);
-                window.location = "http://127.0.0.1:8000/currentaffair?date=" + date + "&category_id=" + category_id;
+                document.location.assign("http://127.0.0.1:8000/currentaffair?date=" + date + "&category_id=" + category_id) ;
                 localStorage.setItem("date", date);
                 localStorage.setItem("category_id", category_id);
             },
