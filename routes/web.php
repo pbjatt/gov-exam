@@ -30,7 +30,7 @@ Route::group([], function () {
     Route::get('/examlist', 'HomeController@index');
     Route::get('/currentaffair', 'CurrentAffairController@currentaffair')->name('currentaffair');
     Route::get('/currentaffair/detail/{slug}', 'CurrentAffairController@currentaffairdetail')->name('currentaffairdetail');
-    Route::post('/currentaffair/currentaffairsearch', 'CurrentAffairController@currentaffairsearch')->name('search');
+    // Route::post('/currentaffair/currentaffairsearch', 'CurrentAffairController@currentaffairsearch')->name('search');
     Route::get('/currentaffair/currentaffairpdf', 'CurrentAffairController@currentaffairpdf')->name('pdf');
     Route::get('exam/{slug}', 'HomeController@examdetails');
     Route::post('examsearch', 'AjexController@examsearch');
