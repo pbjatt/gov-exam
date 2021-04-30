@@ -54,9 +54,15 @@
                     {!! $currentaffair->links() !!}
                 </div>
                 <div class="text-right" style="padding-top: 25px;">
+                    {{ Form::open(['url' => route('pdf'), 'method'=>'GET']) }}
+
+                    {{Form::hidden('date', request('date'))}}
+                    {{Form::hidden('category_id', request('category_id'))}}
                     <h5>
                         <button type="submit" class="btn btn-outline-danger btn-border-radius"><i class="material-icons" style="font-size: 18px;">picture_as_pdf</i><span>Export PDF</span></button>
                     </h5>
+                    {{ Form::close() }}
+
                 </div>
             </div>
             @endif

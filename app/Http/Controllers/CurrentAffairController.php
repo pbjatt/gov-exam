@@ -26,21 +26,6 @@ class CurrentAffairController extends Controller
             }
         }
 
-        //Year Array
-        $yearArr  = ['' => 'Select year'];
-        for ($i = date('Y'); $i > 1947; $i--) {
-            $yearArr[$i] = $i;
-        }
-
-        //Month Array
-        $monthArr  = ['' => 'Select Month', '01' => 'Jan.', '02' => 'Feb.', '03' => 'Mar.', '04' => 'Apr.', '05' => 'May', '06' => 'Jun.', '07' => 'Jul.', '08' => 'Aug.', '09' => 'Sep.', '10' => 'Oct.', '11' => 'Nov.', '12' => 'Dec.'];
-
-        //Date Array
-        $dayArr  = ['' => 'Select day'];
-        for ($i = 1; $i <= 31; $i++) {
-            $dayArr[$i] = $i;
-        }
-
         $setting = Setting::first();
 
         $status = 1;
@@ -48,32 +33,28 @@ class CurrentAffairController extends Controller
         if ($request->ajax()) {
 
             $currentaffair = CurrentAffair::latest();
-            if ($request->year != '') {
-                $currentaffair->where('year', $request->year);
-            }
-            if ($request->month != '') {
-                $currentaffair->where('month', $request->month);
-            }
-            if ($request->day != '') {
-                $currentaffair->where('day', $request->day);
-            }
-            if ($request->category_id != '') {
-                $currentaffair->where('category_id', $request->category_id);
-            }
-
-            $currentaffair = $currentaffair->paginate(25);
-            $data = compact('setting', 'status', 'notification', 'currentaffair', 'currentaffaircategoryArr', 'yearArr', 'monthArr', 'dayArr');
-            return view('frontend.template.currentaffair', $data)->render();
-        } else {
-
-            
-            $currentaffair = CurrentAffair::latest();
-            
             if ($request->date != '') {
                 $date = new Carbon($request->date);
                 $currentaffair->where('year', $date->year)
-                              ->where('month', $date->format('m'))
-                              ->where('day', $date->format('d'));
+                    ->where('month', $date->format('m'))
+                    ->where('day', $date->format('d'));
+            }
+            if ($request->category_id != '') {
+                $currentaffair->where('category_id', $request->category_id);
+            }
+
+            $currentaffair = $currentaffair->paginate(25);
+            $data = compact('setting', 'status', 'notification', 'currentaffair', 'currentaffaircategoryArr');
+            return view('frontend.template.currentaffair', $data)->render();
+        } else {
+
+            $currentaffair = CurrentAffair::latest();
+
+            if ($request->date != '') {
+                $date = new Carbon($request->date);
+                $currentaffair->where('year', $date->year)
+                    ->where('month', $date->format('m'))
+                    ->where('day', $date->format('d'));
             }
 
             if ($request->category_id != '') {
@@ -81,7 +62,7 @@ class CurrentAffairController extends Controller
             }
 
             $currentaffair = $currentaffair->paginate(25);
-            $data = compact('setting', 'status', 'notification', 'currentaffair', 'currentaffaircategoryArr', 'yearArr', 'monthArr', 'dayArr');
+            $data = compact('setting', 'status', 'notification', 'currentaffair', 'currentaffaircategoryArr');
             return view('frontend.inc.currentaffair', $data);
         }
     }
@@ -89,14 +70,11 @@ class CurrentAffairController extends Controller
     public function currentaffairsearch(Request $request)
     {
         $currentaffair = CurrentAffair::latest();
-        if ($request->year != '') {
-            $currentaffair->where('year', $request->year);
-        }
-        if ($request->month != '') {
-            $currentaffair->where('month', $request->month);
-        }
-        if ($request->day != '') {
-            $currentaffair->where('day', $request->day);
+        if ($request->date != '') {
+            $date = new Carbon($request->date);
+            $currentaffair->where('year', $date->year)
+                ->where('month', $date->format('m'))
+                ->where('day', $date->format('d'));
         }
         if ($request->category_id != '') {
             $currentaffair->where('category_id', $request->category_id);
@@ -114,14 +92,11 @@ class CurrentAffairController extends Controller
     {
         ini_set('max_execution_time', 300);
         $currentaffair = CurrentAffair::latest();
-        if ($request->year != '') {
-            $currentaffair->where('year', $request->year);
-        }
-        if ($request->month != '') {
-            $currentaffair->where('month', $request->month);
-        }
-        if ($request->day != '') {
-            $currentaffair->where('day', $request->day);
+        if ($request->date != '') {
+            $date = new Carbon($request->date);
+            $currentaffair->where('year', $date->year)
+                ->where('month', $date->format('m'))
+                ->where('day', $date->format('d'));
         }
         if ($request->category_id != '') {
             $currentaffair->where('category_id', $request->category_id);

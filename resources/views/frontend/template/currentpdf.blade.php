@@ -3,12 +3,17 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <title>Current Affair {{ $setting->title }}</title>
 
     <style>
         body {
             font-family: "poppins";
+        }
+
+        @page {
+            margin: 90px 25px 70px 25px;
         }
 
         header {
@@ -146,10 +151,6 @@
         section.content {
             float: left;
             width: 100%;
-        }
-
-        @page {
-            margin: 90px 25px 70px 25px;
         }
     </style>
 </head>
