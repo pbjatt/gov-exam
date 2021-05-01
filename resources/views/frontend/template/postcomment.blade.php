@@ -37,7 +37,7 @@
                 </div>
                 <div class="col-2 comment-button">
                     @if(Auth::user())
-                    <div class="addblogcomment comment-btn" data-url="{{ url('ajex/blogcomment') }}" data-comment="{{ $comment->id }}" data-blog="{{ $blog->id }}"><i class="fas fa-reply p-0"></i></div>
+                    <div class="addblogcomment comment-btn" data-url="{{ url('ajex/blogcomment') }}" data-type="{{ $blog->post_type }}" data-comment="{{ $comment->id }}" data-blog="{{ $blog->id }}"><i class="fas fa-reply p-0"></i></div>
                     @endif
                     @if(!Auth::user())
                     <a href="{{ url('account/login') }}">
@@ -61,7 +61,7 @@
         </div>
         <div class="col-2 comment-button">
             @if(Auth::user())
-            <div class="addblogcomment comment-btn" data-comment="" data-url="{{ url('ajex/blogcomment') }}" data-blog="{{ $blog->id }}"><i class="fas fa-paper-plane p-0"></i></div>
+            <div class="addblogcomment comment-btn" data-comment="" data-url="{{ url('ajex/blogcomment') }}" data-type="{{ $blog->post_type }}" data-blog="{{ $blog->id }}"><i class="fas fa-paper-plane p-0"></i></div>
             @endif
             @if(!Auth::user())
             <a href="{{ url('account/login') }}">

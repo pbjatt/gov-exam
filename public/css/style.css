@@ -491,3 +491,7 @@
     input.blogmessage:focus {
         box-shadow: none !important;
     }
+    
+    .blogpost .post-action a {
+        color: #555;
+    }

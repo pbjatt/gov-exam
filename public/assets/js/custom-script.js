@@ -1,4 +1,4 @@
-$(function () {
+$(function() {
     $.ajaxSetup({
         headers: {
             'X-CSRF-Token': $('meta[name="_token"]').attr('content')
@@ -12,7 +12,7 @@ $(function () {
 
 
     var page = 1;
-    $(window).scroll(function () {
+    $(window).scroll(function() {
         if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
             page++;
             loadMoreData(page);
@@ -21,14 +21,14 @@ $(function () {
 
     function loadMoreData(page) {
         $.ajax({
-            url: url + pathArray + 'ajex/bloglist?page=' + page,
-            type: "get",
-            beforeSend: function () {
-                $('.ajax-load').show();
-            }
-        })
-            .done(function (data) {
-                setTimeout(function () {
+                url: url + pathArray + 'ajex/bloglist?page=' + page,
+                type: "get",
+                beforeSend: function() {
+                    $('.ajax-load').show();
+                }
+            })
+            .done(function(data) {
+                setTimeout(function() {
                     if (data.count == 0) {
                         $('.ajax-load').html("");
                         return;
@@ -39,12 +39,12 @@ $(function () {
             });
     }
 
-    $('#exam-content').each(function () {
+    $('#exam-content').each(function() {
         $(this).find('table').addClass('table-responsive');
         $(this).find('table').removeClass('table-striped');
     });
 
-    $(document).on('change', '.searchExam', function () {
+    $(document).on('change', '.searchExam', function() {
         let ajax_url = $('#baseUrl').data('url');
         age = $('#age').val();
         category = $('#category').val();
@@ -58,16 +58,17 @@ $(function () {
                 category: category,
                 qualification: qualification
             },
-            success: function (res) {
+            success: function(res) {
                 $('#exam_list').html(res);
             }
         });
     });
 
-    $(document).on('click', '.addblogcomment', function () {
+    $(document).on('click', '.addblogcomment', function() {
         let ajax_url = $(this).data('url');
         let blog_id = $(this).data('blog');
         let comment_id = $(this).data('comment');
+        let post_type = $(this).data('type');
         let message = $(this).closest('.row').find('input').val();
         if (message == '') {
             $(this).closest('.row').find('input').focus()
@@ -79,16 +80,66 @@ $(function () {
                 data: {
                     blog_id: blog_id,
                     comment_id: comment_id,
+                    post_type: post_type,
                     message: message
                 },
-                success: function (res) {
+                success: function(res) {
                     $('#blogcomment').html(res);
                 }
             });
         }
     });
 
-    $(document).on('click', '#examform', function () {
+    $(document).on('click', '.sharepost', function() {
+        let ajax_url = $(this).data('url');
+        let url = $(this).data('link');
+        $.ajax({
+            url: ajax_url,
+            type: 'get',
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            data: {
+                url: url
+            },
+            success: function(res) {
+                $('#sharepostModal .modal-body').html(res);
+                $('#sharepostModal').modal('show');
+            }
+        });
+    });
+
+    $(document).on('click', '.bloglike', function() {
+        let ajax_url = $(this).data('url');
+        let blog_id = $(this).data('blog');
+        let post_type = $(this).data('type');
+        $(this).toggleClass("far fas");
+        $.ajax({
+            url: ajax_url,
+            type: 'get',
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            data: {
+                blog_id: blog_id,
+                post_type: post_type
+            },
+            success: function(res) {
+                var likevalue = $(this).closest('.post-action').find('.bloglikevalue').html();;
+                if (res.status) {
+                    likevalue = parseInt(likevalue) + parseInt(1);
+                    if (likevalue < 0) {
+                        likevalue = 0;
+                    }
+                } else {
+                    likevalue = parseInt(likevalue) - parseInt(1);
+                    if (likevalue < 0) {
+                        likevalue = 0;
+                    }
+                }
+                $(this).closest('.post-action').find('.bloglikevalue').html(likevalue);
+                // $(this).('.bloglikevalue').html(likevalue);
+            }
+        });
+    });
+
+    $(document).on('click', '#examform', function() {
         let ajax_url = $('#baseUrl').data('url');
         let age = $('.examData .age').val();
         let category = $('.examData .category').val();
@@ -102,14 +153,14 @@ $(function () {
                 category: category,
                 qualification: qualification
             },
-            success: function (res) {
+            success: function(res) {
                 $('#examlistModal').modal('hide')
                 $('#exam_list').html(res);
             }
         });
     });
 
-    $('#search-text').keyup(function (e) {
+    $('#search-text').keyup(function(e) {
         $('.listing').html(``);
         $obj = $(this).val();
         if ($obj != '') {
@@ -134,14 +185,14 @@ $(function () {
         }
     });
 
-    $('.extra-fields').click(function () {
+    $('.extra-fields').click(function() {
         $('.customer_records').clone().appendTo('.customer_records_dynamic');
         $('.customer_records_dynamic .customer_records').addClass('single remove');
         $('.single .extra-fields-customer').remove();
         $('.single').append('<a href="#" class="remove-field btn-remove-customer">Remove Fields</a>');
         $('.customer_records_dynamic > .single').attr("class", "remove");
 
-        $('.customer_records_dynamic input').each(function () {
+        $('.customer_records_dynamic input').each(function() {
             var count = 0;
             var fieldname = $(this).attr("name");
             alert(fieldname);
@@ -150,7 +201,7 @@ $(function () {
         });
     });
 
-    $(document).on('click', '.pagination a', function (event) {
+    $(document).on('click', '.pagination a', function(event) {
         event.preventDefault();
         var page = $(this).attr('href').split('page=')[1];
         var url = $(this).attr('href').split('page=')[1];
@@ -160,13 +211,13 @@ $(function () {
     function fetch_data(page) {
         $.ajax({
             url: fullurl + '?page=' + page,
-            success: function (data) {
+            success: function(data) {
                 $('#exam_list').html(data);
             }
         });
     }
 
-    $(document).ready(function () {
+    $(document).ready(function() {
         function clone() {
             var number = 0;
             number = $('#director-uploads1').attr('data-number');
@@ -184,7 +235,7 @@ $(function () {
 
             $('#director-uploads1').append(director)
                 .find("*")
-                .each(function () {
+                .each(function() {
                     var name = $(this).attr("name");
                     var style = $(this).attr("style");
                     var dataitem = $(this).attr("data-item");
@@ -195,19 +246,19 @@ $(function () {
 
         $("button#add-director").on("click", clone);
 
-        $("html").on('change', '.app-file', function () {
+        $("html").on('change', '.app-file', function() {
             var number = $(this).attr('data-item');
             console.log(number);
         });
     });
 
-    $(document).on('click change', '.removefield', function (e) {
+    $(document).on('click change', '.removefield', function(e) {
         $(this).parent('div').remove();
         e.preventDefault();
     });
 
 
-    $(document).ready(function () {
+    $(document).ready(function() {
         if ($("#size_check").is(":checked")) {
             $('.app-file1').attr("name", "records[" + index + "][size_id]");
         } else {
@@ -215,7 +266,7 @@ $(function () {
         }
     });
 
-    $(document).on('click change', '#size_check', function () {
+    $(document).on('click change', '#size_check', function() {
         if ($(this).prop('checked')) {
             $('.size_require').removeAttr('style', 'display:none');
         } else {
@@ -223,7 +274,7 @@ $(function () {
         }
     });
 
-    $(document).on('click change', '#color_check', function () {
+    $(document).on('click change', '#color_check', function() {
         if ($(this).prop('checked')) {
             $('.color_require').removeAttr('style', 'display:none');
         } else {
@@ -232,7 +283,7 @@ $(function () {
     });
 
 
-    $(document).on('keyup change', '.masterSearch', function (e) {
+    $(document).on('keyup change', '.masterSearch', function(e) {
         let ajax_url = $(this).data('url');
         base_url = $(this).data('baseurl');
 
@@ -246,7 +297,7 @@ $(function () {
                 search: search,
                 base_url: base_url
             },
-            success: function (res) {
+            success: function(res) {
                 // if (res.length) {
                 //     result.forEach((item, i) => {
                 //         $('.listing').append(`<li>${item.name}</li>`);
@@ -260,7 +311,7 @@ $(function () {
         });
     });
 
-    $(document).on('change', '#statuschange', function () {
+    $(document).on('change', '#statuschange', function() {
         let ajax_url = $(this).attr('dataurl');
         status = $(this).val();
         id = $(this).attr('dataid');
@@ -273,7 +324,7 @@ $(function () {
                 status: status,
                 id: id
             },
-            success: function (res) {
+            success: function(res) {
 
             }
         });
