@@ -132,7 +132,11 @@ class HomeController extends Controller
     public function blogdetail($slug)
     {
         $blog = Blog::with('user', 'category')->where('blog_slug', $slug)->first();
-        $comments = PostComment::with('blog','user')->where('blog_id', $blog->id)->get();
+        $comments = PostComment::with('blog','user')->where('blog_id', $blog->id)->where('comment_id', null)->get();
+        foreach ($comments as $key => $comment) {
+            $reply = PostComment::with('blog','user')->where('comment_id', $comment->id)->get();
+            $comment->replay_comments = $reply;
+        }
 
         $releted = Blog::with('user', 'category')->where('category_id', $blog->category_id)->whereNotIn('id', [$blog->id])->get();
 

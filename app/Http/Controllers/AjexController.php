@@ -90,7 +90,12 @@ class AjexController extends Controller
         }
         $record->message = $request->message;
         $record->save();
-        $comments =  PostComment::where('blog_id', $request->blog_id)->get();
+
+        $comments = PostComment::with('blog','user')->where('blog_id', $blog->id)->where('comment_id', null)->get();
+        foreach ($comments as $key => $comment) {
+            $reply = PostComment::with('blog','user')->where('comment_id', $comment->id)->get();
+            $comment->replay_comments = $reply;
+        }
         $blogcomments = view('frontend.template.postcomment', compact('comments','blog'))->render();
         
         return response()->json($blogcomments, 200);
