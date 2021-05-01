@@ -67,20 +67,74 @@ $(function() {
     $(document).on('click', '.addblogcomment', function() {
         let ajax_url = $(this).data('url');
         let blog_id = $(this).data('blog');
-        // let comment_id = $(this).val();
-        let comment_id = '';
-        let message = $('.blogmessage').val();
+        let comment_id = $(this).data('comment');
+        let post_type = $(this).data('type');
+        let message = $(this).closest('.row').find('input').val();
+        if (message == '') {
+            $(this).closest('.row').find('input').focus()
+        } else {
+            $.ajax({
+                url: ajax_url,
+                type: 'get',
+                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                data: {
+                    blog_id: blog_id,
+                    comment_id: comment_id,
+                    post_type: post_type,
+                    message: message
+                },
+                success: function(res) {
+                    $('#blogcomment').html(res);
+                }
+            });
+        }
+    });
+
+    $(document).on('click', '.sharepost', function() {
+        let ajax_url = $(this).data('url');
+        let url = $(this).data('link');
+        $.ajax({
+            url: ajax_url,
+            type: 'get',
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            data: {
+                url: url
+            },
+            success: function(res) {
+                $('#sharepostModal .modal-body').html(res);
+                $('#sharepostModal').modal('show');
+            }
+        });
+    });
+
+    $(document).on('click', '.bloglike', function() {
+        let ajax_url = $(this).data('url');
+        let blog_id = $(this).data('blog');
+        let post_type = $(this).data('type');
+        $(this).toggleClass("far fas");
         $.ajax({
             url: ajax_url,
             type: 'get',
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             data: {
                 blog_id: blog_id,
-                comment_id: comment_id,
-                message: message
+                post_type: post_type
             },
             success: function(res) {
-                $('#blogcomment').html(res);
+                var likevalue = $(this).closest('.post-action').find('.bloglikevalue').html();;
+                if (res.status) {
+                    likevalue = parseInt(likevalue) + parseInt(1);
+                    if (likevalue < 0) {
+                        likevalue = 0;
+                    }
+                } else {
+                    likevalue = parseInt(likevalue) - parseInt(1);
+                    if (likevalue < 0) {
+                        likevalue = 0;
+                    }
+                }
+                $(this).closest('.post-action').find('.bloglikevalue').html(likevalue);
+                // $(this).('.bloglikevalue').html(likevalue);
             }
         });
     });

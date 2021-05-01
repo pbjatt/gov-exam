@@ -10,9 +10,11 @@ use App\Model\Blog;
 use App\Model\InfoType;
 use App\Model\User;
 use App\Model\Age;
+use App\Model\Bloglike;
 use App\Model\Exam_category;
 use App\Model\Qualification;
 use App\Model\ExamNotification;
+use App\Model\NotificationInfo;
 use App\Model\PostComment;
 
 class AjexController extends Controller
@@ -81,18 +83,61 @@ class AjexController extends Controller
 
     public function blogcomment(Request $request)
     {
-        $blog = Blog::find($request->blog_id);
+        if ($request->post_type == 'blog') {
+            $blog = Blog::find($request->blog_id);
+        } else {
+            $blog = NotificationInfo::find($request->blog_id);
+        }
+        // $blog = Blog::list();
         $record = new PostComment();
         $record->blog_id = $request->blog_id;
+        $record->post_type = $request->post_type;
         $record->user_id = auth()->user()->id;
-        if($request->comment_id != ''){
+        if ($request->comment_id != '') {
             $record->comment_id = $request->comment_id;
         }
         $record->message = $request->message;
         $record->save();
-        $comments =  PostComment::where('blog_id', $request->blog_id)->get();
-        $blogcomments = view('frontend.template.postcomment', compact('comments','blog'))->render();
-        
+
+        $comments = PostComment::with('user')->where('post_type', $request->post_type)->where('blog_id', $request->blog_id)->where('comment_id', null)->get();
+        foreach ($comments as $key => $comment) {
+            $reply = PostComment::with('user')->where('comment_id', $comment->id)->get();
+            $comment->replay_comments = $reply;
+        }
+        $blogcomments = view('frontend.template.postcomment', compact('comments', 'blog'))->render();
+
         return response()->json($blogcomments, 200);
+    }
+
+    public function postshare(Request $request)
+    {
+        $url = $request->url;
+        $html = view('frontend.template.sharemodel', compact('url'))->render();
+
+        return response()->json($html, 200);
+    }
+
+    public function bloglike(Request $request)
+    {
+        $likecount = Bloglike::where('post_type', $request->post_type)->where('blog_id', $request->blog_id)->where('user_id', auth()->user()->id)->count();
+        if ($likecount == 0) {
+            $record = new Bloglike();
+            $record->blog_id = $request->blog_id;
+            $record->post_type = $request->post_type;
+            $record->user_id = auth()->user()->id;
+            $record->save();
+            $re = [
+                'status' => true,
+                'message' => 'Post Like Successfully.'
+            ];
+        } else {
+            $bloglike = Bloglike::where('post_type', $request->post_type)->where('blog_id', $request->blog_id)->where('user_id', auth()->user()->id)->first();
+            $bloglike->delete();
+            $re = [
+                'status' => false,
+                'message' => 'Post Unlike Successfully.'
+            ];
+        }
+        return response()->json($re, 200);
     }
 }

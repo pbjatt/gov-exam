@@ -16,6 +16,8 @@
             </div>
             <!-- <div class="col-2 text-right"><i class="fas fa-ellipsis-v"></i></div> -->
         </div>
+        <hr class="m-0 p-0">
+
         @if($blog->blog_image != '')
         <div class="card-image">
             @if($blog->post_type == 'notification')
@@ -30,15 +32,43 @@
             @endif
         </div>
         @endif
-        <hr class="m-0 p-0">
         <div class="description">
             <div class="three-line" style="height: 65px; overflow: hidden; margin: 20px">{!! $blog->blog_short_desc !!}</div>
+        </div>
+        <hr class="m-0 p-0">
+        <div class="row pt-3 pb-3 text-center post-action">
+            <div class="col-4">
+                @php
+                $likecountstatus = App\Model\Bloglike::where('blog_id', $blog->id)->where('user_id', auth()->user()->id)->count();
+                $likecount = App\Model\Bloglike::where('blog_id', $blog->id)->count();
+                @endphp
+                @if($likecountstatus == 1)
+                <i class="fas fa-thumbs-up bloglike" id="bloglike" data-url="{{ url('ajex/bloglike') }}" data-blog="{{ $blog->id }}" data-type="{{ $blog->post_type }}" style="cursor: pointer;"></i>
+                @else
+                <i class="far fa-thumbs-up bloglike" id="bloglike" data-url="{{ url('ajex/bloglike') }}" data-blog="{{ $blog->id }}" data-type="{{ $blog->post_type }}" style="cursor: pointer;"></i>
+                @endif
+                <span class="bloglikevalue" style="margin-right: 10px;">{{ $likecount }}</span>
+                <!-- <a href=""><i class="fas fa-thumbs-up"></i> <span>Like</span></a> -->
+            </div>
+            <div class="col-4">
+                @if($blog->post_type == 'notification')
+                <a href="{{ url('notification/'.$blog->notification->slug.'/'.$blog->infotype->slug.'#blogcomment') }}"><i class="fas fa-comments"></i> <span>Comment</span></a>
+                @endif
+                @if($blog->post_type == 'blog')
+                <a href="{{ url('blog/'.$blog->blog_slug.'#blogcomment') }}"><i class="fas fa-comments"></i> <span>Comment</span></a>
+                @endif
+            </div>
+            <div class="col-4">
+                @if($blog->post_type == 'notification')
+                <span class="sharepost" style="cursor: pointer;" data-url="{{ url('ajex/postshare') }}" data-link="{{ url('notification/'.$blog->notification->slug.'/'.$blog->infotype->slug) }}"><i class="fas fa-share"></i> <span>Share</span></span>
+                @endif
+                @if($blog->post_type == 'blog')
+                <span class="sharepost" style="cursor: pointer;" data-url="{{ url('ajex/postshare') }}" data-link="{{ url('blog/'.$blog->blog_slug) }}"><i class="fas fa-share"></i> <span>Share</span></span>
+                @endif
+            </div>
         </div>
     </div>
 
 </div>
 @endforeach
 @endif
-<!-- <div class="blog-pagination">
-                    {!! $blogs->links()!!}
-                </div> -->
