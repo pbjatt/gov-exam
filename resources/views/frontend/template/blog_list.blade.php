@@ -1,4 +1,7 @@
 @if(count($blogs) != 0 )
+<div class="blog-heading px-4 py-3">
+    Disscussion Points (विचार-विमर्श के विषय) -
+</div>
 @foreach($blogs as $key => $blog)
 <div class="card project_widget blogpost">
     <div class="body p-0">
@@ -40,6 +43,7 @@
             <div class="col-4">
                 @php
                 $likecount = App\Model\Bloglike::where('blog_id', $blog->id)->count();
+                $commentcount = App\Model\PostComment::where('blog_id', $blog->id)->where('comment_id', null)->count();
                 @endphp
                 @guest()
                 <a href="{{ url('account/login') }}" title="please login account"><i class="fas fa-thumbs-up" id="bloglike" data-url="{{ url('ajex/bloglike') }}" data-blog="{{ $blog->id }}" data-type="{{ $blog->post_type }}" style="cursor: pointer;"></i></a>
@@ -59,10 +63,10 @@
             </div>
             <div class="col-4">
                 @if($blog->post_type == 'notification')
-                <a href="{{ url('notification/'.$blog->notification->slug.'/'.$blog->infotype->slug.'#blogcomment') }}"><i class="fas fa-comments"></i> <span>Comment</span></a>
+                <a href="{{ url('notification/'.$blog->notification->slug.'/'.$blog->infotype->slug.'#blogcomment') }}"><i class="fas fa-comments"></i> <span>Q&A (राय)</span> {{ $commentcount }}</a>
                 @endif
                 @if($blog->post_type == 'blog')
-                <a href="{{ url('blog/'.$blog->blog_slug.'#blogcomment') }}"><i class="fas fa-comments"></i> <span>Comment</span></a>
+                <a href="{{ url('blog/'.$blog->blog_slug.'#blogcomment') }}"><i class="fas fa-comments"></i> <span>Q&A (राय)</span> {{ $commentcount }}</a>
                 @endif
             </div>
             <div class="col-4">

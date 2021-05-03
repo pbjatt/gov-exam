@@ -2,7 +2,7 @@
     <div class="header p-4">
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6 col-6">
-                <h2>Exam lists</h2>
+                <h2>Exam lists (परीक्षाएं)</h2>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-6 text-right">
                 <div class="filter"><a onclick="examlist()" style="color: #5b626b;"><i class="fa fa-filter"></i></a></div>

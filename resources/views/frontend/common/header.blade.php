@@ -63,6 +63,13 @@ $setting = App\Model\Setting::first();
                     </div>
                 </div>
                 <div class="col-md-3 col-xs-1 col-3 text-right">
+                    @if(!auth()->user())
+                    <div class="login-icon d-inline-block">
+                        <a href="{{ url('account/login') }}" title="login">
+                            <i class="fas fa-sign-in-alt"></i>
+                        </a>
+                    </div>
+                    @endif
                     @if(auth()->user())
                     <div class="user_profile d-inline-block">
                         <div class="dropdown">
