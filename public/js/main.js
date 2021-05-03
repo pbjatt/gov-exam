@@ -35,6 +35,7 @@ $(function() {
     //     });
     // });
 
+    //current serch
     $(document).on('change', '.currentsearch', function() {
         var category_id = $('#affaircategory').val();
         var date = $('#affairdate').val();
