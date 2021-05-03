@@ -111,7 +111,21 @@ $(function() {
         let ajax_url = $(this).data('url');
         let blog_id = $(this).data('blog');
         let post_type = $(this).data('type');
+        let status = $(this).hasClass('fas');
         $(this).toggleClass("far fas");
+        var likevalue = $(this).closest('.post-action').find('.bloglikevalue').html();
+        if (status) {
+            likevalue = parseInt(likevalue) - parseInt(1);
+            if (likevalue < 0) {
+                likevalue = 0;
+            }
+        } else {
+            likevalue = parseInt(likevalue) + parseInt(1);
+            if (likevalue < 0) {
+                likevalue = 0;
+            }
+        }
+        $(this).closest('.post-action').find('.bloglikevalue').html(likevalue);
         $.ajax({
             url: ajax_url,
             type: 'get',
@@ -121,19 +135,7 @@ $(function() {
                 post_type: post_type
             },
             success: function(res) {
-                var likevalue = $(this).closest('.post-action').find('.bloglikevalue').html();;
-                if (res.status) {
-                    likevalue = parseInt(likevalue) + parseInt(1);
-                    if (likevalue < 0) {
-                        likevalue = 0;
-                    }
-                } else {
-                    likevalue = parseInt(likevalue) - parseInt(1);
-                    if (likevalue < 0) {
-                        likevalue = 0;
-                    }
-                }
-                $(this).closest('.post-action').find('.bloglikevalue').html(likevalue);
+
                 // $(this).('.bloglikevalue').html(likevalue);
             }
         });
