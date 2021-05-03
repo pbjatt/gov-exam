@@ -38,7 +38,7 @@ $(function () {
     $(document).on('change', '.currentsearch', function () {
         var category_id = $('#affaircategory').val();
         var date = $('#affairdate').val();
-        document.location.assign("http://127.0.0.1:8000/currentaffair?date=" + date + "&category_id=" + category_id) ;
+        document.location.assign(window.location.origin +  "/currentaffair?date=" + date + "&category_id=" + category_id) ;
     });
 
     $('body').on('click', '.header', function (e) {
