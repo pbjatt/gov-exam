@@ -1,4 +1,4 @@
-$(function () {
+$(function() {
     $.ajaxSetup({
         headers: {
             'X-CSRF-Token': $('meta[name="_token"]').attr('content')
@@ -35,13 +35,13 @@ $(function () {
     //     });
     // });
 
-    $(document).on('change', '.currentsearch', function () {
+    $(document).on('change', '.currentsearch', function() {
         var category_id = $('#affaircategory').val();
         var date = $('#affairdate').val();
-        document.location.assign("http://127.0.0.1:8000/currentaffair?date=" + date + "&category_id=" + category_id) ;
+        window.location = window.location.href.split('?')[0] + "?date=" + date + "&category_id=" + category_id;
     });
 
-    $('body').on('click', '.header', function (e) {
+    $('body').on('click', '.header', function(e) {
         $('.box-a1').find('.level-box').stop().slideUp();
         $(this).closest('.box-a1').find('.level-box').stop().slideToggle();
     });
