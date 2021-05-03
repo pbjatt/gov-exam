@@ -26,7 +26,7 @@ Route::group(['middleware' => 'auth:admin', 'namespace' => 'admin', 'as' => 'adm
         'currentaffaircategory'     => 'CurrentAffairCategoryController'
     ]);
 
-    Route::get('currentaffair/date/{currentaffair}', 'CurrentAffairController@date')->name('date');
+    Route::post('currentaffairsearch', 'CurrentAffairController@ajax')->name('search');
     Route::get('examnotification/master/view', 'ExamNotificationController@master')->name('notification.master');
     Route::get('examnotification/submaster/view', 'ExamNotificationController@submaster')->name('notification.submaster');
 

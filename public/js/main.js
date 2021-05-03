@@ -1,4 +1,4 @@
-$(function () {
+$(function() {
     $.ajaxSetup({
         headers: {
             'X-CSRF-Token': $('meta[name="_token"]').attr('content')
@@ -35,14 +35,14 @@ $(function () {
     //     });
     // });
 
-    $(document).on('change', '.currentsearch', function () {
+    //current serch
+    $(document).on('change', '.currentsearch', function() {
         var category_id = $('#affaircategory').val();
         var date = $('#affairdate').val();
         window.location = window.location.href.split('?')[0] + "?date=" + date + "&category_id=" + category_id;
-        // document.location.assign(window.location.origin +  "/currentaffair?date=" + date + "&category_id=" + category_id) ;
     });
 
-    $('body').on('click', '.header', function (e) {
+    $('body').on('click', '.header', function(e) {
         $('.box-a1').find('.level-box').stop().slideUp();
         $(this).closest('.box-a1').find('.level-box').stop().slideToggle();
     });
