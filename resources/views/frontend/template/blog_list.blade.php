@@ -39,8 +39,14 @@
         <div class="row pt-3 pb-3 text-center post-action">
             <div class="col-4">
                 @php
-                $likecountstatus = App\Model\Bloglike::where('blog_id', $blog->id)->where('user_id', auth()->user()->id)->count();
                 $likecount = App\Model\Bloglike::where('blog_id', $blog->id)->count();
+                @endphp
+                @guest()
+                <a href="{{ url('account/login') }}" title="please login account"><i class="fas fa-thumbs-up" id="bloglike" data-url="{{ url('ajex/bloglike') }}" data-blog="{{ $blog->id }}" data-type="{{ $blog->post_type }}" style="cursor: pointer;"></i></a>
+                <span class="bloglikevalue" style="margin-right: 10px;">{{ $likecount }}</span>
+                @else
+                @php
+                $likecountstatus = App\Model\Bloglike::where('blog_id', $blog->id)->where('user_id', Auth::user()->id)->count();
                 @endphp
                 @if($likecountstatus == 1)
                 <i class="fas fa-thumbs-up bloglike" id="bloglike" data-url="{{ url('ajex/bloglike') }}" data-blog="{{ $blog->id }}" data-type="{{ $blog->post_type }}" style="cursor: pointer;"></i>
@@ -49,6 +55,7 @@
                 @endif
                 <span class="bloglikevalue" style="margin-right: 10px;">{{ $likecount }}</span>
                 <!-- <a href=""><i class="fas fa-thumbs-up"></i> <span>Like</span></a> -->
+                @endguest
             </div>
             <div class="col-4">
                 @if($blog->post_type == 'notification')
