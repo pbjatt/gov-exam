@@ -13,8 +13,9 @@ use Maatwebsite\Excel\Concerns\SkipsOnFailure;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
+use Illuminate\Support\Str;
 
-class QuestionImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFailure, SkipsOnError
+class QuestionImport implements ToModel, WithHeadingRow, WithValidation
 {
     use Importable, SkipsFailures, SkipsErrors;
 
@@ -37,6 +38,9 @@ class QuestionImport implements ToModel, WithHeadingRow, WithValidation, SkipsOn
             'correct_answer'     => $row['correct_answer'],
             'difficulty'     => $row['difficulty'],
         ]);
+        $truncated = Str::limit($question->question, 150);
+        $slug = Str::slug($truncated. '-' . $guardData, '-');
+        $question->slug = $slug;
         $question->category_id = $category;
         $question->user_id = $guardData;
         return $question;
