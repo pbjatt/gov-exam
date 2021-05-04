@@ -60,6 +60,9 @@
             </div>
         </div>
         <div class="col-lg-8 col-md-8">
+            <div class="blog-heading px-4 py-3">
+                Disscussion Points (विचार-विमर्श के विषय) -
+            </div>
             <div class="scrolling-pagination">
                 @include('frontend.template.blog_list', compact('blogs'))
             </div>

@@ -1,7 +1,4 @@
 @if(count($blogs) != 0 )
-<div class="blog-heading px-4 py-3">
-    Disscussion Points (विचार-विमर्श के विषय) -
-</div>
 @foreach($blogs as $key => $blog)
 <div class="card project_widget blogpost">
     <div class="body p-0">
@@ -46,16 +43,16 @@
                 $commentcount = App\Model\PostComment::where('blog_id', $blog->id)->where('comment_id', null)->count();
                 @endphp
                 @guest()
-                <a href="{{ url('account/login') }}" title="please login account"><i class="fas fa-thumbs-up" id="bloglike" data-url="{{ url('ajex/bloglike') }}" data-blog="{{ $blog->id }}" data-type="{{ $blog->post_type }}" style="cursor: pointer;"></i></a>
+                <a href="{{ url('account/login') }}" title="please login account"><i class="fas fa-thumbs-up icon-color" id="bloglike" data-url="{{ url('ajex/bloglike') }}" data-blog="{{ $blog->id }}" data-type="{{ $blog->post_type }}" style="cursor: pointer;"></i></a>
                 <span class="bloglikevalue" style="margin-right: 10px;">{{ $likecount }}</span>
                 @else
                 @php
                 $likecountstatus = App\Model\Bloglike::where('blog_id', $blog->id)->where('user_id', Auth::user()->id)->count();
                 @endphp
                 @if($likecountstatus == 1)
-                <i class="fas fa-thumbs-up bloglike" id="bloglike" data-url="{{ url('ajex/bloglike') }}" data-blog="{{ $blog->id }}" data-type="{{ $blog->post_type }}" style="cursor: pointer;"></i>
+                <i class="fas fa-thumbs-up bloglike icon-color" id="bloglike" data-url="{{ url('ajex/bloglike') }}" data-blog="{{ $blog->id }}" data-type="{{ $blog->post_type }}" style="cursor: pointer;"></i>
                 @else
-                <i class="far fa-thumbs-up bloglike" id="bloglike" data-url="{{ url('ajex/bloglike') }}" data-blog="{{ $blog->id }}" data-type="{{ $blog->post_type }}" style="cursor: pointer;"></i>
+                <i class="far fa-thumbs-up bloglike icon-color" id="bloglike" data-url="{{ url('ajex/bloglike') }}" data-blog="{{ $blog->id }}" data-type="{{ $blog->post_type }}" style="cursor: pointer;"></i>
                 @endif
                 <span class="bloglikevalue" style="margin-right: 10px;">{{ $likecount }}</span>
                 <!-- <a href=""><i class="fas fa-thumbs-up"></i> <span>Like</span></a> -->
@@ -63,18 +60,18 @@
             </div>
             <div class="col-4">
                 @if($blog->post_type == 'notification')
-                <a href="{{ url('notification/'.$blog->notification->slug.'/'.$blog->infotype->slug.'#blogcomment') }}"><i class="fas fa-comments"></i> <span>Q&A (राय)</span> {{ $commentcount }}</a>
+                <a href="{{ url('notification/'.$blog->notification->slug.'/'.$blog->infotype->slug.'#blogcomment') }}"><i class="fas fa-comments icon-color"></i> <span>Q&A (लोगो की राय)</span> {{ $commentcount }}</a>
                 @endif
                 @if($blog->post_type == 'blog')
-                <a href="{{ url('blog/'.$blog->blog_slug.'#blogcomment') }}"><i class="fas fa-comments"></i> <span>Q&A (राय)</span> {{ $commentcount }}</a>
+                <a href="{{ url('blog/'.$blog->blog_slug.'#blogcomment') }}"><i class="fas fa-comments icon-color"></i> <span>Q&A (लोगो की राय)</span> {{ $commentcount }}</a>
                 @endif
             </div>
             <div class="col-4">
                 @if($blog->post_type == 'notification')
-                <span class="sharepost" style="cursor: pointer;" data-url="{{ url('ajex/postshare') }}" data-link="{{ url('notification/'.$blog->notification->slug.'/'.$blog->infotype->slug) }}"><i class="fas fa-share"></i> <span>Share</span></span>
+                <span class="sharepost" style="cursor: pointer;" data-url="{{ url('ajex/postshare') }}" data-link="{{ url('notification/'.$blog->notification->slug.'/'.$blog->infotype->slug) }}"><i class="fas fa-share icon-color"></i> <span>Share</span></span>
                 @endif
                 @if($blog->post_type == 'blog')
-                <span class="sharepost" style="cursor: pointer;" data-url="{{ url('ajex/postshare') }}" data-link="{{ url('blog/'.$blog->blog_slug) }}"><i class="fas fa-share"></i> <span>Share</span></span>
+                <span class="sharepost" style="cursor: pointer;" data-url="{{ url('ajex/postshare') }}" data-link="{{ url('blog/'.$blog->blog_slug) }}"><i class="fas fa-share icon-color"></i> <span>Share</span></span>
                 @endif
             </div>
         </div>
