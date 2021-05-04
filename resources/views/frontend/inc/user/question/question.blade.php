@@ -46,7 +46,8 @@
                                 @endif
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        {{ Form::textarea('question[question]','', ['class'=>'squareInput des-textarea editor', 'placeholder'=>'Enter Your Question']) }}
+                                        {{ Form::textarea('question[question]','', ['class'=>'squareInput des-textarea', 'placeholder'=>'Enter Your Question']) }}
+                                        {{Form::label('name', 'Enter Your Question'), ['class' => 'active']}}
                                     </div>
 
                                     <div class="col-lg-4">

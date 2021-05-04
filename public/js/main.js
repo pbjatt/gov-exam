@@ -38,7 +38,8 @@ $(function () {
     $(document).on('change', '.currentsearch', function () {
         var category_id = $('#affaircategory').val();
         var date = $('#affairdate').val();
-        window.location = window.location.href.split('?')[0] + "?date=" + date + "&category_id=" + category_id;
+        url = window.location.origin + "/currentaffair";
+        window.location = url.split('?')[0] + "?date=" + date + "&category_id=" + category_id;
         // document.location.assign(window.location.origin +  "/currentaffair?date=" + date + "&category_id=" + category_id) ;
     });
 

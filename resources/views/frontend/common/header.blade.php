@@ -19,6 +19,7 @@ $setting = App\Model\Setting::first();
     <!-- {{ HTML::style('assets/css/app.min.css') }} -->
     {{ HTML::style('assets/css/form.min.css') }}
     {{ HTML::style('assets/css/app.css') }}
+    {{ HTML::style('assets/css/app.min.css') }}
     {{ HTML::style('assets/css/styles/all-themes.css') }}
     {{ HTML::style('assets/css/style.css') }}
     {{ HTML::style('css/style.css') }}
