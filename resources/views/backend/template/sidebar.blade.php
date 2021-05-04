@@ -28,6 +28,12 @@ $guardData = Auth::guard()->user();
                     </a>
                 </li>
                 <li>
+                    <a href="{{ url(env('ADMIN_DIR').'/user-list') }}">
+                        <i class="fas fa-users"></i>
+                        <span>Users</span>
+                    </a>
+                </li>
+                <li>
                     <a href="#" onClick="return false;" class="menu-toggle">
                         <!-- <i class="fas fa-angle-double-down"></i> -->
                         <i class="material-icons">folder</i>

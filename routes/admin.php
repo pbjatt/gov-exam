@@ -60,4 +60,5 @@ Route::group(['middleware' => 'auth:admin', 'namespace' => 'admin', 'as' => 'adm
         Route::get('/', 'SettingController@edit');
         Route::post('/', 'SettingController@update');
     });
+    Route::get('/user-list', 'SettingController@index');
 });
