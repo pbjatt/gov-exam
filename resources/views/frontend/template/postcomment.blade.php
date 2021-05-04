@@ -33,15 +33,15 @@
             </div> -->
             <div class="row mt-4 w-100 reply-comment">
                 <div class="col-10">
-                    <input class="blogmessage" name="blogmessage" class="squareInput" required placeholder="reply to {{ $comment->user->name }}" type="text" value="" style="border: 1px solid; border-radius: 16px; border-color: #000; padding: 8px 8px; height: auto; font-size: 12px;">
+                    <input class="blogmessage" name="blogmessage" class="squareInput" required placeholder="reply to {{ $comment->user->name }}" type="text" value="" style="border: 1px solid; border-radius: 16px; border-color: #00000078; padding: 8px 8px; height: auto; font-size: 12px;">
                 </div>
                 <div class="col-2 comment-button">
                     @if(Auth::user())
-                    <div class="addblogcomment comment-btn" data-url="{{ url('ajex/blogcomment') }}" data-type="{{ $blog->post_type }}" data-comment="{{ $comment->id }}" data-blog="{{ $blog->id }}"><i class="fas fa-reply p-0"></i></div>
+                    <div class="addblogcomment comment-btn" data-url="{{ url('ajex/blogcomment') }}" data-type="{{ $blog->post_type }}" data-comment="{{ $comment->id }}" data-blog="{{ $blog->id }}"><i class="fas fa-reply p-0 icon-color"></i></div>
                     @endif
                     @if(!Auth::user())
                     <a href="{{ url('account/login') }}">
-                        <div class="comment-btn" data-url="{{ url('ajex/blogcomment') }}" data-blog="{{ $blog->id }}"><i class="fas fa-reply p-0"></i></div>
+                        <div class="comment-btn" data-url="{{ url('ajex/blogcomment') }}" data-blog="{{ $blog->id }}"><i class="fas fa-reply p-0 icon-color"></i></div>
                     </a>
                     @endif
                 </div>
@@ -57,15 +57,15 @@
 
     <div class="row mt-4 w-100">
         <div class="col-10">
-            <input class="blogmessage" name="blogmessage"  required placeholder="comment" type="text" value="" style="border: 1px solid; border-radius: 16px; border-color: #000; padding: 8px 8px; height: auto; font-size: 12px;">
+            <input class="blogmessage" name="blogmessage"  required placeholder="comment" type="text" value="" style="border: 1px solid; border-radius: 16px; border-color: #00000078; padding: 8px 8px; height: auto; font-size: 12px;">
         </div>
         <div class="col-2 comment-button">
             @if(Auth::user())
-            <div class="addblogcomment comment-btn" data-comment="" data-url="{{ url('ajex/blogcomment') }}" data-type="{{ $blog->post_type }}" data-blog="{{ $blog->id }}"><i class="fas fa-paper-plane p-0"></i></div>
+            <div class="addblogcomment comment-btn" data-comment="" data-url="{{ url('ajex/blogcomment') }}" data-type="{{ $blog->post_type }}" data-blog="{{ $blog->id }}"><i class="fas fa-paper-plane p-0 icon-color"></i></div>
             @endif
             @if(!Auth::user())
             <a href="{{ url('account/login') }}">
-                <div class="comment-btn" data-url="{{ url('ajex/blogcomment') }}" data-blog="{{ $blog->id }}"><i class="fas fa-paper-plane p-0"></i></div>
+                <div class="comment-btn" data-url="{{ url('ajex/blogcomment') }}" data-blog="{{ $blog->id }}"><i class="fas fa-paper-plane p-0 icon-color"></i></div>
             </a>
             @endif
         </div>

@@ -518,3 +518,7 @@
     .login-icon a:hover {
         color: white !important;
     }
+    
+    .icon-color {
+        color: #ee6d74;
+    }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Model\Setting;
+use App\Model\User;
 
 class SettingController extends Controller
 {
@@ -17,7 +18,14 @@ class SettingController extends Controller
      */
     public function index()
     {
-        //
+        $lists = User::whereNotIn('role_id', [1])->paginate(100);
+
+        $page = 'setting.userlist';
+        $title = 'Users';
+        $data = compact('page', 'title', 'lists');
+        // return data to view
+
+        return view('backend.layout.master', $data);
     }
 
     /**
