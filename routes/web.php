@@ -28,8 +28,9 @@ Route::get('/pdf', function () {
 Route::group([], function () {
     Route::get('/', 'HomeController@examlist')->name('home');
     Route::get('/examlist', 'HomeController@index');
-    Route::get('/currentaffair', 'CurrentAffairController@currentaffair')->name('currentaffair');
     Route::get('/question', 'QuestionController@question')->name('question');
+    Route::get('/question/{slug}', 'QuestionController@questiondetail')->name('questiondetail');
+    Route::get('/currentaffair', 'CurrentAffairController@currentaffair')->name('currentaffair');
     Route::get('/currentaffair/detail/{slug}', 'CurrentAffairController@currentaffairdetail')->name('currentaffairdetail');
     // Route::post('/currentaffair/currentaffairsearch', 'CurrentAffairController@currentaffairsearch')->name('search');
     Route::get('/currentaffair/currentaffairpdf', 'CurrentAffairController@currentaffairpdf')->name('pdf');

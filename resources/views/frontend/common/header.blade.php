@@ -126,6 +126,7 @@ $setting = App\Model\Setting::first();
                     <li> <a href="">Result</a></li>
                     <li> <a href="">Exams</a></li>
                     <li> <a href="">Notification</a></li>
+                    <li> <a href="{{ route('question') }}">Question</a></li>
                 </ul>
             </div>
         </section>

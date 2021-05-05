@@ -40,7 +40,6 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Questions</th>
-                                        <th>Options</th>
                                         <th>Correct Answer</th>
                                         <th>Category</th>
                                         <th>Difficulty</th>
@@ -56,15 +55,6 @@
                                     <tr>
                                         <td>{{ $sn++ }}</td>
                                         <td>{!! $row->question !!}</td>
-                                        <td>
-                                            <ol>
-                                                <li>{{ $row->option_1 }}</li>
-                                                <li>{{ $row->option_2 }}</li>
-                                                <li>{{ $row->option_3 ?? '' }}</li>
-                                                <li>{{ $row->option_4 ?? '' }}</li>
-                                                <li>{{ $row->option_5 ?? '' }}</li>
-                                            </ol>
-                                        </td>
                                         <td>{{ $row->correct_answer }}</td>
                                         <td>{{ $row->categories }}</td>
                                         <td>{{ $row->difficulty }}</td>

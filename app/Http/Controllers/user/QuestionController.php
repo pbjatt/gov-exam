@@ -144,7 +144,20 @@ class QuestionController extends Controller
      */
     public function show(Question $question)
     {
-        //
+        // fetch data from particular user
+        $guardData = Auth::guard()->user();
+
+        //for Page title
+        $setting = Setting::first();
+
+        $question = Question::findOrFail($question->id);
+
+        // set page and title ------------------
+        $page = 'question.single';
+        $data = compact('page', 'question', 'setting', 'guardData');
+        // return data to view
+
+        return view('frontend.layout.user.app', $data);
     }
 
     /**
@@ -288,7 +301,7 @@ class QuestionController extends Controller
                 $failure->values(); // The values of the row that has failed.
             }
 
-            $error = 'In '.$failure->row().' row '.$failure->attribute().' column '.implode(",", $failure->errors()).' so please remove the row ';
+            $error = 'In ' . $failure->row() . ' row ' . $failure->attribute() . ' column ' . implode(",", $failure->errors()) . ' so please remove the row ';
             return redirect(route('user.question.index'))->with('error', $error);
         }
     }
