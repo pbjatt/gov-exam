@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Model\Setting;
+use App\Model\User;
 
 class SettingController extends Controller
 {
@@ -17,7 +18,14 @@ class SettingController extends Controller
      */
     public function index()
     {
-        //
+        $lists = User::whereNotIn('role_id', [1])->paginate(100);
+
+        $page = 'setting.userlist';
+        $title = 'Users';
+        $data = compact('page', 'title', 'lists');
+        // return data to view
+
+        return view('backend.layout.master', $data);
     }
 
     /**
@@ -61,7 +69,8 @@ class SettingController extends Controller
     public function edit(Request $request)
     {
     	$setting 	= Setting::find(1);
-        $editData =  $setting->toArray();
+        // $editData =  $setting->toArray();
+        $editData =  ['record' => $setting->toArray()];
         $request->replace($editData);
         //send to view
         $request->flash();
@@ -84,11 +93,8 @@ class SettingController extends Controller
      */
     public function update(Request $request)
     {
-        $record 			= Setting::find(1);
-        $record->title 		= $request->title;
-        $record->tagline 	= $request->tagline;
-        $record->mobile     = $request->mobile;
-        $record->email      = $request->email;
+        $setting 			= Setting::find(1);
+        $record 		    = $request->record;
 
         if ($request->hasFile('logo')) {
             $file = $request->logo;
@@ -106,8 +112,9 @@ class SettingController extends Controller
             $optimizeImage->save($optimizePath.$name1, 72);
             $record->favicon = $name1;
         }
+        $setting->fill($record);
 
-        if ($record->save()) {
+        if ($setting->save()) {
             return redirect(url(env('ADMIN_DIR').'/setting'))->with('success', 'Success! Record has been edided');
         }
     }

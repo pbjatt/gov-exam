@@ -44,7 +44,7 @@
         <div class="col-lg-4 col-md-4">
             <div class="card project_widget">
                 <div class="header p-4">
-                    <h2>Notification</h2>
+                    <h2>Latest Notifications (नई भर्तियां) </h2>
                 </div>
                 <hr class="m-0">
                 <div class="body p-4">
@@ -60,6 +60,9 @@
             </div>
         </div>
         <div class="col-lg-8 col-md-8">
+            <div class="blog-heading px-4 py-3">
+                Disscussion Points (विचार-विमर्श के विषय) -
+            </div>
             <div class="scrolling-pagination">
                 @include('frontend.template.blog_list', compact('blogs'))
             </div>

@@ -26,7 +26,7 @@ Route::group(['middleware' => 'auth:admin', 'namespace' => 'admin', 'as' => 'adm
         'currentaffaircategory'     => 'CurrentAffairCategoryController'
     ]);
 
-    Route::get('currentaffair/date/{currentaffair}', 'CurrentAffairController@date')->name('date');
+    Route::post('currentaffairsearch', 'CurrentAffairController@ajax')->name('search');
     Route::get('examnotification/master/view', 'ExamNotificationController@master')->name('notification.master');
     Route::get('examnotification/submaster/view', 'ExamNotificationController@submaster')->name('notification.submaster');
 
@@ -40,11 +40,14 @@ Route::group(['middleware' => 'auth:admin', 'namespace' => 'admin', 'as' => 'adm
 
     Route::resources([
         'about'         => 'AboutusController',
+        'blog'         => 'BlogController',
         'slider'        => 'SliderController',
         'faq'           => 'FaqController',
         'service'       => 'ServiceController',
         'termcondition' => 'TermconditionController',
     ]);
+    Route::get('blog/changestatus/{blog}', 'BlogController@changestatus')->name('blogchangestatus');
+
 
     Route::group(['prefix' => 'user'], function () {
         Route::get('/', 'UserController@list');
@@ -60,4 +63,5 @@ Route::group(['middleware' => 'auth:admin', 'namespace' => 'admin', 'as' => 'adm
         Route::get('/', 'SettingController@edit');
         Route::post('/', 'SettingController@update');
     });
+    Route::get('/user-list', 'SettingController@index');
 });

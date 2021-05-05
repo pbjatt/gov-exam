@@ -26,6 +26,9 @@
                     </div>
                 </div>
             </div>
+            <div id="blogcomment">
+                @include('frontend.template.postcomment', compact('comments','blog'))
+            </div>
         </div>
         <div class="col-lg-4 col-md-4">
             <div class="card project_widget">

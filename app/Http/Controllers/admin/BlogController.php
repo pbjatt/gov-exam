@@ -5,10 +5,10 @@ namespace App\Http\Controllers\admin;
 use Image;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
-use App\Model\Age;
+use App\Model\Blog;
 use Illuminate\Http\Request;
 
-class AgeController extends Controller
+class BlogController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,12 +18,17 @@ class AgeController extends Controller
     public function index()
     {
 
-        $lists = Age::orderBy('id', 'asc')->paginate(100);
+        $lists = Blog::orderBy('id', 'asc')->paginate(100);
+
+        $statusArr = [
+            'verified' => 'Verified',
+            'pending' => 'Pending',
+        ];
 
         // set page and title -------------
-        $page  = 'age.list';
-        $title = 'Age list';
-        $data  = compact('page', 'title', 'lists');
+        $page  = 'blog.list';
+        $title = 'Blog list';
+        $data  = compact('page', 'title', 'lists', 'statusArr');
 
         return view('backend.layout.master', $data);
     }
@@ -79,7 +84,7 @@ class AgeController extends Controller
      * @param  \App\Age  $age
      * @return \Illuminate\Http\Response
      */
-    public function show(Age $age)
+    public function show()
     {
         //
     }
@@ -141,8 +146,14 @@ class AgeController extends Controller
      */
     public function destroy(Age $age)
     {
-
         $age->delete();
+        return redirect()->back()->with('success', 'Success! Record has been deleted');
+    }
+
+    public function changestatus(Request $request, Blog $blog)
+    {
+        $blog->status = $request->status;
+        $blog->save();
         return redirect()->back()->with('success', 'Success! Record has been deleted');
     }
 }

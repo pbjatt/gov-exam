@@ -28,6 +28,12 @@ $guardData = Auth::guard()->user();
                     </a>
                 </li>
                 <li>
+                    <a href="{{ url(env('ADMIN_DIR').'/user-list') }}">
+                        <i class="fas fa-users"></i>
+                        <span>Users</span>
+                    </a>
+                </li>
+                <li>
                     <a href="#" onClick="return false;" class="menu-toggle">
                         <!-- <i class="fas fa-angle-double-down"></i> -->
                         <i class="material-icons">folder</i>
@@ -136,6 +142,26 @@ $guardData = Auth::guard()->user();
                             <a href="{{ route('admin.exam.index') }}">View</a>
                         </li>
                     </ul>
+                </li>
+                <!-- <li>
+                    <a href="#" onClick="return false;" class="menu-toggle">
+                        <i class="material-icons">shop</i>
+                        <span>Blog</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="{{ route('admin.blog.create') }}">Add</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.blog.index') }}">View</a>
+                        </li>
+                    </ul>
+                </li> -->
+                <li>
+                    <a href="{{ route('admin.blog.index') }}">
+                        <i class="material-icons">shop</i>
+                        <span>Blog</span>
+                    </a>
                 </li>
                 <li>
                     <a href="{{ route('admin.notification.master') }}">

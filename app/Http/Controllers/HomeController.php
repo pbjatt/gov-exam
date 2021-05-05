@@ -13,6 +13,7 @@ use App\Model\ExamNotification;
 use App\Model\Qualification;
 use App\Model\Blog;
 use App\Model\InfoType;
+use App\Model\PostComment;
 use App\Model\Setting;
 use Illuminate\Contracts\Session\Session;
 
@@ -115,26 +116,37 @@ class HomeController extends Controller
     public function notificationinfo($slug, $infoslug)
     {
         $lists = ExamNotification::with('notificationdetail')->where('slug', $slug)->firstOrFail();
-        $infodata = NotificationInfo::with('infotype')->whereHas('infotype', function ($q) use ($infoslug) {
+        $blog = NotificationInfo::with('infotype')->whereHas('infotype', function ($q) use ($infoslug) {
             $q->where('slug', $infoslug);
         })->where('examnotification_id', $lists->id)->firstOrFail();
-        $lists->infodata = $infodata;
+        $lists->infodata = $blog;
+
+        $comments = PostComment::with('user')->where('post_type', $blog->post_type)->where('blog_id', $blog->id)->where('comment_id', null)->get();
+        foreach ($comments as $key => $comment) {
+            $reply = PostComment::with('user')->where('comment_id', $comment->id)->get();
+            $comment->replay_comments = $reply;
+        }
 
         $releted = NotificationInfo::with('infotype')->whereHas('infotype', function ($q) use ($infoslug) {
             $q->whereNotIn('slug', [$infoslug]);
         })->where('examnotification_id', $lists->id)->get();
         // dd($releted);
-        $data = compact('lists', 'releted', 'slug');
+        $data = compact('lists', 'releted', 'slug', 'comments','blog');
         return view('frontend.inc.notification-infodetail', $data);
     }
 
     public function blogdetail($slug)
     {
         $blog = Blog::with('user', 'category')->where('blog_slug', $slug)->first();
+        $comments = PostComment::with('blog','user')->where('post_type', $blog->post_type)->where('blog_id', $blog->id)->where('comment_id', null)->get();
+        foreach ($comments as $key => $comment) {
+            $reply = PostComment::with('blog','user')->where('comment_id', $comment->id)->get();
+            $comment->replay_comments = $reply;
+        }
 
         $releted = Blog::with('user', 'category')->where('category_id', $blog->category_id)->whereNotIn('id', [$blog->id])->get();
 
-        $data = compact('blog', 'releted');
+        $data = compact('blog', 'releted','comments');
         return view('frontend.inc.blogdetail', $data);
     }
 }

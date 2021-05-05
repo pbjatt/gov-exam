@@ -467,3 +467,58 @@
     .level-box img.currentaffair-img {
         border-radius: 0;
     }
+    
+    .comment-btn i {
+        line-height: 35px;
+        padding: 0px 10px !important;
+        border-radius: 16px;
+        border: 1px solid;
+        cursor: pointer;
+    }
+    
+    .comment-button a {
+        color: #000;
+    }
+    
+    .comment-button a:hover {
+        color: #000;
+    }
+    
+    .comment-reply i {
+        font-size: 12px;
+    }
+    
+    input.blogmessage:focus {
+        box-shadow: none !important;
+    }
+    
+    .blogpost .post-action a {
+        color: #555;
+    }
+    
+    .blog-heading {
+        background-color: white;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #555;
+    }
+    
+    .login-icon a {
+        color: white !important;
+    }
+    
+    .login-icon a i {
+        font-size: 22px;
+        position: absolute;
+        right: 50px;
+        top: 18px;
+    }
+    
+    .login-icon a:hover {
+        color: white !important;
+    }
+    
+    .icon-color {
+        color: #ee6d74;
+    }
