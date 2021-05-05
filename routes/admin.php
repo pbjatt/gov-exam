@@ -40,11 +40,14 @@ Route::group(['middleware' => 'auth:admin', 'namespace' => 'admin', 'as' => 'adm
 
     Route::resources([
         'about'         => 'AboutusController',
+        'blog'         => 'BlogController',
         'slider'        => 'SliderController',
         'faq'           => 'FaqController',
         'service'       => 'ServiceController',
         'termcondition' => 'TermconditionController',
     ]);
+    Route::get('blog/changestatus/{blog}', 'BlogController@changestatus')->name('blogchangestatus');
+
 
     Route::group(['prefix' => 'user'], function () {
         Route::get('/', 'UserController@list');

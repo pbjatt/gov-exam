@@ -143,6 +143,26 @@ $guardData = Auth::guard()->user();
                         </li>
                     </ul>
                 </li>
+                <!-- <li>
+                    <a href="#" onClick="return false;" class="menu-toggle">
+                        <i class="material-icons">shop</i>
+                        <span>Blog</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="{{ route('admin.blog.create') }}">Add</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.blog.index') }}">View</a>
+                        </li>
+                    </ul>
+                </li> -->
+                <li>
+                    <a href="{{ route('admin.blog.index') }}">
+                        <i class="material-icons">shop</i>
+                        <span>Blog</span>
+                    </a>
+                </li>
                 <li>
                     <a href="{{ route('admin.notification.master') }}">
                         <i class="material-icons">shop</i>
