@@ -47,6 +47,10 @@ class QuestionController extends Controller
 
             $question = Question::latest();
 
+            if ($request->difficulty != '') {
+                $question->where('difficulty', $request->difficulty);
+            }
+            
             if ($request->category_id != '') {
                 $question->where('category_id', $request->category_id);
             }
@@ -60,6 +64,10 @@ class QuestionController extends Controller
     public function questionsearch(Request $request)
     {
         $question = Question::latest();
+
+        if ($request->difficulty != '') {
+            $question->where('difficulty', $request->difficulty);
+        }
 
         if ($request->category_id != '') {
             $question->where('category_id', $request->category_id);
@@ -91,7 +99,7 @@ class QuestionController extends Controller
 
         $question = Question::where('slug', $slug)->first();
 
-        $releted = Question::with('user', 'category')->where('category_id', $question->category_id)->whereNotIn('id', [$question->id])->get();
+        $releted = Question::with('category')->where('category_id', $question->category_id)->whereNotIn('id', [$question->id])->get();
 
         $data = compact('question', 'releted', 'examcategoryArr', 'difficulty');
         return view('frontend.inc.questiondetail', $data);
