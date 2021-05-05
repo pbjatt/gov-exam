@@ -10,6 +10,7 @@ use App\Model\Question;
 use App\Model\Setting;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Validators\ValidationException;
 
@@ -101,7 +102,8 @@ class QuestionController extends Controller
 
 
         $question = new Question($request->question);
-        // $question->blog_slug = Str::slug($request->question['question'] . '-' . $userId, '-');
+        $truncated = Str::limit($request->question['question'], 150);
+        $question->slug = Str::slug($truncated . '-' . $userId, '-');
 
         switch ($request->question['correct_answer']) {
             case '1':

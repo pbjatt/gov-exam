@@ -21,6 +21,8 @@ class CreateQuestionsTable extends Migration
             $table->string('option_3', 255)->nullable();
             $table->string('option_4', 255)->nullable();
             $table->string('option_5', 255)->nullable();
+            $table->string('slug', 255);
+            $table->longText('description')->nullable();
             $table->foreignId('category_id')->constrained('exam_categories')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->string('correct_answer', 255);
