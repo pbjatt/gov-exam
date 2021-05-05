@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
     $.ajaxSetup({
         headers: {
             'X-CSRF-Token': $('meta[name="_token"]').attr('content')
@@ -35,13 +35,7 @@ $(function() {
     //     });
     // });
 
-    //current serch
-    $(document).on('change', '#blogstatusselect', function() {
-        alert('sdfjdskjc');
-        $(this).closest('form').submit();
-    });
-
-    $(document).on('change', '.currentsearch', function() {
+    $(document).on('change', '.currentsearch', function () {
         var category_id = $('#affaircategory').val();
         var date = $('#affairdate').val();
         url = window.location.origin + "/currentaffair";
@@ -49,7 +43,27 @@ $(function() {
         // document.location.assign(window.location.origin +  "/currentaffair?date=" + date + "&category_id=" + category_id) ;
     });
 
-    $('body').on('click', '.header', function(e) {
+    $(document).on('change', '.qanswer', function () {
+        var qid = $(this).data('ques');
+        var answer = $(`#correct_${qid}`).val();
+
+        $(this).closest('.card').find('.q_symbol').remove();
+        if (answer == $(this).val()) {
+            $(this).next(".qares").append("<i class='fas fa-check text-success q_symbol'></i>");
+        } else {
+            $(this).next(".qares").append("<i class='fas fa-times text-danger q_symbol'></i>");
+        }
+    });
+
+    $(document).on('change', '.questionsearch', function () {
+        var difficulty = $('#questiondifficulty').val();
+        var category_id = $('#questioncategory').val();
+        url = window.location.origin + "/question";
+        window.location = url.split('?')[0] + "?difficulty=" + difficulty + "&category_id=" + category_id;
+        // document.location.assign(window.location.origin +  "/currentaffair?date=" + date + "&category_id=" + category_id) ;
+    });
+
+    $('body').on('click', '.header', function (e) {
         $('.box-a1').find('.level-box').stop().slideUp();
         $(this).closest('.box-a1').find('.level-box').stop().slideToggle();
     });

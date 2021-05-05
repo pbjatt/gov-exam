@@ -90,33 +90,33 @@
                                         {{Form::radio('question[correct_answer]', '5')}}
                                     </div>
 
-                                    {{--<div class="col-lg-6">
-                                        {{Form::text('question[correct_answer]', '', ['class' => 'squareInput', 'placeholder'=>'Enter Correct Answer'])}}
-                                    {{Form::label('name', 'Enter Correct Answer'), ['class' => 'active']}}
-                                </div>--}}
 
-                                <div class="col-lg-6"></div>
+                                    <div class="col-lg-6"></div>
 
-                                <div class="col-lg-6">
-                                    {{Form::select('question[difficulty]', $difficulty, '0', ['class' => 'squareInput des-select form-control'])}}
-                                    {{Form::label('record[difficulty]', 'Select Question Category'), ['class' => 'active']}}
+                                    <div class="col-lg-6">
+                                        {{Form::select('question[difficulty]', $difficulty, '0', ['class' => 'squareInput des-select form-control'])}}
+                                        {{Form::label('record[difficulty]', 'Select Question Category'), ['class' => 'active']}}
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        {{Form::select('question[category_id]', $examcategoryArr,'0', ['class' => 'squareInput des-select form-control'])}}
+                                        {{Form::label('record[category_id]', 'Select Blog Category'), ['class' => 'active']}}
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        {{ Form::textarea('question[description]','', ['class'=>'squareInput des-textarea editor', 'placeholder'=>'Enter Your Solution']) }}
+                                    </div>
+
                                 </div>
-
-                                <div class="col-lg-6">
-                                    {{Form::select('question[category_id]', $examcategoryArr,'0', ['class' => 'squareInput des-select form-control'])}}
-                                    {{Form::label('record[category_id]', 'Select Blog Category'), ['class' => 'active']}}
+                                <div class="text-right">
+                                    <input type="submit" class="btn btn-primary" name="save" value="{{ isset($question) ? 'Update' : 'Add' }}" />
                                 </div>
-
+                                {{ Form::close() }}
                             </div>
-                            <div class="text-right">
-                                <input type="submit" class="btn btn-primary" name="save" value="{{ isset($question) ? 'Update' : 'Add' }}" />
-                            </div>
-                            {{ Form::close() }}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </section>

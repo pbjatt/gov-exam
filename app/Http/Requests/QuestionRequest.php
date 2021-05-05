@@ -29,7 +29,8 @@ class QuestionRequest extends FormRequest
             'question.option_2' => 'required',
             'question.correct_answer' => 'required',
             'question.difficulty' => 'required',
-            'question.category_id' => 'required'
+            'question.category_id' => 'required',
+            'question.description'
         ];
     }
 }

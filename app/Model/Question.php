@@ -17,16 +17,25 @@ class Question extends Model
         'option_5',
         'correct_answer',
         'difficulty',
-        'category_id'
+        'category_id',
+        'description'
     ];
 
-    protected $appends = ['categories'];
+    protected $appends = ['categories', 'users'];
 
     public function getCategoriesAttribute() {
         return !empty($this->category->title) ? $this->category->title : null;
     }
 
+    public function getUsersAttribute() {
+        return !empty($this->user->name) ? $this->user->name : null;
+    }
+
     public function category() {
         return $this->belongsTo(Exam_category::class, 'category_id');
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
