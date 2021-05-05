@@ -1,7 +1,7 @@
 @extends('frontend.layout.master')
-@section('title', $question->seo_title)
-@section('keywords', $question->seo_keywords)
-@section('description', $question->seo_description)
+@section('title', $question->question)
+@section('keywords', '')
+@section('description', $question->question)
 @section('contant')
 
 <section class="container" style="margin-top: 80px;">
