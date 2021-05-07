@@ -16,6 +16,8 @@ use App\Model\Qualification;
 use App\Model\ExamNotification;
 use App\Model\NotificationInfo;
 use App\Model\PostComment;
+use App\Model\Question;
+use App\Model\QuestionComment;
 
 class AjexController extends Controller
 {
@@ -139,5 +141,29 @@ class AjexController extends Controller
             ];
         }
         return response()->json($re, 200);
+    }
+
+    public function questioncomment(Request $request)
+    {
+        $question = Question::find($request->blog_id);
+    
+        // $blog = Blog::list();
+        $record = new QuestionComment();
+        $record->question_id = $request->blog_id;
+        $record->user_id = auth()->user()->id;
+        if ($request->comment_id != '') {
+            $record->comment_id = $request->comment_id;
+        }
+        $record->message = $request->message;
+        $record->save();
+
+        $comments = QuestionComment::with('user')->where('question_id', $request->blog_id)->where('comment_id', null)->get();
+        foreach ($comments as $key => $comment) {
+            $reply = QuestionComment::with('user')->where('comment_id', $comment->id)->get();
+            $comment->replay_comments = $reply;
+        }
+        $blogcomments = view('frontend.template.questioncomment', compact('comments', 'question'))->render();
+
+        return response()->json($blogcomments, 200);
     }
 }

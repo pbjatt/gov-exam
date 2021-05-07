@@ -61,17 +61,20 @@
                                     </label>
                                     @endif
 
-                                    <hr>
+                                    <!-- <hr>
                                     <div class="p-3 mt-2">
                                         <h2 class="text-center mb-4"> Solution By {{ $question->user->name }} </h2>
                                         {!! $question->description !!}
-                                    </div>
+                                    </div> -->
 
                                 </div>
                             </div>
                         </div>
                     </div>
                 </form>
+            </div>
+            <div id="questioncomment">
+                @include('frontend.template.questioncomment', compact('comments','question'))
             </div>
         </div>
         <div class="col-lg-4 col-md-4">

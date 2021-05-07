@@ -164,6 +164,12 @@ $guardData = Auth::guard()->user();
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('admin.question.index') }}">
+                        <i class="material-icons">shop</i>
+                        <span>Question</span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('admin.notification.master') }}">
                         <i class="material-icons">shop</i>
                         <span>Exam Notification</span>

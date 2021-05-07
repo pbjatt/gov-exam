@@ -64,6 +64,31 @@ $(function() {
         });
     });
 
+    $(document).on('click', '.addquestioncomment', function() {
+        let ajax_url = $(this).data('url');
+        let blog_id = $(this).data('blog');
+        let comment_id = $(this).data('comment');
+        let message = $(this).closest('.row').find('input').val();
+        if (message == '') {
+            $(this).closest('.row').find('input').focus()
+        } else {
+            $.ajax({
+                url: ajax_url,
+                type: 'get',
+                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                data: {
+                    blog_id: blog_id,
+                    comment_id: comment_id,
+                    message: message
+                },
+                success: function(res) {
+                    $('#questioncomment').html(res);
+                }
+            });
+        }
+    });
+
+
     $(document).on('click', '.addblogcomment', function() {
         let ajax_url = $(this).data('url');
         let blog_id = $(this).data('blog');
