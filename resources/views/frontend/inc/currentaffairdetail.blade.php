@@ -41,10 +41,10 @@
                         @php
                         $sn = $key + 1;
                         @endphp
-                        <div class="col-1 pr-0">
+                        <div class="col-2 pr-0">
                             <strong class="mr-2">{{ $sn++ }}.</strong>
                         </div>
-                        <div class="col-11 pl-2">
+                        <div class="col-10 pl-2">
                             <strong> <a href="{{ url('currentaffair/detail/'.$currentaffair->slug) }}">{{ $currentaffair->title }}</a></strong>
                         </div>
                         <hr>

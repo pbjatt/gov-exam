@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Model\Exam_category;
 use App\Model\ExamNotification;
 use App\Model\Question;
+use App\Model\QuestionComment;
 use App\Model\Setting;
 use Illuminate\Http\Request;
 
@@ -99,9 +100,15 @@ class QuestionController extends Controller
 
         $question = Question::where('slug', $slug)->first();
 
+        $comments = QuestionComment::with('question','user')->where('question_id', $question->id)->where('comment_id', null)->get();
+        foreach ($comments as $key => $comment) {
+            $reply = QuestionComment::with('question','user')->where('comment_id', $comment->id)->get();
+            $comment->replay_comments = $reply;
+        }
+
         $releted = Question::with('category')->where('category_id', $question->category_id)->whereNotIn('id', [$question->id])->get();
 
-        $data = compact('question', 'releted', 'examcategoryArr', 'difficulty');
+        $data = compact('question', 'releted', 'examcategoryArr', 'difficulty','comments');
         return view('frontend.inc.questiondetail', $data);
     }
 }
