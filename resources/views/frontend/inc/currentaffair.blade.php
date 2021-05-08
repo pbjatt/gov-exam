@@ -6,7 +6,7 @@
 
 <section class="container" style="margin-top: 80px;">
     <div class="row clearfix">
-        <div class="col-lg-8 col-xs-12 col-md-8">
+        <div class="col-lg-8 col-xs-12 col-md-8" id="listdetail">
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="project" aria-expanded="true">
                     <div class="row clearfix">
@@ -17,8 +17,9 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 col-md-4">
-            <div class="card project_widget">
+        <div class="col-lg-4 col-md-4" id="listside">
+            @include('frontend.template.currentfilter')
+            <div class="card project_widget list_notify">
                 <div class="header p-4">
                     <h2>Notification</h2>
                 </div>
@@ -34,7 +35,6 @@
                     @endforeach
                 </div>
             </div>
-            @include('frontend.template.currentfilter')
         </div>
 </section>
 

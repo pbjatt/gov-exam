@@ -67,4 +67,8 @@ $(function () {
         $('.box-a1').find('.level-box').stop().slideUp();
         $(this).closest('.box-a1').find('.level-box').stop().slideToggle();
     });
+
+    $('body').on('click', '.replybtn', function (e) {
+        $(this).closest('.post_comment').find('.replyinput').show();
+    });
 });

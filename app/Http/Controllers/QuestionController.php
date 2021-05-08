@@ -26,6 +26,7 @@ class QuestionController extends Controller
         }
 
         $difficulty  = [
+            '' => 'Select difficulty',
             'Easy' => 'Easy',
             'Medium' => 'Medium',
             'Hard' => 'Hard'
@@ -93,6 +94,7 @@ class QuestionController extends Controller
         }
 
         $difficulty  = [
+            '' => 'Select difficulty',
             'Easy' => 'Easy',
             'Medium' => 'Medium',
             'Hard' => 'Hard'

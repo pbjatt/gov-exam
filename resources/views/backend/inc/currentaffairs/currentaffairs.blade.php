@@ -79,7 +79,7 @@
                                     </div>
 
                                     <div class="col-lg-12">
-                                        {{ Form::textarea('currentaffair[seo_description]','', ['class'=>'squareInput des-textarea tinymce', 'placeholder'=>'Enter Current Affair SEO description']) }}
+                                        {{ Form::textarea('currentaffair[seo_description]','', ['class'=>'squareInput des-textarea', 'placeholder'=>'Enter Current Affair SEO description']) }}
                                         {{ Form::label('description', 'Enter Current Affair SEO description'), ['class' => 'active'] }}
                                     </div>
                                 </div>

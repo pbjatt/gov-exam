@@ -2,8 +2,13 @@
 <html>
 
 <head>
-    <title>Register</title>
-    {{ HTML::style('assets/css/app.min.css') }}
+    <base href="{{ url('/') }}">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ $setting->title }} - {{ $title }}</title>
+    <!-- Favicon-->
+    <link rel="icon" href="{{ url('extraimage/exam1.png') }}" type="image/x-icon"> {{ HTML::style('assets/css/app.min.css') }}
     {{ HTML::style('assets/css/style.css') }}
     {{ HTML::style('assets/css/pages/extra_pages.css') }}
 </head>
@@ -15,14 +20,18 @@
                 {!! Form::open(['url' => route('account.register.post'), 'method' => 'post', 'class' => 'login100-form validate-form']) !!}
 
                 {!! Form::token(); !!}
-                {{ \Session::forget('success') }}
                 @if(\Session::get('error'))
                 <div class="text-white" role="alert">
                     {{ \Session::get('error') }}
                 </div>
                 @endif
+                @if(\Session::get('success'))
+                <div class="text-white text-center" role="alert">
+                    {{ \Session::get('success') }}
+                </div>
+                @endif
                 <span class="login100-form-title">
-                    Register
+                    {{ $title }}
                 </span>
                 <div class="wrap-input100 validate-input" data-validate="Enter name" style="margin-bottom: 23px;">
                     {{ Form::text($name = 'name', $value = null, array_merge(['class' => 'input100', 'placeholder' => 'Name'])) }}

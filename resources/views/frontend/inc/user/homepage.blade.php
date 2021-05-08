@@ -1,5 +1,6 @@
     <section class="content">
         <div class="container-fluid">
+        @include('frontend.template.user.flash-message')    
             <div class="block-header">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
