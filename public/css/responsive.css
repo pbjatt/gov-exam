@@ -20,6 +20,12 @@
     .menu {
         width: 30%;
     }
+    .list_notify{
+        display: none;
+    }
+
+    div#listside {order: 1;}
+    div#listdetail {order: 2;}
 }
 
 @media (max-width: 768px) and (min-width: 448px) {

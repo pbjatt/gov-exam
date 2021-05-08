@@ -113,7 +113,8 @@ class CurrentAffairController extends Controller
 
         // return view('frontend.template.currentpdf' , compact('currentaffair', 'setting'));
         // download PDF file with download method
-        return $pdf->download('currentaffairs_' . $setting->title . '.pdf');
+        // return $pdf->download('currentaffairs_' . $setting->title . '.pdf');
+        return $pdf->setPaper('a4')->stream();
     }
 
     public function currentaffairdetail($slug)

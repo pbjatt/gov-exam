@@ -522,3 +522,8 @@
     .icon-color {
         color: #ee6d74;
     }
+
+
+    .post_comment .replyinput{
+        display: none;
+    }
