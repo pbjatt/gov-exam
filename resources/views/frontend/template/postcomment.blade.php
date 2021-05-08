@@ -18,8 +18,8 @@
     @if(count($comments) != 0)
     @foreach($comments as $key => $comment)
 
-    <div class="post_comment mb-3">
-        <div class="media">
+    <div class="post_comment mb-0">
+        <div class="media mb-0">
             <img class="mr-3" src="{{ url('extraimage/images.jpg') }}" width="36" height="36" alt="User">
             <div class="media-body">
                 <p class="p-0 m-0">
@@ -27,12 +27,9 @@
                         {{ $comment->user->name }}
                     </strong>
                 </p class="p-0 m-0">
-                <strong>
-
-                    <strong>
-                    </strong>
+                <span style="font-size: 11px;">
                     {{ date_format($comment->created_at,"d M, Y h:i A") }}
-                </strong>
+                </span>
                 <div class="mt-3">
                     {{ $comment->message }}
                 </div>
@@ -55,7 +52,7 @@
                     </div>
                 </div>
                 @foreach($comment->replay_comments as $reply)
-                <div class="media mt-4" style="border-left: 1px dashed;">
+                <div class="media mb-0 mt-4" style="border-left: 1px dashed;">
                     <img class="ml-1" src="{{ url('extraimage/images.jpg') }}" width="36" height="36" alt="User">
                     <div class="media-body ml-3">
                         <p class="p-0 m-0">
@@ -63,12 +60,9 @@
                                 {{ $reply->user->name }}
                             </strong>
                         </p class="p-0 m-0">
-                        <strong>
-
-                            <strong>
-                            </strong>
+                        <span style="font-size: 11px;">
                             {{ date_format($reply->created_at,"d M, Y h:i A") }}
-                        </strong>
+                        </span>
                         <div class="mt-3">
                             {{ $reply->message }}
                         </div>
