@@ -94,7 +94,7 @@ $(function() {
         let blog_id = $(this).data('blog');
         let comment_id = $(this).data('comment');
         let post_type = $(this).data('type');
-        let message = $(this).closest('.row').find('input').val();
+        let message = $(this).closest('.replymsg').find('input.blogmessage').val();
         if (message == '') {
             $(this).closest('.row').find('input').focus()
         } else {

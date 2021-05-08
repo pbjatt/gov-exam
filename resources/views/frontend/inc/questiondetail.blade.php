@@ -6,7 +6,7 @@
 
 <section class="container" style="margin-top: 80px;">
     <div class="row clearfix">
-        <div class="col-lg-8 col-md-12">
+        <div class="col-lg-8 col-xs-12 col-md-8" id="listdetail">
             <div class="row">
 
                 <form action="" method="POST">
@@ -63,7 +63,7 @@
 
                                     <!-- <hr>
                                     <div class="p-3 mt-2">
-                                        <h2 class="text-center mb-4"> Solution By {{ $question->user->name }} </h2>
+                                        <h2 class="text-center mb-4"> Solution </h2>
                                         {!! $question->description !!}
                                     </div> -->
 
@@ -77,36 +77,36 @@
                 @include('frontend.template.questioncomment', compact('comments','question'))
             </div>
         </div>
-        <div class="col-lg-4 col-md-4">
-            <div class="card project_widget">
+        <div class="col-lg-4 col-md-4" id="listside">
+            @include('frontend.template.questionfilter')
+            <div class="card project_widget list_notify">
                 <div class="header p-4">
                     <h2>Releted Questions</h2>
                 </div>
                 <hr class="m-0">
                 <div class="body p-4">
+                    @if(count($releted) != 0)
+                    @foreach($releted as $key => $question)
+                    @php
+                    $sn = $key + 1;
+                    @endphp
                     <div class="row">
-                        @if(count($releted) != 0)
-                        @foreach($releted as $key => $question)
-                        @php
-                        $sn = $key + 1;
-                        @endphp
-                        <div class="col-1 pr-0">
+                        <div class="col-2 pr-0">
                             <strong class="mr-2">{{ $sn++ }}.</strong>
                         </div>
-                        <div class="col-11 pl-2">
+                        <div class="col-10 p-0">
                             <strong> <a href="{{ route('questiondetail', $question->slug) }}">{{ $question->question }}</a></strong>
                         </div>
                         <hr>
-                        @endforeach
-                        @else
-                        <div class="text-center p-4">No Records Found.</div>
-                        @endif
 
                     </div>
+                    @endforeach
+                    @else
+                    <div class="text-center p-4">No Records Found.</div>
+                    @endif
                 </div>
             </div>
 
-            @include('frontend.template.questionfilter')
         </div>
     </div>
     </div>

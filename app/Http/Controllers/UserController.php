@@ -23,7 +23,9 @@ class UserController extends Controller
 
     public function getLogin()
     {
-        return view('frontend.inc.user.login');
+        $setting = Setting::findOrFail(1);
+        $title = 'Login';
+        return view('frontend.inc.user.login', compact('setting', 'title'));
     }
 
     public function postLogin(Request $request)
@@ -62,13 +64,13 @@ class UserController extends Controller
                     ]);
 
                     if ($user) {
-                        return redirect(route('user.dashboard'));
+                        return back()->with('success', 'Login Successfully');
                     } else {
                         $e = "Your {$field} or password are wrong";
                         return back()->with('error', $e);
                     }
                 } else {
-                    $e = "Your Account is not verfied";
+                    $e = "Your Account is not verfied, Please Check Your Mail";
                     return redirect()->back()->with('error', $e);
                 }
             } else {
@@ -80,7 +82,9 @@ class UserController extends Controller
 
     public function getRegister()
     {
-        return view('frontend.inc.user.register');
+        $setting = Setting::findOrFail(1);
+        $title = 'Register';
+        return view('frontend.inc.user.register', compact('setting', 'title'));
     }
 
     public function postRegister(Request $request, User $user)
@@ -124,7 +128,7 @@ class UserController extends Controller
         $user->save();
 
 
-        return redirect(route('user.dashboard'));
+        return redirect(route('account.login'))->with('success', 'Register Sucessfully Verify Your Email');
     }
 
     public function getVerify($otp_token)
@@ -135,14 +139,14 @@ class UserController extends Controller
                 User::where('email', $verify->email)
                     ->update(['verified' => 1, 'email_verified_at' => now()]);
                 $e = "Your account is verified. You can now login.";
-                return redirect(route('account.login'))->with('status', $e);
+                return redirect(route('account.login'))->with('error', $e);
             } else {
                 $e = "Your e-mail is already verified. You can now login.";
-                return redirect(route('account.login'))->with('status', $e);
+                return redirect(route('account.login'))->with('error', $e);
             }
         } else {
             $e = "Sorry your email cannot be identified.";
-            return redirect(route('account.login'))->with('status', $e);
+            return redirect(route('account.login'))->with('error', $e);
         }
     }
 
@@ -157,7 +161,9 @@ class UserController extends Controller
 
     public function getEmail()
     {
-        return view('frontend.inc.user.forgetpassword');
+        $setting = Setting::findOrFail(1);
+        $title = 'Forget Password';
+        return view('frontend.inc.user.forgetpassword', compact('setting', 'title'));
     }
 
     public function postEmail(Request $request)
@@ -184,11 +190,12 @@ class UserController extends Controller
         });
 
 
-        return back()->with('message', 'We have e-mailed your password reset link!');
+        return back()->with('success', 'We have e-mailed your password reset link!');
     }
 
     public function getPassword($token)
     {
+
         return view('frontend.inc.user.resetpassword', ['token' => $token]);
     }
 
@@ -210,6 +217,6 @@ class UserController extends Controller
         User::where('remember_token', $request->token)
             ->update(['password' => Hash::make($request->password)]);
 
-        return redirect(route('account.login'))->with('message', 'Your password has been changed!');
+        return redirect(route('account.login'))->with('success', 'Your password has been changed!');
     }
 }
