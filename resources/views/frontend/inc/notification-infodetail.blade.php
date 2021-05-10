@@ -20,7 +20,7 @@
                                     <h2>{{ ucwords($lists->infodata->title) }}</h2>
                                 </div>
                                 <div class="card-image">
-                                    <img src="{{ url('images/notificationdata/'.$lists->blog_image) }}" alt="">
+                                    <img src="{{ url('images/notificationdata/'.$lists->infodata->image) }}" alt="">
                                 </div>
                                 <hr class="m-0">
                                 <div class="body" style="min-height: 320px;" id="exam-content">
