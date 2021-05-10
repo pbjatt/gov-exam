@@ -8,6 +8,7 @@ use App\Model\CurrentAffair;
 use App\Model\CurrentAffairCategory;
 use Illuminate\Support\Str;
 use App\Model\Setting;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -247,5 +248,24 @@ class CurrentAffairController extends Controller
         }
         $currentaffair->delete();
         return redirect()->back()->with('success', 'Success! Current Affair has been deleted');
+    }
+
+    /**
+     * 
+     * Change Date
+     * 
+     * @param  \App\Model\CurrentAffair  $currentaffair
+     * @return \Illuminate\Http\Response
+     */
+    public function date(CurrentAffair $currentaffair, Request $request)
+    {
+        $date = new Carbon($request->date);
+        $currentaffair->day = $date->format('d');
+        $currentaffair->month = $date->format('m');
+        $currentaffair->year = $date->year;
+
+        $currentaffair->update();
+
+        return redirect(route('admin.currentaffair.index'))->with('success', 'Current Affair Date successfully update.');
     }
 }

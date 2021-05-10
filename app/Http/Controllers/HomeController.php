@@ -12,9 +12,11 @@ use App\Model\Exam_category;
 use App\Model\ExamNotification;
 use App\Model\Qualification;
 use App\Model\Blog;
+use App\Model\CurrentAffair;
 use App\Model\InfoType;
 use App\Model\PostComment;
 use App\Model\Setting;
+use Carbon\Carbon;
 use Illuminate\Contracts\Session\Session;
 
 class HomeController extends Controller
@@ -72,6 +74,16 @@ class HomeController extends Controller
         $notification = ExamNotification::get();
         $setting = Setting::first();
 
+        $currentaffair = CurrentAffair::latest();
+
+        $date = Carbon::now();
+
+        $currentaffair->where('year', $date->year)
+            ->where('month', $date->format('m'))
+            ->where('day', $date->format('d'));
+
+        $currentaffair = $currentaffair->get();
+
         $blogs =  Blog::list();
         foreach ($blogs as $key => $blog) {
             if ($blog->post_type == 'notification') {
@@ -88,7 +100,7 @@ class HomeController extends Controller
             $data = compact('exams', 'ageArr', 'categoryArr', 'qualificationArr', 'notification', 'blogs', 'setting');
             return view('frontend.template.exam_list', $data)->render();
         } else {
-            $data = compact('exams', 'ageArr', 'categoryArr', 'qualificationArr', 'notification', 'blogs', 'setting');
+            $data = compact('exams', 'ageArr', 'categoryArr', 'qualificationArr', 'notification', 'blogs', 'setting', 'currentaffair');
             return view('frontend.inc.examlist', $data);
         }
     }
@@ -131,22 +143,22 @@ class HomeController extends Controller
             $q->whereNotIn('slug', [$infoslug]);
         })->where('examnotification_id', $lists->id)->get();
         // dd($releted);
-        $data = compact('lists', 'releted', 'slug', 'comments','blog');
+        $data = compact('lists', 'releted', 'slug', 'comments', 'blog');
         return view('frontend.inc.notification-infodetail', $data);
     }
 
     public function blogdetail($slug)
     {
         $blog = Blog::with('user', 'category')->where('blog_slug', $slug)->first();
-        $comments = PostComment::with('blog','user')->where('post_type', $blog->post_type)->where('blog_id', $blog->id)->where('comment_id', null)->get();
+        $comments = PostComment::with('blog', 'user')->where('post_type', $blog->post_type)->where('blog_id', $blog->id)->where('comment_id', null)->get();
         foreach ($comments as $key => $comment) {
-            $reply = PostComment::with('blog','user')->where('comment_id', $comment->id)->get();
+            $reply = PostComment::with('blog', 'user')->where('comment_id', $comment->id)->get();
             $comment->replay_comments = $reply;
         }
 
         $releted = Blog::with('user', 'category')->where('category_id', $blog->category_id)->whereNotIn('id', [$blog->id])->get();
 
-        $data = compact('blog', 'releted','comments');
+        $data = compact('blog', 'releted', 'comments');
         return view('frontend.inc.blogdetail', $data);
     }
 }

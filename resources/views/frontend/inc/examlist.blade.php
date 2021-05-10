@@ -58,6 +58,35 @@
                     @endforeach
                 </div>
             </div>
+
+            <div class="card project_widget list_notify">
+                <div class="header p-4">
+                    <h2>Today Current Affair</h2>
+                </div>
+                <hr class="m-0">
+                <div class="body p-4">
+                    @if(count($currentaffair) != 0)
+                    @foreach($currentaffair as $key => $ca)
+                    @php
+                    $sn = $key + 1;
+                    @endphp
+                    <div class="row">
+                        <div class="col-2 pr-0">
+                            <strong class="mr-2">{{ $sn++ }}.</strong>
+                        </div>
+                        <div class="col-10 p-0">
+                            <strong> <a href="{{ url('currentaffair/detail/'.$ca->slug) }}">{{ $ca->title }}</a></strong>
+                        </div>
+                        <hr>
+
+                    </div>
+                    <hr>
+                    @endforeach
+                    @else
+                    <div class="text-center p-4">No Records Found.</div>
+                    @endif
+                </div>
+            </div>
         </div>
         <div class="col-lg-8 col-md-8">
             <div class="blog-heading px-4 py-3">
