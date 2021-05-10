@@ -46,6 +46,8 @@ Route::group([], function () {
     Route::get('/ajex/blogcomment', 'AjexController@blogcomment');
     Route::get('/ajex/postshare', 'AjexController@postshare');
     Route::get('/ajex/bloglike', 'AjexController@bloglike');
+    
+    Route::get('/ajex/questioncomment', 'AjexController@questioncomment');
 });
 
 

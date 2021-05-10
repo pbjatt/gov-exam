@@ -1,5 +1,9 @@
 @extends('frontend.layout.master')
+@if($lists->seo_title)
 @section('title', $lists->seo_title)
+@else
+@section('title', $lists->infodata->title)
+@endif
 @section('keywords', $lists->seo_keywords)
 @section('description', $lists->seo_description)
 @section('contant')
@@ -14,6 +18,9 @@
                             <div class="card project_widget">
                                 <div class="header p-4">
                                     <h2>{{ ucwords($lists->infodata->title) }}</h2>
+                                </div>
+                                <div class="card-image">
+                                    <img src="{{ url('images/notificationdata/'.$lists->blog_image) }}" alt="">
                                 </div>
                                 <hr class="m-0">
                                 <div class="body" style="min-height: 320px;" id="exam-content">

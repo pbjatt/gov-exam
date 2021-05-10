@@ -41,6 +41,7 @@ Route::group(['middleware' => 'auth:admin', 'namespace' => 'admin', 'as' => 'adm
     Route::resources([
         'about'         => 'AboutusController',
         'blog'         => 'BlogController',
+        'question'         => 'QuestionController',
         'slider'        => 'SliderController',
         'faq'           => 'FaqController',
         'service'       => 'ServiceController',
