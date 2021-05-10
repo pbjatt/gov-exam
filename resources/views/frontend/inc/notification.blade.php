@@ -2,6 +2,7 @@
 @section('title', $lists->seo_title)
 @section('keywords', $lists->seo_keywords)
 @section('description', $lists->seo_description)
+@section('image', url('images/examnotification/'.$lists->image))
 @section('contant')
 
 <section class="container" style="margin-top: 80px;">
@@ -36,9 +37,24 @@
                                 <small>End Date</small>
                             </div>
                         </div>
+
+
                     </div>
                 </div>
             </div>
+
+            @if($lists->image != '')
+            <div class="card project_widget">
+                <div class="body">
+                    <div class="row">
+                        <div class="col-12">
+                            <img src="{{ url('images/examnotification/'.$lists->image) }}" class="" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
+
             <div class="card project_widget">
                 <div class="body">
                     <div class="row">

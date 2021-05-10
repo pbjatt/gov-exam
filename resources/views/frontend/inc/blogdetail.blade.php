@@ -2,6 +2,7 @@
 @section('title', $blog->blog_seotitle)
 @section('keywords', $blog->blog_seokeyword)
 @section('description', $blog->blog_seodesc)
+@section('image', url('storage/blog/'.$blog->blog_image))
 @section('contant')
 <section class="container" style="margin-top: 80px;">
     <div class="row clearfix">

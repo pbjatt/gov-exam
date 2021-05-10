@@ -1,7 +1,8 @@
 @extends('frontend.layout.master')
-@section('title', $currentaffair->seo_title)
-@section('keywords', $currentaffair->seo_keywords)
-@section('description', $currentaffair->seo_description)
+@section('title', $currentaffair->title)
+@section('keywords', $currentaffair->keywords)
+@section('description', $currentaffair->description)
+@section('image', url('storage/currentaffair/'.$currentaffair->image))
 @section('contant')
 
 <section class="container" style="margin-top: 80px;">

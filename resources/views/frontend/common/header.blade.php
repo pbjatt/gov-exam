@@ -15,6 +15,10 @@ $setting = App\Model\Setting::first();
     <meta name="author" content="Pankaj Choudhary">
     <!-- Favicon-->
     <link rel="icon" href="{{ url('/public/images/logo/'.$setting->logo) }}" type="image/x-icon">
+    <!-- Open Graph Meta -->
+    <meta property="og:title" content="@yield('title')">
+    <meta property="og:description" content="@yield('description')">
+    <meta property="og:image" content="@yield('image')">
     <!-- Plugins Core Css -->
     <!-- {{ HTML::style('assets/css/app.min.css') }} -->
     {{ HTML::style('assets/css/form.min.css') }}
