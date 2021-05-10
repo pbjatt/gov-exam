@@ -1,5 +1,9 @@
 @extends('frontend.layout.master')
+@if($lists->seo_title)
 @section('title', $lists->seo_title)
+@else
+@section('title', $lists->infodata->title)
+@endif
 @section('keywords', $lists->seo_keywords)
 @section('description', $lists->seo_description)
 @section('contant')
