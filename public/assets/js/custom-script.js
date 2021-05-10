@@ -68,7 +68,7 @@ $(function() {
         let ajax_url = $(this).data('url');
         let blog_id = $(this).data('blog');
         let comment_id = $(this).data('comment');
-        let message = $(this).closest('.row').find('input').val();
+        let message = $(this).closest('.replymsg').find('input.quesmessage').val();
         if (message == '') {
             $(this).closest('.row').find('input').focus()
         } else {

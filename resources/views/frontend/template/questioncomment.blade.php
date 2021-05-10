@@ -2,67 +2,11 @@
     Logo opinion (लोगो की राय) -
 </div>
 <div class="card project_widget p-4">
-    @if(count($comments) != 0)
-    @foreach($comments as $key => $comment)
-    <div class="post_comment mb-3">
-        <div>
-            <strong><img src="{{ url('extraimage/images.jpg') }}" width="24" height="24" alt="User">
-                {{ $comment->user->name }}</strong>
-            <span class="float-right">{{ date_format($comment->created_at,"d M, Y h:i:s A") }}</span>
+    <div class="my-4 d-flex justify-content-between replymsg">
+        <div class="w-100 mr-4">
+            <input class="quesmessage" name="quesmessage" required placeholder="comment" type="text" value="" style="border: 1px solid; border-radius: 16px; border-color: #00000078; padding: 8px 8px; height: auto; font-size: 12px;">
         </div>
-        <div class="mt-2">
-            {{ $comment->message }}
-        </div>
-        <div class="reply ml-2 mt-3">
-            <div class="pl-5" style="border-left: 1px dashed;">
-                @foreach($comment->replay_comments as $reply)
-                <div class="row">
-                    <div class="col-6">
-                        <strong><img src="{{ url('extraimage/images.jpg') }}" width="24" height="24" alt="User">
-                            {{ $reply->user->name }}</strong>
-                    </div>
-                    <div class="col-6">
-                        <span class="float-right">{{ date_format($reply->created_at,"d M, Y h:i:s A") }}</span>
-                    </div>
-                </div>
-                <div class="mt-2">
-                    {{ $reply->message }}
-                </div>
-                <hr class="">
-                @endforeach
-            </div>
-            <!-- <div class="comment-reply text-right">
-                <i class="fas fa-reply fload-right"></i> Reply
-            </div> -->
-            <div class="row mt-4 w-100 reply-comment">
-                <div class="col-10">
-                    <input class="blogmessage" name="blogmessage" class="squareInput" required placeholder="reply to {{ $comment->user->name }}" type="text" value="" style="border: 1px solid; border-radius: 16px; border-color: #00000078; padding: 8px 8px; height: auto; font-size: 12px;">
-                </div>
-                <div class="col-2 comment-button">
-                    @if(Auth::user())
-                    <div class="addquestioncomment comment-btn" data-url="{{ url('ajex/questioncomment') }}" data-comment="{{ $comment->id }}" data-blog="{{ $question->id }}"><i class="fas fa-reply p-0 icon-color"></i></div>
-                    @endif
-                    @if(!Auth::user())
-                    <a href="{{ url('account/login') }}">
-                        <div class="comment-btn" data-url="{{ url('ajex/questioncomment') }}" data-blog="{{ $question->id }}"><i class="fas fa-reply p-0 icon-color"></i></div>
-                    </a>
-                    @endif
-                </div>
-            </div>
-        </div>
-    </div>
-    <hr class="">
-    @endforeach
-    @endif
-    @if(count($comments) == 0)
-    <div>Not found.</div>
-    @endif
-
-    <div class="row mt-4 w-100">
-        <div class="col-10">
-            <input class="blogmessage" name="blogmessage" required placeholder="comment" type="text" value="" style="border: 1px solid; border-radius: 16px; border-color: #00000078; padding: 8px 8px; height: auto; font-size: 12px;">
-        </div>
-        <div class="col-2 comment-button">
+        <div class="comment-button">
             @if(Auth::user())
             <div class="addquestioncomment comment-btn" data-comment="" data-url="{{ url('ajex/questioncomment') }}" data-blog="{{ $question->id }}"><i class="fas fa-paper-plane p-0 icon-color"></i></div>
             @endif
@@ -73,4 +17,78 @@
             @endif
         </div>
     </div>
+    @if(count($comments) != 0)
+    @foreach($comments as $key => $comment)
+    <div class="post_comment mb-0">
+
+
+        <div class="media mb-0">
+            <img class="mr-3" src="{{ url('extraimage/images.jpg') }}" width="36" height="36" alt="User">
+            <div class="media-body">
+                <p class="p-0 m-0">
+                    <strong>
+                        {{ $comment->user->name }}
+                    </strong>
+                </p class="p-0 m-0">
+                <span style="font-size: 11px;">
+                    {{ date_format($comment->created_at,"d M, Y h:i A") }}
+                </span>
+                <div class="mt-3">
+                    {{ $comment->message }}
+                </div>
+
+                <div class="replyinput">
+                    <div class="mt-4 d-flex justify-content-between replymsg">
+                        <div class="w-100 mr-4">
+                            <input class="quesmessage" name="quesmessage" class="squareInput" required placeholder="reply to {{ $comment->user->name }}" type="text" value="" style="border: 1px solid; border-radius: 16px; border-color: #00000078; padding: 8px 8px; height: auto; font-size: 12px;">
+                        </div>
+                        <div class="comment-button">
+                            @if(Auth::user())
+                            <div class="addquestioncomment comment-btn" data-url="{{ url('ajex/questioncomment') }}" data-comment="{{ $comment->id }}" data-blog="{{ $question->id }}"><i class="fas fa-reply p-0 icon-color"></i></div>
+                            @endif
+                            @if(!Auth::user())
+                            <a href="{{ url('account/login') }}">
+                                <div class="comment-btn" data-url="{{ url('ajex/questioncomment') }}" data-blog="{{ $question->id }}"><i class="fas fa-reply p-0 icon-color"></i></div>
+                            </a>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                @foreach($comment->replay_comments as $reply)
+                <div class="media mb-0 mt-4" style="border-left: 1px dashed;">
+                    <img class="ml-1" src="{{ url('extraimage/images.jpg') }}" width="36" height="36" alt="User">
+                    <div class="media-body ml-3">
+                        <p class="p-0 m-0">
+                            <strong>
+                                {{ $reply->user->name }}
+                            </strong>
+                        </p class="p-0 m-0">
+                        <span style="font-size: 11px;">
+                            {{ date_format($reply->created_at,"d M, Y h:i A") }}
+                        </span>
+                        <div class="mt-3">
+                            {{ $reply->message }}
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+
+
+            </div>
+            <div class="comment-reply text-right replybtn">
+                <a href="javascript:void(0)">
+                    <i class="fas fa-reply fload-right"></i> Reply
+                </a>
+            </div>
+        </div>
+
+    </div>
+    <hr class="">
+    @endforeach
+    @endif
+    @if(count($comments) == 0)
+    <div>No Comment found.</div>
+    @endif
+
+
 </div>

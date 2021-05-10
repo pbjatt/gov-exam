@@ -6,8 +6,8 @@
 @endif
 @section('keywords', $lists->seo_keywords)
 @section('description', $lists->seo_description)
+@section('image', url('images/notificationdata/'.$lists->infodata->image))
 @section('contant')
-
 <section class="container" style="margin-top: 80px;">
     <div class="row clearfix">
         <div class="col-lg-8 col-md-12">

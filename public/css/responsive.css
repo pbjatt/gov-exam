@@ -26,6 +26,11 @@
 
     div#listside {order: 1;}
     div#listdetail {order: 2;}
+
+    .acc .header {
+        font-size: 11px;
+        padding: 2px 10px;
+    }
 }
 
 @media (max-width: 768px) and (min-width: 448px) {
