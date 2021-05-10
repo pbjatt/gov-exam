@@ -15,6 +15,9 @@
                                 <div class="header p-4">
                                     <h2>{{ ucwords($lists->infodata->title) }}</h2>
                                 </div>
+                                <div class="card-image">
+                                    <img src="{{ url('images/notificationdata/'.$lists->blog_image) }}" alt="">
+                                </div>
                                 <hr class="m-0">
                                 <div class="body" style="min-height: 320px;" id="exam-content">
                                     {!! $lists->infodata->description !!}
