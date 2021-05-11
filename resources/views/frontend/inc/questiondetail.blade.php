@@ -1,7 +1,11 @@
+@php
+$setting = App\Model\Setting::first();
+@endphp
 @extends('frontend.layout.master')
 @section('title', $question->question)
 @section('keywords', '')
 @section('description', $question->question)
+@section('image', url('/public/images/logo/'.$setting->logo))
 @section('contant')
 
 <section class="container" style="margin-top: 80px;">

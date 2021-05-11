@@ -31,7 +31,7 @@
                         @if($ca->image)
                         <div class="card-image">
                             <a href="{{ url('currentaffair/detail/'.$ca->slug) }}">
-                                <img class="currentaffair-img" src="{{ url('storage/currentaffair/'.$ca->image) }}" alt="{{ $ca->image }}" width="100%">
+                                <img class="currentaffair-img" src="{{ url('storage/currentaffair/'.$ca->image) }}" alt="{{ $ca->title }}" width="100%">
                             </a>
                         </div>
                         @else

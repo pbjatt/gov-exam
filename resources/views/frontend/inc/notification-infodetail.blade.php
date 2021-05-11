@@ -1,12 +1,11 @@
+@php
+$setting = App\Model\Setting::first();
+@endphp
 @extends('frontend.layout.master')
-@if($lists->seo_title)
-@section('title', $lists->seo_title)
-@else
-@section('title', $lists->infodata->title)
-@endif
+@section('title', $lists->seo_title ?? ucwords($lists->infodata->title))
 @section('keywords', $lists->seo_keywords)
 @section('description', $lists->seo_description)
-@section('image', url('images/notificationdata/'.$lists->infodata->image))
+@section('image', $lists->infodata->image ? url('images/notificationdata/'.$lists->infodata->image) : url('/public/images/logo/'.$setting->logo))
 @section('contant')
 <section class="container" style="margin-top: 80px;">
     <div class="row clearfix">
@@ -20,7 +19,9 @@
                                     <h2>{{ ucwords($lists->infodata->title) }}</h2>
                                 </div>
                                 <div class="card-image">
-                                    <img src="{{ url('images/notificationdata/'.$lists->infodata->image) }}" alt="">
+                                    @if($lists->infodata->image != '')
+                                    <img src="{{ url('images/notificationdata/'.$lists->infodata->image) }}" alt="{{ ucwords($lists->infodata->title) }}">
+                                    @endif
                                 </div>
                                 <hr class="m-0">
                                 <div class="body" style="min-height: 320px;" id="exam-content">
@@ -31,7 +32,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div id="blogcomment">
                 @include('frontend.template.postcomment', compact('comments', 'blog'))
             </div>
