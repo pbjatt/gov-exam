@@ -60,10 +60,10 @@
             </div>
             <div class="col-4">
                 @if($blog->post_type == 'notification')
-                <a href="{{ url('notification/'.$blog->notification->slug.'/'.$blog->infotype->slug.'#blogcomment') }}"><i class="fas fa-comments icon-color"></i> <span>Q&A (लोगो की राय)</span> {{ $commentcount }}</a>
+                <a href="{{ url('notification/'.$blog->notification->slug.'/'.$blog->infotype->slug.'#blogcomment') }}"><i class="fas fa-comments icon-color"></i> <span>लोगो की राय</span> ({{ $commentcount }})</a>
                 @endif
                 @if($blog->post_type == 'blog')
-                <a href="{{ url('blog/'.$blog->blog_slug.'#blogcomment') }}"><i class="fas fa-comments icon-color"></i> <span>Q&A (लोगो की राय)</span> {{ $commentcount }}</a>
+                <a href="{{ url('blog/'.$blog->blog_slug.'#blogcomment') }}"><i class="fas fa-comments icon-color"></i> <span>लोगो की राय</span> ({{ $commentcount }})</a>
                 @endif
             </div>
             <div class="col-4">
