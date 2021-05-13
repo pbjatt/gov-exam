@@ -1,8 +1,11 @@
+@php
+$setting = App\Model\Setting::first();
+@endphp
 @extends('frontend.layout.master')
-@section('title', $lists->seo_title)
-@section('keywords', $lists->seo_keywords)
-@section('description', $lists->seo_description)
-@section('image', url('images/examnotification/'.$lists->image))
+@section('title', $setting->notification_seo_title)
+@section('keywords', $setting->notification_seo_keywords)
+@section('description', $setting->notification_seo_description)
+@section('image', $lists->image ? url('images/examnotification/'.$lists->image) : url('/public/images/logo/'.$setting->logo))
 @section('contant')
 
 <section class="container" style="margin-top: 80px;">
@@ -48,7 +51,7 @@
                 <div class="body">
                     <div class="row">
                         <div class="col-12">
-                            <img src="{{ url('images/examnotification/'.$lists->image) }}" class="" alt="">
+                            <img src="{{ url('images/examnotification/'.$lists->image) }}" class="" alt="{{ $lists->title }}">
                         </div>
                     </div>
                 </div>
