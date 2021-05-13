@@ -4,7 +4,7 @@
 <div class="card project_widget p-4">
     <div class="my-4 d-flex justify-content-between replymsg">
         <div class="w-100 mr-4">
-        <input class="quesmessage" name="quesmessage" required placeholder="write..." type="text" value="" style="border: 1px solid; border-radius: 16px; border-color: #00000078; padding: 8px 8px; height: auto; font-size: 12px;">
+            <input class="quesmessage" name="quesmessage" required placeholder="write..." type="text" value="" style="border: 1px solid; border-radius: 16px; border-color: #00000078; padding: 8px 8px; height: auto; font-size: 12px;">
         </div>
         <div class="comment-button">
             @if(Auth::user())
