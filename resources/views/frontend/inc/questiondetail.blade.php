@@ -65,11 +65,11 @@ $setting = App\Model\Setting::first();
                                     </label>
                                     @endif
 
-                                    <!-- <hr>
+                                    <hr>
                                     <div class="p-3 mt-2">
                                         <h2 class="text-center mb-4"> Solution </h2>
                                         {!! $question->description !!}
-                                    </div> -->
+                                    </div>
 
                                 </div>
                             </div>
