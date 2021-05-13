@@ -1,5 +1,5 @@
 <div class="blog-heading px-4 py-3">
-    Users opinion (लोगो की राय) -
+    लोगो की राय ({{count($comments)}}) -
 </div>
 <div class="card project_widget p-4">
     <div class="my-4 d-flex justify-content-between replymsg">
