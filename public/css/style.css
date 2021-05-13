@@ -522,8 +522,11 @@
     .icon-color {
         color: #ee6d74;
     }
-
-
-    .post_comment .replyinput{
+    
+    .post_comment .replyinput {
         display: none;
+    }
+    
+    .question-title {
+        line-height: 30px !important;
     }

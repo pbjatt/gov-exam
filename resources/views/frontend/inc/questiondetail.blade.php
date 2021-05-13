@@ -18,7 +18,7 @@ $setting = App\Model\Setting::first();
                     <div class="col-12">
                         <div class="card">
                             <div class="header bg-cyan">
-                                <h2>{{ $question->question }}</h2>
+                                <h2 class="question-title">{{ $question->question }}</h2>
                             </div>
                             <div class="body">
                                 <input type="hidden" id="correct_{{ $question->id }}" value="{{ $question->correct_answer }}">
