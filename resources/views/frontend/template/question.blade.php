@@ -26,7 +26,7 @@ $sn = 1;
                     <a href="{{ route('questiondetail', $q->slug) }}">
                         <div class="row">
                             <h2 class="col-1">{{ $sn++ }}</h2>
-                            <h2 class="col-10">{{ $q->question }}</h2>
+                            <h2 class="col-10 question-title">{{ $q->question }}</h2>
                         </div>
                     </a>
                     <ul class="header-dropdown" style="top: 16px;">

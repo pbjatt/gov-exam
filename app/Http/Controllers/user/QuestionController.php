@@ -285,7 +285,9 @@ class QuestionController extends Controller
             'category_id' => 'required'
         ]);
 
-        $path = $request->file('select_file')->getRealPath();
+        $path1 = $request->file('select_file')->store('temp'); 
+        $path = storage_path('app').'/'.$path1;  
+        // $path = $request->file('select_file')->getRealPath();
 
 
         try {

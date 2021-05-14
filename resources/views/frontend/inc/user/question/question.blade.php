@@ -95,12 +95,12 @@
 
                                     <div class="col-lg-6">
                                         {{Form::select('question[difficulty]', $difficulty, '0', ['class' => 'squareInput des-select form-control'])}}
-                                        {{Form::label('record[difficulty]', 'Select Question Category'), ['class' => 'active']}}
+                                        {{Form::label('record[difficulty]', 'Select Question Difficulty'), ['class' => 'active']}}
                                     </div>
 
                                     <div class="col-lg-6">
                                         {{Form::select('question[category_id]', $examcategoryArr,'0', ['class' => 'squareInput des-select form-control'])}}
-                                        {{Form::label('record[category_id]', 'Select Blog Category'), ['class' => 'active']}}
+                                        {{Form::label('record[category_id]', 'Select Category'), ['class' => 'active']}}
                                     </div>
 
                                     <div class="col-lg-12">

@@ -1,8 +1,11 @@
+@php
+$setting = App\Model\Setting::first();
+@endphp
 @extends('frontend.layout.master')
-@section('title', $exam->seo_title)
+@section('title', $exam->seo_title ?? $exam->name)
 @section('keywords', $exam->seo_keywords)
 @section('description', $exam->seo_description)
-@section('image', url('images/exam/'.$exam->image))
+@section('image', $exam->image ? url('images/exam/'.$exam->image) : url('/public/images/logo/'.$setting->logo))
 @section('contant')
 
 <section class="container" style="margin-top: 80px;">
@@ -58,7 +61,7 @@
                 <div class="body">
                     <div class="row">
                         <div class="col-12">
-                            <img src="{{ url('images/exam/'.$exam->image) }}" class="" alt="">
+                            <img src="{{ url('images/exam/'.$exam->image) }}" class="" alt="{{ $exam->name }}">
                         </div>
                     </div>
                 </div>

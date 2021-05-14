@@ -9,7 +9,7 @@
 
                 <div class="row pr-4">
                     <div class="col-lg-12">
-                        {{Form::date('date', request('date'), ['class' => 'squareInput currentsearch', 'id' => 'affairdate'])}}
+                        {{Form::date('date', request('date'), ['class' => 'squareInput form-control currentsearch', 'id' => 'affairdate'])}}
                         {{Form::label('date', 'Select Date'), ['class' => 'active']}}
                     </div>
 

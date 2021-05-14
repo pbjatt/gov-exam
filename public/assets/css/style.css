@@ -12591,6 +12591,7 @@ fieldset[disabled] .form-control {
 .formCard .wrapper .squareInput {
     border-radius: 10px;
     color: black;
+    cursor: pointer;
 }
 
 .formCard>.wrapper {

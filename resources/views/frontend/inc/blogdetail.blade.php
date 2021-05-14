@@ -1,8 +1,11 @@
+@php
+$setting = App\Model\Setting::first();
+@endphp
 @extends('frontend.layout.master')
-@section('title', $blog->blog_seotitle)
+@section('title', $blog->blog_seotitle ?? $blog->blog_title)
 @section('keywords', $blog->blog_seokeyword)
 @section('description', $blog->blog_seodesc)
-@section('image', url('storage/blog/'.$blog->blog_image))
+@section('image', $blog->blog_image ? url('storage/blog/'.$blog->blog_image) : url('/public/images/logo/'.$setting->logo))
 @section('contant')
 <section class="container" style="margin-top: 80px;">
     <div class="row clearfix">
@@ -16,7 +19,7 @@
                                     <h2>{{ $blog->blog_title }}</h2>
                                 </div>
                                 <div class="card-image">
-                                    <img src="{{ url('storage/blog/'.$blog->blog_image) }}" alt="">
+                                    <img src="{{ url('storage/blog/'.$blog->blog_image) }}" alt="{{ $blog->blog_title }}">
                                 </div>
                                 <hr class="m-0">
                                 <div class="body" style="min-height: 320px;" id="exam-content">

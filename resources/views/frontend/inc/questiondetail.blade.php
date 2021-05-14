@@ -1,7 +1,11 @@
+@php
+$setting = App\Model\Setting::first();
+@endphp
 @extends('frontend.layout.master')
 @section('title', $question->question)
 @section('keywords', '')
 @section('description', $question->question)
+@section('image', url('/public/images/logo/'.$setting->logo))
 @section('contant')
 
 <section class="container" style="margin-top: 80px;">
@@ -14,7 +18,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="header bg-cyan">
-                                <h2>{{ $question->question }}</h2>
+                                <h2 class="question-title">{{ $question->question }}</h2>
                             </div>
                             <div class="body">
                                 <input type="hidden" id="correct_{{ $question->id }}" value="{{ $question->correct_answer }}">
@@ -61,11 +65,11 @@
                                     </label>
                                     @endif
 
-                                    <!-- <hr>
+                                    <hr>
                                     <div class="p-3 mt-2">
                                         <h2 class="text-center mb-4"> Solution </h2>
                                         {!! $question->description !!}
-                                    </div> -->
+                                    </div>
 
                                 </div>
                             </div>

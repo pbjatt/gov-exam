@@ -1,8 +1,11 @@
+@php
+$setting = App\Model\Setting::first();
+@endphp
 @extends('frontend.layout.master')
-@section('title', $currentaffair->title)
+@section('title', $currentaffair->seo_title ?? $currentaffair->title)
 @section('keywords', $currentaffair->keywords)
 @section('description', $currentaffair->description)
-@section('image', url('storage/currentaffair/'.$currentaffair->image))
+@section('image', $currentaffair->image ? url('storage/currentaffair/'.$currentaffair->image) : url('/public/images/logo/'.$setting->logo))
 @section('contant')
 
 <section class="container" style="margin-top: 80px;">
@@ -17,7 +20,7 @@
                                     <h2>{{ $currentaffair->title }}</h2>
                                 </div>
                                 <div class="card-image">
-                                    <img src="{{ url('storage/currentaffair/'.$currentaffair->image) }}" alt="">
+                                    <img src="{{ url('storage/currentaffair/'.$currentaffair->image) }}" alt="{{ $currentaffair->title }}">
                                 </div>
                                 <hr class="m-0">
                                 <div class="body" id="exam-content">

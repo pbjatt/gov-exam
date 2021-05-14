@@ -1,7 +1,11 @@
+@php
+$setting = App\Model\Setting::first();
+@endphp
 @extends('frontend.layout.master')
 @section('title', $setting->home_seo_title)
 @section('keywords', $setting->home_seo_keywords)
 @section('description', $setting->home_seo_description)
+@section('image', url('/public/images/logo/'.$setting->logo))
 @section('contant')
 
 <section class="container" style="margin-top: 80px;">
@@ -89,10 +93,10 @@
             </div>
         </div>
         <div class="col-lg-8 col-md-8">
-            <div class="blog-heading px-4 py-3">
-                Disscussion Points (विचार-विमर्श के विषय) -
-            </div>
             <div class="scrolling-pagination">
+                <div class="blog-heading px-4 py-3">
+                    Disscussion Points (विचार-विमर्श के विषय) -
+                </div>
                 @include('frontend.template.blog_list', compact('blogs'))
             </div>
             <div class="ajax-load text-center" style="display:none">

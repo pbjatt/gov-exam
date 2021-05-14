@@ -22,12 +22,12 @@
         <div class="card-image">
             @if($blog->post_type == 'notification')
             <a href="{{ url('notification/'.$blog->notification->slug.'/'.$blog->infotype->slug) }}">
-                <img class="blog-card-image" src="{{ url('images/notificationdata/'.$blog->blog_image) }}" alt="{{ $blog->blog_image }}" width="100%">
+                <img class="blog-card-image" src="{{ url('images/notificationdata/'.$blog->blog_image) }}" alt="{{ ucwords($blog->blog_title) }}" width="100%">
             </a>
             @endif
             @if($blog->post_type == 'blog')
             <a href="{{ url('blog/'.$blog->blog_slug) }}">
-                <img class="blog-card-image" src="{{ url('storage/blog/'.$blog->blog_image) }}" alt="{{ $blog->blog_image }}" width="100%">
+                <img class="blog-card-image" src="{{ url('storage/blog/'.$blog->blog_image) }}" alt="{{ ucwords($blog->blog_title) }}" width="100%">
             </a>
             @endif
         </div>
@@ -60,10 +60,10 @@
             </div>
             <div class="col-4">
                 @if($blog->post_type == 'notification')
-                <a href="{{ url('notification/'.$blog->notification->slug.'/'.$blog->infotype->slug.'#blogcomment') }}"><i class="fas fa-comments icon-color"></i> <span>Q&A (लोगो की राय)</span> {{ $commentcount }}</a>
+                <a href="{{ url('notification/'.$blog->notification->slug.'/'.$blog->infotype->slug.'#blogcomment') }}"><i class="fas fa-comments icon-color"></i> <span>लोगो की राय</span> ({{ $commentcount }})</a>
                 @endif
                 @if($blog->post_type == 'blog')
-                <a href="{{ url('blog/'.$blog->blog_slug.'#blogcomment') }}"><i class="fas fa-comments icon-color"></i> <span>Q&A (लोगो की राय)</span> {{ $commentcount }}</a>
+                <a href="{{ url('blog/'.$blog->blog_slug.'#blogcomment') }}"><i class="fas fa-comments icon-color"></i> <span>लोगो की राय</span> ({{ $commentcount }})</a>
                 @endif
             </div>
             <div class="col-4">
