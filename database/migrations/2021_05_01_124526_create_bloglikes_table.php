@@ -17,7 +17,7 @@ class CreateBloglikesTable extends Migration
             $table->id();
             $table->string('blog_id')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->enum('post_type', ['blog','notification'])->default('blog');
             $table->softDeletes();
             $table->timestamps();
