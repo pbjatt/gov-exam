@@ -17,9 +17,9 @@ class CreatePostCommentsTable extends Migration
             $table->id();
             $table->string('blog_id')->nullable();
             $table->unsignedBigInteger('comment_id')->nullable();
-            $table->foreign('comment_id')->references('id')->on('post_comments');
+            $table->foreign('comment_id')->references('id')->on('post_comments')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->longText('message');
             $table->enum('post_type', ['blog','notification'])->default('blog');
             $table->softDeletes();
