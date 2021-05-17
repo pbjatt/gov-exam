@@ -16,9 +16,9 @@ class CreateQuestionCommentsTable extends Migration
         Schema::create('question_comments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('question_id')->nullable();
-            $table->foreign('question_id')->references('id')->on('questions');
+            $table->foreign('question_id')->references('id')->on('questions')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('comment_id')->nullable();
-            $table->foreign('comment_id')->references('id')->on('question_comments');
+            $table->foreign('comment_id')->references('id')->on('question_comments')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->longText('message');
